@@ -12,15 +12,22 @@ Suite Teardown                         Common.Close Browser
 
 
 *** Test Cases ***
+
+Logging in with a Multiple Invalid Credentials Scenarios
+   [Tags]                               functional      ui      negative        login
+   [Template]                           DemoqaRes.Logging in with Invalid Credentials
+   ${DELETED_ACCOUNT}
+   ${EMPTY_USERNAME}
+   ${EMPTY_PASSWORD}
+   ${EMPTY_CREDENTIALS}
+
+
+
 Logging in with a Deleted Account Credentials
    [Tags]                               functional      ui      negative        login
-   Wait Until Page Contains Element     xpath=//*[@id="root"]/header/a
-   Wait Until Element Is Visible        xpath=//*[text()='Book Store Application']
-   Click Element                        xpath=//*[text()='Book Store Application']
-   Wait Until Page Contains             Author
+   DemoqaRes.Navigate to The Book Store Application
 
-   Wait Until Element Is Visible        xpath=//span[text()='Login']
-   Click Element                        xpath=//span[text()='Login']
+   DemoqaRes.Navigate to Login Page
    Wait Until Page Contains             Welcome,
    Wait Until Page Contains             Login in Book Store
 
@@ -31,13 +38,9 @@ Logging in with a Deleted Account Credentials
 
 Logging in with Empty userName
    [Tags]                               functional      ui      negative        login
-   Wait Until Page Contains Element     xpath=//*[@id="root"]/header/a
-   Wait Until Element Is Visible        xpath=//*[text()='Book Store Application']
-   Click Element                        xpath=//*[text()='Book Store Application']
-   Wait Until Page Contains             Author
+   DemoqaRes.Navigate to The Book Store Application
 
-   Wait Until Element Is Visible        xpath=//span[text()='Login']
-   Click Element                        xpath=//span[text()='Login']
+   DemoqaRes.Navigate to Login Page
    Wait Until Page Contains             Welcome,
    Wait Until Page Contains             Login in Book Store
 
@@ -48,13 +51,9 @@ Logging in with Empty userName
 
 Logging in with Empty Password
    [Tags]                               functional      ui      negative        login
-   Wait Until Page Contains Element     xpath=//*[@id="root"]/header/a
-   Wait Until Element Is Visible        xpath=//*[text()='Book Store Application']
-   Click Element                        xpath=//*[text()='Book Store Application']
-   Wait Until Page Contains             Author
+   DemoqaRes.Navigate to The Book Store Application
 
-   Wait Until Element Is Visible        xpath=//span[text()='Login']
-   Click Element                        xpath=//span[text()='Login']
+   DemoqaRes.Navigate to Login Page
    Wait Until Page Contains             Welcome,
    Wait Until Page Contains             Login in Book Store
 
@@ -65,13 +64,9 @@ Logging in with Empty Password
 
 Logging in with Empty userName and Password
    [Tags]                               functional      ui      negative        login
-   Wait Until Page Contains Element     xpath=//*[@id="root"]/header/a
-   Wait Until Element Is Visible        xpath=//*[text()='Book Store Application']
-   Click Element                        xpath=//*[text()='Book Store Application']
-   Wait Until Page Contains             Author
+   DemoqaRes.Navigate to The Book Store Application
 
-   Wait Until Element Is Visible        xpath=//span[text()='Login']
-   Click Element                        xpath=//span[text()='Login']
+   DemoqaRes.Navigate to Login Page
    Wait Until Page Contains             Welcome,
    Wait Until Page Contains             Login in Book Store
 
@@ -81,110 +76,87 @@ Logging in with Empty userName and Password
    Wait Until Element Is Visible             xpath=//*[@id='userName' and @class='mr-sm-2 is-invalid form-control']
    Wait Until Element Is Visible             xpath=//*[@id='password' and @class='mr-sm-2 is-invalid form-control']
 
-Checking the "Logout" Button
+
+
+
+
+
+
+
+Logging Out of the Account
     [Tags]                              functional       ui     positive        account
-    Logging in                          ${MAIN_USERNAME}        ${MAIN_PASSWORD}
-    Click Element                       xpath=//*[text()='Logout']
-    Wait Until Page Contains            Login in Book Store
+    DemoqaRes.Logging in                          ${MAIN_USERNAME}        ${MAIN_PASSWORD}
+    DemoqaRes.Logging Out
 
 Delete the Account
     [Tags]                              bug     ui     positive     account
-    Creating a New Account              ${DELETE_ME_FIRST_NAME}    ${DELETE_ME_LAST_NAME}   ${DELETE_ME_USERNAME}    ${DELETE_ME_PASSWORD}
-    Logging in                          ${DELETE_ME_USERNAME}       ${DELETE_ME_PASSWORD}
-    Click Element                       xpath=//*[text()='Delete Account']
-    Wait Until Page Contains            Do you want to delete your account?
-    Click Element                       xpath=//*[text()='OK']
-
-    Page Should Not Contain             ${DELETE_ME_USERNAME}
+    DemoqaRes.Navigate to The Book Store Application
+    DemoqaRes.Creating a New Account              ${DELETE_ME_FIRST_NAME}    ${DELETE_ME_LAST_NAME}   ${DELETE_ME_USERNAME}    ${DELETE_ME_PASSWORD}
+    DemoqaRes.Logging in                          ${DELETE_ME_USERNAME}       ${DELETE_ME_PASSWORD}
+    DemoqaRes.Deleting the Account
 
 User Should Be Logged Out Automatically After Account Deletion
     [Tags]                              bug       ui     positive       account
-    Creating a New Account              ${DELETE_ME_FIRST_NAME}    ${DELETE_ME_LAST_NAME}   ${DELETE_ME_USERNAME}    ${DELETE_ME_PASSWORD}
-    Logging in                          ${DELETE_ME_USERNAME}       ${DELETE_ME_PASSWORD}
-    Click Element                       xpath=//*[text()='Delete Account']
-    Wait Until Page Contains            Do you want to delete your account?
-    Click Element                       xpath=//*[text()='OK']
-    Wait Until Page Contains            Login
+    DemoqaRes.Navigate to The Book Store Application
+    DemoqaRes.Creating a New Account              ${DELETE_ME_FIRST_NAME}    ${DELETE_ME_LAST_NAME}   ${DELETE_ME_USERNAME}    ${DELETE_ME_PASSWORD}
+    DemoqaRes.Logging in                          ${DELETE_ME_USERNAME}       ${DELETE_ME_PASSWORD}
+    DemoqaRes.Deleting the Account
+    DemoqaRes.Account Logged out
 
 Search Bar - Empty Input Shows All Books
     [Tags]                              functional       ui     positive        bookstore
-    Logging in                          ${MAIN_USERNAME}        ${MAIN_PASSWORD}
-    Click Element                       xpath=//*[text()='Go To Book Store']
-    Input Text                          xpath=//*[@id='searchBox']      ${EMPTY}
-    Click Element                       xpath=//*[@id="searchBox-wrapper"]/div[1]/div/button
-
-    Element Should Be Visible           xpath=//*[text()='Git Pocket Guide']
-    Element Should Be Visible           xpath=//*[text()='Speaking JavaScript']
-    Element Should Be Visible           xpath=//*[text()='Eloquent JavaScript, Second Edition']
+    DemoqaRes.Logging in                          ${MAIN_USERNAME}        ${MAIN_PASSWORD}
+    DemoqaRes.Navigate to The Book Store Application
+    DemoqaRes.Using the Book Search Feature            ${SEARCH.EMPTY}
+    DemoqaRes.Empty Search Results
 
 Search Bar - Invalid Input Shows No Books
     [Tags]                              functional       ui     negative        bookstore
-    Logging in                          ${MAIN_USERNAME}        ${MAIN_PASSWORD}
-    Click Element                       xpath=//*[text()='Go To Book Store']
-
-    Input Text                          xpath=//*[@id='searchBox']    xxxxxxxxxx
-    Click Element                       xpath=//*[@id="searchBox-wrapper"]/div[1]/div/button
-
-    Element Should Not Be Visible       xpath=//*[text()='Git Pocket Guide']
-    Element Should Not Be Visible       xpath=//*[text()='Speaking JavaScript']
-    Element Should Not Be Visible       xpath=//*[text()='Eloquent JavaScript, Second Edition']
+    DemoqaRes.Logging in                          ${MAIN_USERNAME}        ${MAIN_PASSWORD}
+    DemoqaRes.Navigate to The Book Store Application
+    DemoqaRes.Using the Book Search Feature           ${SEARCH.INVALID}
+    DemoqaRes.Verify Search Results
 
 Search Bar - Search by Book Title
     [Tags]                              functional       ui     positive        bookstore
-    Logging in                          ${MAIN_USERNAME}        ${MAIN_PASSWORD}
-    Click Element                       xpath=//*[text()='Go To Book Store']
-    Input Text                          xpath=//*[@id='searchBox']    Git Pocket Guide
-    Click Element                       xpath=//*[@id="searchBox-wrapper"]/div[1]/div/button
-
-    Element Should Be Visible           xpath=//*[text()='Git Pocket Guide']
-    Element Should Not Be Visible       xpath=//*[text()='Speaking JavaScript']
-    Element Should Not Be Visible       xpath=//*[text()='Eloquent JavaScript, Second Edition']
+    DemoqaRes.Logging in                          ${MAIN_USERNAME}        ${MAIN_PASSWORD}
+    DemoqaRes.Navigate to The Book Store Application
+    DemoqaRes.Using the Book Search Feature            ${SEARCH.BOOKNAME}
+    DemoqaRes.Book Title Search Results
 
 Search Bar - Search by Author Name
     [Tags]                              functional       ui     positive        bookstore
-    Logging in                          ${MAIN_USERNAME}        ${MAIN_PASSWORD}
-    Click Element                       xpath=//*[text()='Go To Book Store']
-    Input Text                          xpath=//*[@id='searchBox']    Glenn Block et al.
-    Click Element                       xpath=//*[@id="searchBox-wrapper"]/div[1]/div/button
-
-    Element Should Be Visible           xpath=//*[text()='Designing Evolvable Web APIs with ASP.NET']
-    Element Should Not Be Visible       xpath=//*[text()='Git Pocket Guide']
-    Element Should Not Be Visible       xpath=//*[text()='Speaking JavaScript']
-    Element Should Not Be Visible       xpath=//*[text()='Eloquent JavaScript, Second Edition']
+    DemoqaRes.Logging in                          ${MAIN_USERNAME}        ${MAIN_PASSWORD}
+    DemoqaRes.Navigate to The Book Store Application
+    DemoqaRes.Using the Book Search Feature           ${SEARCH.AUTHOR}
+    DemoqaRes.Author name Search Results
 
 Search Bar - Search by Publisher Name
     [Tags]                              functional       ui     positive        bookstore
-    Logging in                          ${MAIN_USERNAME}        ${MAIN_PASSWORD}
-    Click Element                       xpath=//*[text()='Go To Book Store']
-    Input Text                          xpath=//*[@id='searchBox']    No Starch Press
-    Click Element                       xpath=//*[@id="searchBox-wrapper"]/div[1]/div/button
+    DemoqaRes.Logging in                          ${MAIN_USERNAME}        ${MAIN_PASSWORD}
+    DemoqaRes.Navigate to The Book Store Application
+    DemoqaRes.Using the Book Search Feature            ${SEARCH.Publisher}
+    DemoqaRes.Publisher Empty Search Results
 
-    Element Should Be Visible           xpath=//*[text()='Eloquent JavaScript, Second Edition']
-    Element Should Be Visible           xpath=//*[text()='Understanding ECMAScript 6']
-    Element Should Not Be Visible       xpath=//*[text()='Git Pocket Guide']
-    Element Should Not Be Visible       xpath=//*[text()='Speaking JavaScript']
+
+
+
+
+
+
+
 
 Books in the Book Store Should Have Retain Their Own Images When Their Position is Changed
     [Tags]                              bug     ui     positive     bookstore
-    Logging in                          ${MAIN_USERNAME}        ${MAIN_PASSWORD}
-    Click Element                       xpath=//*[text()='Go To Book Store']
-    Element Should Be Visible           xpath=//*[text()='Git Pocket Guide']
-    Element Should Be Visible           xpath=//*[@src='/assets/bookimage0-DrW2Lhj5.jpg']
-    Element Should Be Visible           xpath=//*[text()='Learning JavaScript Design Patterns']
-    Element Should Be Visible           xpath=//*[@src='/assets/bookimage1-CeLeymOA.jpg']
-
-    Input Text                          xpath=//*[@id='searchBox']      Learning JavaScript Design Patterns
-    Click Element                       xpath=//*[@id="searchBox-wrapper"]/div[1]/div/button
-
-    Element Should Not Be Visible       xpath=//*[text()='Git Pocket Guide']
-    Element Should Not Be Visible       xpath=//*[@src='/assets/bookimage0-DrW2Lhj5.jpg']
-    Element Should Be Visible           xpath=//*[text()='Learning JavaScript Design Patterns']
-    Element Should Be Visible           xpath=//*[@src='/assets/bookimage1-CeLeymOA.jpg']
+    DemoqaRes.Logging in                          ${MAIN_USERNAME}        ${MAIN_PASSWORD}
+    DemoqaRes.Navigate to The Book Store Application
+    DemoqaRes.the Books
+    DemoqaRes.the books After using the Search
 
 Books in the Book Store Should Retain Their Correct Details When Their Position is Changed
     [Tags]                              functional      ui     positive     bookstore
-    Logging in                          ${MAIN_USERNAME}        ${MAIN_PASSWORD}
-    Click Element                       xpath=//*[text()='Go To Book Store']
+    DemoqaRes.Logging in                          ${MAIN_USERNAME}        ${MAIN_PASSWORD}
+    DemoqaRes.Return to BookStore
     Click Element                       xpath=//*[text()='Git Pocket Guide']
     Wait Until Page Contains            9781449325862
     Page Should Contain                 Git Pocket Guide
@@ -215,7 +187,7 @@ Books in the Book Store Should Retain Their Correct Details When Their Position 
 
 Entering Website Link in Books'details
     [Tags]                              functional      ui     positive     bookstore
-    Logging in                          ${MAIN_USERNAME}        ${MAIN_PASSWORD}
+    DemoqaRes.Logging in                          ${MAIN_USERNAME}        ${MAIN_PASSWORD}
     Click Element                       xpath=//*[text()='Go To Book Store']
     Click Element                       xpath=//*[text()='Git Pocket Guide']
     Click Element                       xpath=//*[text()='http://chimera.labs.oreilly.com/books/1230000000561/index.html']
@@ -233,7 +205,7 @@ Entering Website Link in Books'details
 
 Adding Books to the Books Collection
     [Tags]                              functional      ui     positive     bookstore
-    Logging in                          ${MAIN_USERNAME}        ${MAIN_PASSWORD}
+    DemoqaRes.Logging in                          ${MAIN_USERNAME}        ${MAIN_PASSWORD}
     Click Element                       xpath=//*[text()='Go To Book Store']
     Click Element                       xpath=//*[text()='Git Pocket Guide']
     Click Element                       xpath=//*[text()='Add To Your Collection']
@@ -251,7 +223,7 @@ Adding Books to the Books Collection
 
 Adding Already Added Book to the Books Collection
     [Tags]                              functional      ui     negative     bookstore
-    Logging in                          ${MAIN_USERNAME}        ${MAIN_PASSWORD}
+    DemoqaRes.Logging in                          ${MAIN_USERNAME}        ${MAIN_PASSWORD}
     Click Element                       xpath=//*[text()='Go To Book Store']
     Click Element                       xpath=//*[text()='Git Pocket Guide']
     Click Element                       xpath=//*[text()='Add To Your Collection']
@@ -262,7 +234,7 @@ Adding Already Added Book to the Books Collection
 
 Add a Book to the Collection then Delete All Books from the Collection
     [Tags]                              bug       ui     positive       bookstore
-    Logging in                          ${MAIN_USERNAME}        ${MAIN_PASSWORD}
+    DemoqaRes.Logging in                          ${MAIN_USERNAME}        ${MAIN_PASSWORD}
     Click Element                       xpath=//*[text()='Go To Book Store']
     Click Element                       xpath=//*[text()='Git Pocket Guide']
     Click Element                       xpath=//*[text()='Add To Your Collection']
