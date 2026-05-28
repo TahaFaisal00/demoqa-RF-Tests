@@ -1,0 +1,44 @@
+*** Settings ***
+Library                                 SeleniumLibrary
+
+*** Keywords ***
+Verify that the First Book is in the Collection
+    Element Should Be Visible           xpath=//*[text()='Git Pocket Guide']
+
+Verify that the Fourth Book is in the Collection
+    Element Should Be Visible           xpath=//*[text()='Speaking JavaScript']
+
+Click Delete All Books Button
+    Click Element                       xpath=//*[text()='Delete All Books']
+
+Confirm Deletion
+    Wait Until Page Contains            Do you want to delete all books?
+    Click Element                       xpath=//*[text()='OK']
+
+Verify That The First Book Is Deleted
+    Element Should Not Be Visible       xpath=//*[text()='Git Pocket Guide']
+
+Clicking Go To Book Store Button
+    Click Element                       xpath=//*[text()='Go To Book Store']
+
+Click Logout button
+    Click Element                       xpath=//*[text()='Logout']
+
+Verify Logging Out Done Successfully
+    Wait Until Page Contains            Login in Book Store
+
+Click Delete Account button
+    Click Element                       xpath=//*[text()='Delete Account']
+
+Confirm Deleting the Account
+    Wait Until Page Contains            Do you want to delete your account?
+    Click Element                       xpath=//*[text()='OK']
+
+Verify the Deletion
+    [Arguments]                         ${User}
+    Page Should Not Contain             ${User}
+
+Verify Logging out
+    Wait Until Page Contains            Login
+
+

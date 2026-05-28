@@ -1,80 +1,48 @@
 *** Settings ***
-Library                               SeleniumLibrary
+Library                                           SeleniumLibrary
 
-Resource                              Common.robot
+Resource                                          Common.robot
 
-Resource                              PO/ToolsQA.robot
-Resource                              PO/LogIn.robot
-Resource                              PO/Register.robot
-Resource                              PO/BookStore.robot
-Resource                              PO/Account.robot
+Resource                                          PO/ToolsQA.robot
+Resource                                          PO/LogIn.robot
+Resource                                          PO/Register.robot
+Resource                                          PO/BookStore.robot
+Resource                                          PO/Profile.robot
 
 *** Variables ***
-${MAIN_FIRST_NAME}                    taha
-${MAIN_LAST_NAME}                     moe
-${MAIN_USERNAME}                      taha001q22
-${MAIN_PASSWORD}                      Taha2001!!
-${DELETE_ME_FIRST_NAME}               Delete
-${DELETE_ME_LAST_NAME}                Me
-${DELETE_ME_USERNAME}                 DeleteMe
-${DELETE_ME_PASSWORD}                 Taha2001!!
+${MAIN_FIRST_NAME}                                taha
+${MAIN_LAST_NAME}                                 moe
+${MAIN_USERNAME}                                  taha001q22
+${MAIN_PASSWORD}                                  Taha2001!!
+${DELETE_ME_FIRST_NAME}                           Delete
+${DELETE_ME_LAST_NAME}                            Me
+${DELETE_ME_USERNAME}                             DeleteMe
+${DELETE_ME_PASSWORD}                             Taha2001!!
 
-${EMPTY_USERNAME_FIELD}                   xpath=//*[@id='userName' and @class='mr-sm-2 is-invalid form-control']
-${EMPTY_PASSWORD_FIELD}                   xpath=//*[@id='password' and @class='mr-sm-2 is-invalid form-control']
-${INVALID_USERNAME_OR_PASSWORD}           Invalid username or password!
+${EMPTY_USERNAME_FIELD}                           xpath=//*[@id="userName" and @class="mr-sm-2 is-invalid form-control"]
+${EMPTY_PASSWORD_FIELD}                           xpath=//*[@id="password" and @class="mr-sm-2 is-invalid form-control"]
+${INVALID_USERNAME_OR_PASSWORD}                   Invalid username or password!
 
+&{VALID_ACCOUNT}                                  USERNAME=${MAIN_USERNAME}         PASSWORD=${MAIN_PASSWORD}         TEXT=${MAIN_USERNAME}
 
-&{VALID_ACCOUNT}                USERNAME=${MAIN_USERNAME}         PASSWORD=${MAIN_PASSWORD}         TEXT=${MAIN_USERNAME}
+&{DELETED_ACCOUNT}                                USERNAME=${DELETE_ME_USERNAME}    PASSWORD=${DELETE_ME_PASSWORD}    ERROR1=${EMPTY}                          ERROR2=${EMPTY}                    ERROR_TEXT=${INVALID_USERNAME_OR_PASSWORD}
+&{EMPTY_USERNAME}                                 USERNAME=${EMPTY}                 PASSWORD=${MAIN_PASSWORD}         ERROR1=${EMPTY_USERNAME_FIELD}           ERROR2=${EMPTY}                    ERROR_TEXT=${EMPTY}
+&{EMPTY_PASSWORD}                                 USERNAME=${MAIN_USERNAME}         PASSWORD=${EMPTY}                 ERROR1=${EMPTY_PASSWORD_FIELD}           ERROR2=${EMPTY}                    ERROR_TEXT=${EMPTY}
+&{EMPTY_CREDENTIALS}                              USERNAME=${EMPTY}                 PASSWORD=${EMPTY}                 ERROR1=${EMPTY_USERNAME_FIELD}           ERROR2=${EMPTY_PASSWORD_FIELD}     ERROR_TEXT=${EMPTY}
 
-&{DELETED_ACCOUNT}              USERNAME=${DELETE_ME_USERNAME}    PASSWORD=${DELETE_ME_PASSWORD}    ERROR1=${EMPTY}                          ERROR2=${EMPTY}                    ERROR_TEXT=${INVALID_USERNAME_OR_PASSWORD}
-&{EMPTY_USERNAME}               USERNAME=${EMPTY}                 PASSWORD=${MAIN_PASSWORD}         ERROR1=${EMPTY_USERNAME_FIELD}           ERROR2=${EMPTY}                    ERROR_TEXT=${EMPTY}
-&{EMPTY_PASSWORD}               USERNAME=${MAIN_USERNAME}         PASSWORD=${EMPTY}                 ERROR1=${EMPTY_PASSWORD_FIELD}           ERROR2=${EMPTY}                    ERROR_TEXT=${EMPTY}
-&{EMPTY_CREDENTIALS}            USERNAME=${EMPTY}                 PASSWORD=${EMPTY}                 ERROR1=${EMPTY_USERNAME_FIELD}           ERROR2=${EMPTY_PASSWORD_FIELD}     ERROR_TEXT=${EMPTY}
-
-
-
-
-
-&{SEARCH}                        EMPTY=${EMPTY}    INVALID=xxxxxxxxxx     BOOKNAME=Git Pocket Guide    AUTHOR=Glenn Block et al.   Publisher=No Starch Press
-
-
-
-
-
-
-
-
+&{SEARCH}                                         EMPTY=${EMPTY}    INVALID=xxxxxxxxxx     BOOKNAME=Git Pocket Guide    AUTHOR=Glenn Block et al.   Publisher=No Starch Press
 
 *** Keywords ***
 
-Using the Book Search Feature
-    [Arguments]                     ${SEARCH}
-    Write in the Search Bar          ${SEARCH}
-    Click the Search Button
-
-Empty Search Results
-    Verify the Empty Search Results
-Verify Search Results
-    Verify the Invalid Search Results
-Book Title Search Results
-    Verify Searching by Book Title Results
-Author name Search Results
-    Verify Searching by Author name Results
-Publisher Empty Search Results
-    Verify Searching by Publisher name Results
-
-
-
-
 Logging in with Invalid Credentials
-    [Arguments]             ${CREDENTIALS}
-    Go To                                ${URL}
+    [Arguments]                                  ${CREDENTIALS}
+    Go To                                        ${URL}
     Navigate to The Book Store Application
     Navigate to Login Page
-    Entering Invalid Credentials                ${CREDENTIALS}
+    Entering Invalid Credentials                 ${CREDENTIALS}
 
 Navigate to The Book Store Application
-    ToolsQA.Varifiy that TOOLSQA Website is loaded
+    ToolsQA.Verify that TOOLSQA Website is loaded
     ToolsQA.Click on Book Store Application
 
 Navigate to Login Page
@@ -82,109 +50,132 @@ Navigate to Login Page
     BookStore.Click the Login Button
 
 Entering Invalid Credentials
-   [Arguments]                  ${CREDENTIALS}
+   [Arguments]                                   ${CREDENTIALS}
    LogIn.Verify that Login Page is Loaded
-   LogIn.Entering Username              ${CREDENTIALS.USERNAME}
-   LogIn.Entering Password              ${CREDENTIALS.PASSWORD}
+   LogIn.Entering Username                       ${CREDENTIALS.USERNAME}
+   LogIn.Entering Password                       ${CREDENTIALS.PASSWORD}
    LogIn.Clicking Login
-   LogIn.Error Message                 ${CREDENTIALS.ERROR1}        ${CREDENTIALS.ERROR2}        ${CREDENTIALS.ERROR_TEXT}
-
-Return to BookStore
-    Account.Clicking Go To Book Store Button
+   LogIn.Error Message                           ${CREDENTIALS.ERROR1}        ${CREDENTIALS.ERROR2}        ${CREDENTIALS.ERROR_TEXT}
 
 
+Using the Book Search Feature
+    [Arguments]                                  ${SEARCH}
+    Write in the Search Bar                      ${SEARCH}
 
+Empty Search Results
+    Verify the Empty Search Results
+
+Verify Search Results
+    Verify the Invalid Search Results
+
+Book Title Search Results
+    Verify Searching by Book Title Results
+
+Author name Search Results
+    Verify Searching by Author name Results
+
+Publisher Empty Search Results
+    Verify Searching by Publisher name Results
+
+Return to BookStore From Account
+    Profile.Clicking Go To Book Store Button
 
 Logging Out
-    Account.Click Logout button
-    Account.Verify Logging Out Done Successfully
-
-
+    Profile.Click Logout button
+    Profile.Verify Logging Out Done Successfully
 
 Deleting the Account
-    Account.Click Delete Account button
-    Account.Confirm Deleting the Account
-    Account.Verify the Deletion
+    Profile.Click Delete Account button
+    Profile.Confirm Deleting the Account
+    Profile.Verify the Deletion                  ${DELETE_ME_USERNAME}
 
 Account Logged out
-    Account.Verify Logging out
-
-
+    Profile.Verify Logging out
 
 the Books
     BookStore.2 Books and Their Images
+
 the books After using the Search
     BookStore.Using the Search Bar
     BookStore.the 2 Books and Their Images After Searching
 
+Check a Book Details
+    BookStore.Checking a Book Details
 
+Return to BookStore From Book Details
+    BookStore.Click Back To Book Store button
 
-    Checking a Book Details
-    Click Back To Book Store button
-    Checking a Second Book Details
-    Click Back To Book Store button
-    Using the Search Bar
-    Checking a Second Book Details
+Check a Second Book Details
+    BookStore.Checking a Second Book Details
 
+Check the Second Book Details After Using the Search
+    BookStore.Using the Search Bar
+    BookStore.Checking a Second Book Details
 
+Open the First Book and Enter the Website
+    BookStore.Click on the First Book
+    BookStore.Enter the First Book Website
 
+Open the Second Book and Enter the Website
+    BookStore.Click on the Second Book
+    BookStore.Enter the Second Book Website
 
+Add the First Book to the Collection
+    BookStore.Click on the First Book
+    BookStore.Click Add To Your Collection button
+    BookStore.Verify That Book Was Added Successfully
 
+Add the Fourth Book to the Collection
+    BookStore.Click on the Fourth Book
+    BookStore.Click Add To Your Collection button
+    BookStore.Verify That Book Was Added Successfully
 
+Navigate to Profile and Verify that the Books Are in the Collection
+    BookStore.Navigate to Profile Page
+    Profile.Verify that the First Book is in the Collection
+    Profile.Verify that the Fourth Book is in the Collection
 
+Adding an Already Added Book to the Collection
+    BookStore.Click Add To Your Collection button
+    BookStore.Verify That Book Was Already Added to Your Collection
 
+Navigate to Profile and Delete The Collection
+   BookStore.Navigate to Profile Page
+   Profile.Click Delete All Books Button
+   Profile.Confirm Deletion
+   Profile.Verify That The First Book Is Deleted
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Navigating to Profile and Logging in
+   [Arguments]                                   ${USERNAME}         ${PASSWORD}
+   ToolsQA.Verify that TOOLSQA Website is loaded
+   ToolsQA.Click on Book Store Application
+   BookStore.Click on Login button
+   LogIn.Verify that Login Page is Loaded
+   LogIn.Entering Username                       ${USERNAME}
+   LogIn.Entering Password                       ${PASSWORD}
+   LogIn.Clicking Login
+   LogIn.Verify Logging in                       ${USERNAME}
 
 Logging in
-   [Arguments]                          ${USERNAME}         ${PASSWORD}
-   Wait Until Page Contains Element     xpath=//*[@id="root"]/header/a
-   Wait Until Element Is Visible        xpath=//*[text()='Book Store Application']
-   Click Element                        xpath=//*[text()='Book Store Application']
-   Wait Until Page Contains             Author
+   [Arguments]                                   ${USERNAME}         ${PASSWORD}
+   LogIn.Verify that Login Page is Loaded
+   LogIn.Entering Username                       ${USERNAME}
+   LogIn.Entering Password                       ${PASSWORD}
+   LogIn.Clicking Login
+   LogIn.Verify Logging in                       ${USERNAME}
 
-   Wait Until Element Is Visible        xpath=//span[text()='Login']
-   Click Element                        xpath=//span[text()='Login']
-   Wait Until Page Contains             Welcome,
-   Wait Until Page Contains             Login in Book Store
+Navigating to Profile and Creating a New Account
+   [Arguments]                                   ${First_Name}     ${Last_name}     ${USERNAME}      ${PASSWORD}
+   ToolsQA.Verify that TOOLSQA Website is loaded
+   ToolsQA.Click on Book Store Application
+   BookStore.Click on Login button
+   LogIn.Verify that Login Page is Loaded
+   LogIn.Click New User button
+   Register.Entering First Name                  ${First_Name}
+   Register.Entering Last name                   ${Last_name}
+   Register.Entering Username                    ${USERNAME}
+   Register.Entering Password                    ${PASSWORD}
+   Register.Clicking Register Button
+   Register.Verify User Registration
+   Register.Click Back to Login Button
 
-   Input Text                           xpath=//*[@id='userName']         ${USERNAME}
-   Input Text                           xpath=//*[@id='password']         ${PASSWORD}
-   Click Element                        xpath=//*[@id='login']
-   Wait Until Page Contains             ${USERNAME}
-
-Creating a New Account
-   [Arguments]                          ${First_Name}     ${Last_name}     ${USERNAME}      ${PASSWORD}
-   Wait Until Page Contains Element     xpath=//*[@id="root"]/header/a
-   Wait Until Element Is Visible        xpath=//*[text()='Book Store Application']
-   Click Element                        xpath=//*[text()='Book Store Application']
-   Wait Until Page Contains             Author
-
-   Wait Until Element Is Visible        xpath=//span[text()='Login']
-   Click Element                        xpath=//span[text()='Login']
-   Wait Until Page Contains             Welcome,
-
-   Click Button                         xpath=//*[text()='New User']
-
-    Input Text                          xpath=//*[@id='firstname']    ${First_Name}
-    Input Text                          xpath=//*[@id='lastname']     ${Last_name}
-    Input Text                          xpath=//*[@id='userName']     ${USERNAME}
-    Input Text                          xpath=//*[@id='password']     ${PASSWORD}
-
-   Click Button                         xpath=//*[text()='Register']
-   Alert Should Be Present              User Registered Successfully.

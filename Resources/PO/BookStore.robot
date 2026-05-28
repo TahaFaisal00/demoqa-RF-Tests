@@ -1,39 +1,48 @@
 *** Settings ***
-Library                               SeleniumLibrary
-Resource                              Resources/Common.robot
-
-
-
-*** Variables ***
-${MAIN_FIRST_NAME}                    taha
-${MAIN_LAST_NAME}                     moe
-${MAIN_USERNAME}                      taha001q22
-${MAIN_PASSWORD}                      Taha2001!!
-${DELETE_ME_FIRST_NAME}               Delete
-${DELETE_ME_LAST_NAME}                Me
-${DELETE_ME_USERNAME}                 DeleteMe
-${DELETE_ME_PASSWORD}                 Taha2001!!
-
-
-
+Library                                 SeleniumLibrary
 
 *** Keywords ***
+Click Add To Your Collection button
+    Click Element                       xpath=//*[text()='Add To Your Collection']
+
+Verify That Book Was Added Successfully
+    Alert Should Be Present             Book added to your collection.
+
+Click on the Fourth Book
+    Click Element                       xpath=//*[text()='Speaking JavaScript']
+
+Navigate to Profile Page
+    Click Element                       xpath=//*[text()='Profile']
+
+Verify That Book Was Already Added to Your Collection
+    Alert Should Be Present             Book already present in the your collection!
 
 Verify that BookStore Page is Loaded
    Wait Until Element Is Visible        xpath=//span[text()='Login']
 Click the Login Button
    Click Element                        xpath=//span[text()='Login']
 
+Click on the First Book
+    Click Element                       xpath=//*[text()='Git Pocket Guide']
 
+Enter the First Book Website
+    Click Element                       xpath=//*[text()='http://chimera.labs.oreilly.com/books/1230000000561/index.html']
+    Switch Window                       NEW
+    Wait Until Page Contains            Build the skills your teams need
+    Switch Window                       MAIN
 
+Click on the Second Book
+    Click Element                       xpath=//*[text()='Learning JavaScript Design Patterns']
 
+Enter the Second Book Website
+    Click Element                       xpath=//*[text()='http://www.addyosmani.com/resources/essentialjsdesignpatterns/book/']
+    Switch Window                       NEW
+    Wait Until Page Contains            Learning JavaScript Design Patterns
+    Wait Until Page Contains            A JavaScript and React Developer's Guide 2nd Edition
 
 Write in the Search Bar
     [Arguments]                         ${SEARCH}
     Input Text                          xpath=//*[@id='searchBox']       ${SEARCH}
-
-Click the Search Button
-    Click Element                       xpath=//*[@id="searchBox-wrapper"]/div[1]/div/button
 
 Verify the Empty Search Results
     Element Should Be Visible           xpath=//*[text()='Git Pocket Guide']
@@ -62,23 +71,21 @@ Verify Searching by Publisher name Results
     Element Should Not Be Visible       xpath=//*[text()='Git Pocket Guide']
     Element Should Not Be Visible       xpath=//*[text()='Speaking JavaScript']
 
-
-
 2 Books and Their Images
     Element Should Be Visible           xpath=//*[text()='Git Pocket Guide']
     Element Should Be Visible           xpath=//*[@src='/assets/bookimage0-DrW2Lhj5.jpg']
     Element Should Be Visible           xpath=//*[text()='Learning JavaScript Design Patterns']
     Element Should Be Visible           xpath=//*[@src='/assets/bookimage1-CeLeymOA.jpg']
+
 Using the Search Bar
     Input Text                          xpath=//*[@id='searchBox']      Learning JavaScript Design Patterns
     Click Element                       xpath=//*[@id="searchBox-wrapper"]/div[1]/div/button
+
 the 2 Books and Their Images After Searching
     Element Should Not Be Visible       xpath=//*[text()='Git Pocket Guide']
     Element Should Not Be Visible       xpath=//*[@src='/assets/bookimage0-DrW2Lhj5.jpg']
     Element Should Be Visible           xpath=//*[text()='Learning JavaScript Design Patterns']
     Element Should Be Visible           xpath=//*[@src='/assets/bookimage1-CeLeymOA.jpg']
-
-
 
 Checking a Book Details
     Click Element                       xpath=//*[text()='Git Pocket Guide']
@@ -99,71 +106,14 @@ Checking a Second Book Details
     Page Should Contain                 254
     Page Should Contain                 With Learning JavaScript Design Patterns
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Logging in
-   [Arguments]                          ${USERNAME}         ${PASSWORD}
-   Wait Until Page Contains Element     xpath=//*[@id="root"]/header/a
-   Wait Until Element Is Visible        xpath=//*[text()='Book Store Application']
-   Click Element                        xpath=//*[text()='Book Store Application']
-   Wait Until Page Contains             Author
-
+Click on Login button
    Wait Until Element Is Visible        xpath=//span[text()='Login']
    Click Element                        xpath=//span[text()='Login']
+
    Wait Until Page Contains             Welcome,
    Wait Until Page Contains             Login in Book Store
 
-   Input Text                           xpath=//*[@id='userName']         ${USERNAME}
-   Input Text                           xpath=//*[@id='password']         ${PASSWORD}
-   Click Element                        xpath=//*[@id='login']
-   Wait Until Page Contains             ${USERNAME}
 
-Creating a New Account
-   [Arguments]                          ${First_Name}     ${Last_name}     ${USERNAME}      ${PASSWORD}
-   Wait Until Page Contains Element     xpath=//*[@id="root"]/header/a
-   Wait Until Element Is Visible        xpath=//*[text()='Book Store Application']
-   Click Element                        xpath=//*[text()='Book Store Application']
-   Wait Until Page Contains             Author
 
-   Wait Until Element Is Visible        xpath=//span[text()='Login']
-   Click Element                        xpath=//span[text()='Login']
-   Wait Until Page Contains             Welcome,
 
-   Click Button                         xpath=//*[text()='New User']
 
-    Input Text                          xpath=//*[@id='firstname']    ${First_Name}
-    Input Text                          xpath=//*[@id='lastname']     ${Last_name}
-    Input Text                          xpath=//*[@id='userName']     ${USERNAME}
-    Input Text                          xpath=//*[@id='password']     ${PASSWORD}
-
-   Click Button                         xpath=//*[text()='Register']
-   Alert Should Be Present              User Registered Successfully.

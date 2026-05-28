@@ -1,57 +1,31 @@
 *** Settings ***
 Library                               SeleniumLibrary
-Resource                              Resources/Common.robot
-
-
-
-*** Variables ***
-${MAIN_FIRST_NAME}                    taha
-${MAIN_LAST_NAME}                     moe
-${MAIN_USERNAME}                      taha001q22
-${MAIN_PASSWORD}                      Taha2001!!
-${DELETE_ME_FIRST_NAME}               Delete
-${DELETE_ME_LAST_NAME}                Me
-${DELETE_ME_USERNAME}                 DeleteMe
-${DELETE_ME_PASSWORD}                 Taha2001!!
-
-
 
 
 *** Keywords ***
-Logging in
-   [Arguments]                          ${USERNAME}         ${PASSWORD}
-   Wait Until Page Contains Element     xpath=//*[@id="root"]/header/a
-   Wait Until Element Is Visible        xpath=//*[text()='Book Store Application']
-   Click Element                        xpath=//*[text()='Book Store Application']
-   Wait Until Page Contains             Author
+Entering First Name
+    [Arguments]                       ${First_Name}
+    Input Text                        xpath=//*[@id='firstname']    ${First_Name}
 
-   Wait Until Element Is Visible        xpath=//span[text()='Login']
-   Click Element                        xpath=//span[text()='Login']
-   Wait Until Page Contains             Welcome,
-   Wait Until Page Contains             Login in Book Store
+Entering Last name
+    [Arguments]                       ${Last_name}
+    Input Text                        xpath=//*[@id='lastname']     ${Last_name}
 
-   Input Text                           xpath=//*[@id='userName']         ${USERNAME}
-   Input Text                           xpath=//*[@id='password']         ${PASSWORD}
-   Click Element                        xpath=//*[@id='login']
-   Wait Until Page Contains             ${USERNAME}
+Entering Username
+   [Arguments]                        ${Username}
+   Input Text                         xpath=//*[@id='userName']         ${Username}
 
-Creating a New Account
-   [Arguments]                          ${First_Name}     ${Last_name}     ${USERNAME}      ${PASSWORD}
-   Wait Until Page Contains Element     xpath=//*[@id="root"]/header/a
-   Wait Until Element Is Visible        xpath=//*[text()='Book Store Application']
-   Click Element                        xpath=//*[text()='Book Store Application']
-   Wait Until Page Contains             Author
+Entering Password
+   [Arguments]                        ${Password}
+   Input Text                         xpath=//*[@id='password']         ${Password}
 
-   Wait Until Element Is Visible        xpath=//span[text()='Login']
-   Click Element                        xpath=//span[text()='Login']
-   Wait Until Page Contains             Welcome,
+Clicking Register Button
+   Click Button                       xpath=//*[text()='Register']
 
-   Click Button                         xpath=//*[text()='New User']
+Verify User Registration
+   Alert Should Be Present            User Registered Successfully.
 
-    Input Text                          xpath=//*[@id='firstname']    ${First_Name}
-    Input Text                          xpath=//*[@id='lastname']     ${Last_name}
-    Input Text                          xpath=//*[@id='userName']     ${USERNAME}
-    Input Text                          xpath=//*[@id='password']     ${PASSWORD}
+Click Back to Login Button
+    Click Element                     xpath=//*[text()='Back to Login']
 
-   Click Button                         xpath=//*[text()='Register']
-   Alert Should Be Present              User Registered Successfully.
+
