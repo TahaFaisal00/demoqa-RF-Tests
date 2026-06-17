@@ -41,11 +41,10 @@ Click Book Store Link
 Click Go To Book Store Button
     Click                              ${GO_TO_BOOK_STORE_BUTTON}
 
+
+
 Verify That The First Book Is Deleted
     Element Should Not Be Visible       xpath=//*[text()='Git Pocket Guide']
-
-Clicking Go To Book Store Button
-    Click Element                       xpath=//*[text()='Go To Book Store']
 
 Click Logout button
     Click Element                       xpath=//*[text()='Logout']
