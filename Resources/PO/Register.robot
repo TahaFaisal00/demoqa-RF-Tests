@@ -15,9 +15,9 @@ Enter User Name
    [Arguments]                        ${user_name}
    Type Text                          id=userName         ${user_name}
 
-Entering Password
-   [Arguments]                        ${Password}
-   Input Text                         xpath=//*[@id='password']         ${Password}
+Enter Password
+   [Arguments]                        ${password}
+   Type Text                          id=password         ${password}
 
 Clicking Register Button
    Click Button                       xpath=//*[text()='Register']
