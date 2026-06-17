@@ -8,6 +8,7 @@ ${USER_NAME_FIELD}                                   id=userName
 ${PASSWORD_FIELD}                                    id=password
 
 ${LOGIN_BUTTON}                                      id=login
+${NEW_USER_BUTTON}                                   id=newUser
 *** Keywords ***
 Verify Login Page Loaded
    Wait For Elements State                           text="Login"      visible
@@ -24,6 +25,11 @@ Enter Password
 Click Login
    Click                                             ${LOGIN_BUTTON}
 
+Click New User Button
+   Click                                             ${NEW_USER_BUTTON}
+
+
+
 Error_Message
     [Arguments]                                      ${ERROR1}      ${ERROR2}       ${ERROR_TEXT}
     IF    $ERROR1
@@ -35,9 +41,6 @@ Error_Message
     IF    $ERROR_TEXT
           Wait Until Page Contains                   ${ERROR_TEXT}       10s
     END
-
-Click New User button
-   Click Button                                      xpath=//*[text()='New User']
 
 Verify Logging in
    [Arguments]                                       ${Username}
