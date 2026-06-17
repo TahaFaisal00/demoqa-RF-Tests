@@ -1,18 +1,11 @@
 *** Settings ***
-Library                                 SeleniumLibrary
+Library                                 Browser
 
 *** Variables ***
 ${USER_NAME_LABEL}                      id=userName-label
 ${LOGGED_IN_USER_NAME}                  id=userName-value
 
-
-
-
-
-
-
-
-
+${DELETE_ALL_BOOKS_BUTTON}              id=submit
 
 *** Keywords ***
 Verify that the First Book is in the Collection
@@ -22,7 +15,7 @@ Verify that the Fourth Book is in the Collection
     Element Should Be Visible           xpath=//*[text()='Speaking JavaScript']
 
 Click Delete All Books Button
-    Click Element                       xpath=//*[text()='Delete All Books']
+    Click                               ${DELETE_ALL_BOOKS_BUTTON}
 
 Confirm Deletion
     Wait Until Page Contains            Do you want to delete all books?
