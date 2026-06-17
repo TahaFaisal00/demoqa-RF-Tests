@@ -19,8 +19,8 @@ Enter Password
    [Arguments]                        ${password}
    Type Text                          id=password         ${password}
 
-Clicking Register Button
-   Click Button                       xpath=//*[text()='Register']
+Click Register Button
+   Click                       id=register
 
 Verify User Registration
    Alert Should Be Present            User Registered Successfully.
