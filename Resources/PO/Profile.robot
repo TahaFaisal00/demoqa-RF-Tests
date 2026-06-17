@@ -6,6 +6,9 @@ ${USER_NAME_LABEL}                      id=userName-label
 ${LOGGED_IN_USER_NAME}                  id=userName-value
 
 ${DELETE_ALL_BOOKS_BUTTON}              id=submit
+
+${DELETE_ALL_BOOKS_CONFIRMATION_WINDOW}         id=example-modal-sizes-title-sm
+
 ${DELETE_ALL_BOOKS_CONFIRMATION_OK_BUTTON}      id=closeSmallModal-ok
 
 *** Keywords ***
@@ -17,6 +20,9 @@ Verify that the Fourth Book is in the Collection
 
 Click Delete All Books Button
     Click                               ${DELETE_ALL_BOOKS_BUTTON}
+
+Verify Confirm Delete All Books Window
+    Wait For Elements State    ${DELETE_ALL_BOOKS_CONFIRMATION_WINDOW}      visible
 
 Confirm Delete All Books
     Click                               ${DELETE_ALL_BOOKS_CONFIRMATION_OK_BUTTON}
