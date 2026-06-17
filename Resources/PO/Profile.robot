@@ -6,6 +6,7 @@ ${USER_NAME_LABEL}                      id=userName-label
 ${LOGGED_IN_USER_NAME}                  id=userName-value
 
 ${DELETE_ALL_BOOKS_BUTTON}              id=submit
+${DELETE_ALL_BOOKS_CONFIRMATION_OK_BUTTON}      id=closeSmallModal-ok
 
 *** Keywords ***
 Verify that the First Book is in the Collection
@@ -17,9 +18,9 @@ Verify that the Fourth Book is in the Collection
 Click Delete All Books Button
     Click                               ${DELETE_ALL_BOOKS_BUTTON}
 
-Confirm Deletion
-    Wait Until Page Contains            Do you want to delete all books?
-    Click Element                       xpath=//*[text()='OK']
+Confirm Delete All Books
+    Click                               ${DELETE_ALL_BOOKS_CONFIRMATION_OK_BUTTON}
+
 
 Verify That The First Book Is Deleted
     Element Should Not Be Visible       xpath=//*[text()='Git Pocket Guide']
