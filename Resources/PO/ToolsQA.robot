@@ -1,5 +1,5 @@
 *** Settings ***
-Library                                  Browser
+Library                       Browser
 
 *** Variables ***
 ${WEBISTE_LOGO}               css=a[href="https://demoqa.com"]
