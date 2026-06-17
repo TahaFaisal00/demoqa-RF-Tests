@@ -11,7 +11,11 @@ ${DELETE_ALL_BOOKS_CONFIRMATION_WINDOW}         id=example-modal-sizes-title-sm
 
 ${DELETE_ALL_BOOKS_CONFIRMATION_OK_BUTTON}      id=closeSmallModal-ok
 
+${PROFILE_PAGE_URL}                         https://demoqa.com/profile
 *** Keywords ***
+Verify Profile Page Loaded
+    Get Url                 ${PROFILE_PAGE_URL}
+
 Verify that the First Book is in the Collection
     Element Should Be Visible           xpath=//*[text()='Git Pocket Guide']
 
