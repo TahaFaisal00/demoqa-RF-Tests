@@ -6,6 +6,8 @@ ${LOGIN_PAGE_URL}                                    https://demoqa.com/login
 
 ${USER_NAME_FIELD}                                   id=userName
 ${PASSWORD_FIELD}                                    id=password
+
+${LOGIN_BUTTON}                                      id=login
 *** Keywords ***
 Verify Login Page Loaded
    Wait For Elements State                           text="Login"      visible
@@ -19,8 +21,8 @@ Enter Password
    [Arguments]                                       ${password}
    Type Text                                         ${PASSWORD_FIELD}       ${password}
 
-Clicking Login
-   Click Element                                     xpath=//*[@id='login']
+Click Login
+   Click                                             ${LOGIN_BUTTON}
 
 Error_Message
     [Arguments]                                      ${ERROR1}      ${ERROR2}       ${ERROR_TEXT}
