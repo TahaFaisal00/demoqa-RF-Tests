@@ -1,11 +1,11 @@
 *** Settings ***
-Library                               SeleniumLibrary
+Library                                       Browser
 
 
 *** Keywords ***
-Entering First Name
-    [Arguments]                       ${First_Name}
-    Input Text                        xpath=//*[@id='firstname']    ${First_Name}
+Enter First Name
+    [Arguments]                       ${first_name}
+    Type Text                         id=firstname    ${first_name}
 
 Entering Last name
     [Arguments]                       ${Last_name}
