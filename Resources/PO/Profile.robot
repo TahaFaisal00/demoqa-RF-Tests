@@ -5,7 +5,8 @@ Library                                 Browser
 ${USER_NAME_LABEL}                      id=userName-label
 ${LOGGED_IN_USER_NAME}                  id=userName-value
 
-${DELETE_ALL_BOOKS_BUTTON}              id=submit
+${DELETE_ALL_BOOKS_BUTTON}              css=#submit.Delete All Books
+${LOG_OUT_BUTTON}                       css=#submit.Logout
 
 ${DELETE_ALL_BOOKS_CONFIRMATION_WINDOW}         id=example-modal-sizes-title-sm
 
@@ -44,11 +45,13 @@ Click Go To Book Store Button
 Verify Delete All Books Confirmation Window Closed
     Wait For Elements State    ${DELETE_ALL_BOOKS_CONFIRMATION_WINDOW}      hidden
 
+Click Logout Button
+    Click                       ${LOG_OUT_BUTTON}
+
 Verify That The First Book Is Deleted
     Element Should Not Be Visible       xpath=//*[text()='Git Pocket Guide']
 
-Click Logout button
-    Click Element                       xpath=//*[text()='Logout']
+
 
 Verify Logging Out Done Successfully
     Wait Until Page Contains            Login in Book Store
