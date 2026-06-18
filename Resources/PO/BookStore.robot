@@ -6,6 +6,9 @@ ${BOOK_STORE_URL}                       https://demoqa.com/books
 
 ${LOGIN_BUTTON_IN_BOOK_STORE}                   id=login
 
+${SEARCH_BAR}                                   id=searchBox
+
+
 ${BOOK_LOCATOR_BASE}                            css=a[href="{}"]
 ${BOOK_URL_BASE}                                https://demoqa.com{}
 
@@ -30,6 +33,10 @@ Verify Book Page Loaded
 
 Click Login Button In Book Store
    Click                                       ${LOGIN_BUTTON_IN_BOOK_STORE}
+
+Use Search Bar
+    [Arguments]                                ${search}
+    Type Text                                  ${SEARCH_BAR}        ${search}
 
 Click Add To Your Collection button
     Click Element                       xpath=//*[text()='Add To Your Collection']
@@ -56,10 +63,6 @@ Enter the Second Book Website
     Switch Window                       NEW
     Wait Until Page Contains            Learning JavaScript Design Patterns
     Wait Until Page Contains            A JavaScript and React Developer's Guide 2nd Edition
-
-Write in the Search Bar
-    [Arguments]                         ${SEARCH}
-    Input Text                          xpath=//*[@id='searchBox']       ${SEARCH}
 
 Verify the Empty Search Results
     Element Should Be Visible           xpath=//*[text()='Git Pocket Guide']
