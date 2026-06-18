@@ -22,6 +22,10 @@ Open Book Details Page
     ${book_location}=       Format String      ${BOOK_LOCATOR_BASE}       ${book}
     Click                                      ${book_location}
 
+Verify Book Page Loaded
+    [Arguments]                                ${book}
+    ${book_url}=            Format String      ${BOOK_URL_BASE}       ${book}
+    Get Url                                    ${book_url}
 
 Click Add To Your Collection button
     Click Element                       xpath=//*[text()='Add To Your Collection']
