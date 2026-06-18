@@ -18,6 +18,7 @@ ${SPEAKING_JAVASCRIPT_BOOK}                     /books?search=9781449365035
 
 ${ADD_TO_YOUR_COLLECTION_BUTTON}                id=addNewRecordButton
 
+${PROFILE_PAGE_LINK}                            css=a[href="/profile"]
 *** Keywords ***
 Verify BookStore Page Loaded
    Get Url                              ${BOOK_STORE_URL}
@@ -42,9 +43,8 @@ Use Search Bar
 Click Add To Your Collection Button
     Click                                      ${ADD_TO_YOUR_COLLECTION_BUTTON}
 
-
-Navigate to Profile Page
-    Click Element                       xpath=//*[text()='Profile']
+Click Profile Page Link
+    Click                                      ${PROFILE_PAGE_LINK}
 
 Verify That Book Was Already Added to Your Collection
     Alert Should Be Present             Book already present in the your collection!
