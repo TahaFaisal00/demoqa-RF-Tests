@@ -36,7 +36,7 @@ Verify Delete All Books Confirmation Window Visible
     Wait For Elements State    ${DELETE_ALL_BOOKS_CONFIRMATION_WINDOW}      visible
 
 Confirm Delete All Books
-    Click                               ${DELETE_ALL_BOOKS_CONFIRMATION_OK_BUTTON}
+    Click                               ${DELETE_CONFIRMATION_WINDOW_OK_BUTTON}
 
 Click Book Store Link
     Click                             ${BOOK_STORE_LINK}
