@@ -29,6 +29,21 @@ ${DELETE_ME_PASSWORD}                             Taha2001!!
 &{SEARCH}                                         EMPTY=${EMPTY}    INVALID=xxxxxxxxxx     BOOKNAME=Git Pocket Guide    AUTHOR=Glenn Block et al.   Publisher=No Starch Press
 
 *** Keywords ***
+Verify Search Results Contain
+    [Documentation]     verify the search result by asserting the correct books are visible
+    [Arguments]                                ${books}
+    FOR    ${book}    IN    @{books}
+        ${book_locator}=        Format String    ${BOOK_LOCATOR_BASE}           ${book}
+        Wait For Elements State    ${book_locator}      visible
+    END
+
+Verify Search Results Not Contain
+    [Documentation]     verify the search result by asserting the incorrect books are hidden
+    [Arguments]                                ${books}
+    FOR    ${book}    IN    @{books}
+        ${book_locator}=        Format String    ${BOOK_LOCATOR_BASE}           ${book}
+        Wait For Elements State    ${book_locator}      hidden
+    END
 
 Verify Error Message
     [Documentation]     Verify the error message or locator's element that appear when entering Invalid Credentials

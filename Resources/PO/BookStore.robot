@@ -64,32 +64,6 @@ Enter the Second Book Website
     Wait Until Page Contains            Learning JavaScript Design Patterns
     Wait Until Page Contains            A JavaScript and React Developer's Guide 2nd Edition
 
-Verify the Empty Search Results
-    Element Should Be Visible           xpath=//*[text()='Git Pocket Guide']
-    Element Should Be Visible           xpath=//*[text()='Speaking JavaScript']
-    Element Should Be Visible           xpath=//*[text()='Eloquent JavaScript, Second Edition']
-
-Verify the Invalid Search Results
-    Element Should Not Be Visible       xpath=//*[text()='Git Pocket Guide']
-    Element Should Not Be Visible       xpath=//*[text()='Speaking JavaScript']
-    Element Should Not Be Visible       xpath=//*[text()='Eloquent JavaScript, Second Edition']
-
-Verify Searching by Book Title Results
-    Element Should Be Visible           xpath=//*[text()='Git Pocket Guide']
-    Element Should Not Be Visible       xpath=//*[text()='Speaking JavaScript']
-    Element Should Not Be Visible       xpath=//*[text()='Eloquent JavaScript, Second Edition']
-
-Verify Searching by Author name Results
-    Element Should Be Visible           xpath=//*[text()='Designing Evolvable Web APIs with ASP.NET']
-    Element Should Not Be Visible       xpath=//*[text()='Git Pocket Guide']
-    Element Should Not Be Visible       xpath=//*[text()='Speaking JavaScript']
-    Element Should Not Be Visible       xpath=//*[text()='Eloquent JavaScript, Second Edition']
-
-Verify Searching by Publisher name Results
-    Element Should Be Visible           xpath=//*[text()='Eloquent JavaScript, Second Edition']
-    Element Should Be Visible           xpath=//*[text()='Understanding ECMAScript 6']
-    Element Should Not Be Visible       xpath=//*[text()='Git Pocket Guide']
-    Element Should Not Be Visible       xpath=//*[text()='Speaking JavaScript']
 
 2 Books and Their Images
     Element Should Be Visible           xpath=//*[text()='Git Pocket Guide']
