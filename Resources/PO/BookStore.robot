@@ -16,6 +16,7 @@ ${GIT_POCKET_GUIDE_BOOK}                        /books?search=9781449325862
 ${LEARNING_JAVASCRIPT_DESIGN_PATTERNS_BOOK}     /books?search=9781449331818
 ${SPEAKING_JAVASCRIPT_BOOK}                     /books?search=9781449365035
 
+${ADD_TO_YOUR_COLLECTION_BUTTON}                id=addNewRecordButton
 
 *** Keywords ***
 Verify BookStore Page Loaded
@@ -38,8 +39,8 @@ Use Search Bar
     [Arguments]                                ${search}
     Type Text                                  ${SEARCH_BAR}        ${search}
 
-Click Add To Your Collection button
-    Click Element                       xpath=//*[text()='Add To Your Collection']
+Click Add To Your Collection Button
+    Click                                      ${ADD_TO_YOUR_COLLECTION_BUTTON}
 
 Verify That Book Was Added Successfully
     Alert Should Be Present             Book added to your collection.
