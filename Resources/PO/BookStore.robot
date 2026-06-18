@@ -1,20 +1,26 @@
 *** Settings ***
 Library                                 Browser
-
+Library                                 String
 *** Variables ***
 ${BOOK_STORE_URL}                       https://demoqa.com/books
 
-${GIT_POCKET_GUIDE_BOOK}                        css=a[href='/books?search=9781449325862']
-${LEARNING_JAVASCRIPT_DESIGN_PATTERNS_BOOK}     css=a[href='/books?search=9781449331818']
-${SPEAKING_JAVASCRIPT}                          css=a[href='/books?search=9781449365035']
+
+${BOOK_LOCATOR_BASE}                            css=a[href="{}"]
+${BOOK_URL_BASE}                                https://demoqa.com{}
+
+${GIT_POCKET_GUIDE_BOOK}                        /books?search=9781449325862
+${LEARNING_JAVASCRIPT_DESIGN_PATTERNS_BOOK}     /books?search=9781449331818
+${SPEAKING_JAVASCRIPT_BOOK}                     /books?search=9781449365035
+
 
 *** Keywords ***
 Verify BookStore Page Loaded
    Get Url                              ${BOOK_STORE_URL}
 
 Open Book Details Page
-    [Arguments]                                 ${book}
-    Click                                       ${book}
+    [Arguments]                                ${book}
+    ${book_location}=       Format String      ${BOOK_LOCATOR_BASE}       ${book}
+    Click                                      ${book_location}
 
 
 Click Add To Your Collection button
