@@ -61,18 +61,6 @@ Verify Book Page Loaded
     ${book_url}=        Format String          ${BOOK_URL_BASE}       ${book}
     Get Url                                    ${book_url}
 
-Enter the First Book Website
-    Click Element                       xpath=//*[text()='http://chimera.labs.oreilly.com/books/1230000000561/index.html']
-    Switch Window                       NEW
-    Wait Until Page Contains            Build the skills your teams need
-    Switch Window                       MAIN
-
-Enter the Second Book Website
-    Click Element                       xpath=//*[text()='http://www.addyosmani.com/resources/essentialjsdesignpatterns/book/']
-    Switch Window                       NEW
-    Wait Until Page Contains            Learning JavaScript Design Patterns
-    Wait Until Page Contains            A JavaScript and React Developer's Guide 2nd Edition
-
 2 Books and Their Images
     Element Should Be Visible           xpath=//*[text()='Git Pocket Guide']
     Element Should Be Visible           xpath=//*[@src='/assets/bookimage0-DrW2Lhj5.jpg']
