@@ -35,9 +35,6 @@ Click Delete All Books Button
 Verify Delete All Books Confirmation Window Visible
     Wait For Elements State    ${DELETE_ALL_BOOKS_CONFIRMATION_WINDOW}      visible
 
-Confirm Delete All Books
-    Click                               ${DELETE_CONFIRMATION_WINDOW_OK_BUTTON}
-
 Click Book Store Link
     Click                             ${BOOK_STORE_LINK}
 
@@ -56,7 +53,7 @@ Click Delete Account Button
 Verify Delete Account Confirmation Window Visible
     Wait For Elements State    ${DELETE_ACCOUNT_CONFIRMATION_WINDOW}      visible
 
-Confirm Delete Account
+Confirm Delete
     Click                    ${DELETE_CONFIRMATION_WINDOW_OK_BUTTON}
 
 
