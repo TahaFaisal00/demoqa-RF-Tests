@@ -9,7 +9,8 @@ ${DELETE_ALL_BOOKS_BUTTON}              css=#submit.Delete All Books
 ${LOG_OUT_BUTTON}                       css=#submit.Logout
 ${DELETE_ACCOUNT_BUTTON}                css=#submit.Delete Account
 
-${DELETE_ALL_BOOKS_CONFIRMATION_WINDOW}         id=example-modal-sizes-title-sm
+${DELETE_ALL_BOOKS_CONFIRMATION_WINDOW}        css=#example-modal-sizes-title-sm.Delete All Books
+${DELETE_ACCOUNT_CONFIRMATION_WINDOW}          css=#example-modal-sizes-title-sm.Delete Account
 
 ${DELETE_ALL_BOOKS_CONFIRMATION_OK_BUTTON}      id=closeSmallModal-ok
 
@@ -51,6 +52,15 @@ Click Logout Button
 
 Click Delete Account Button
     Click                       ${DELETE_ACCOUNT_BUTTON}
+
+Verify Delete Account Confirmation Window Visible
+    Wait For Elements State    ${DELETE_ACCOUNT_CONFIRMATION_WINDOW}      visible
+
+Verify Delete Account Confirmation Window Closed
+    Wait For Elements State    ${DELETE_ACCOUNT_CONFIRMATION_WINDOW}      hidden
+
+
+
 
 Verify That The First Book Is Deleted
     Element Should Not Be Visible       xpath=//*[text()='Git Pocket Guide']
