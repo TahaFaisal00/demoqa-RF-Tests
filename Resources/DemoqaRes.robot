@@ -176,28 +176,6 @@ Entering Invalid Credentials
    LogIn.Error Message                           ${CREDENTIALS.ERROR1}        ${CREDENTIALS.ERROR2}        ${CREDENTIALS.ERROR_TEXT}
 
 
-Using the Book Search Feature
-    [Arguments]                                  ${SEARCH}
-    Write in the Search Bar                      ${SEARCH}
-
-Empty Search Results
-    Verify the Empty Search Results
-
-Verify Search Results
-    Verify the Invalid Search Results
-
-Book Title Search Results
-    Verify Searching by Book Title Results
-
-Author name Search Results
-    Verify Searching by Author name Results
-
-Publisher Empty Search Results
-    Verify Searching by Publisher name Results
-
-Return to BookStore From Account
-    Profile.Clicking Go To Book Store Button
-
 Logging Out
     Profile.Click Logout button
     Profile.Verify Logging Out Done Successfully
@@ -219,9 +197,6 @@ the books After using the Search
 
 Check a Book Details
     BookStore.Checking a Book Details
-
-Return to BookStore From Book Details
-    BookStore.Click Back To Book Store button
 
 Check a Second Book Details
     BookStore.Checking a Second Book Details
