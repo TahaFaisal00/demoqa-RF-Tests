@@ -28,6 +28,23 @@ Create Account Via API
     ${response}=      Send Create Account Request       ${body}
     RETURN      ${response}
 
+Build Generate Token Body
+    [Arguments]     ${account}
+    &{body}=        Create Dictionary            userName=${account.user_name}               password=${account.password}
+    RETURN      ${body}
+
+Send Generate Token Request
+    [Arguments]     ${body}
+    ${response}=        POST On Session     ${ALIAS}       ${GENERATE_TOKEN_API}      json=${body}
+    RETURN      ${response}
+
+Generate Token Via API
+    [Documentation]     Generates a token for the account. Used together with Create Account Via API as test setup.
+    ${body}=       Build Generate Token Body     ${TEST_ACCOUNT}
+    ${response}=        Send Generate Token Request     ${body}
+    VAR    ${TOKEN}     ${response.json()}[token]       scope=TEST
+    RETURN      ${response}
+
 
 
 
