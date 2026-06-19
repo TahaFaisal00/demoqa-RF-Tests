@@ -57,7 +57,7 @@ Confirm Delete
 Verify Delete Account Confirmation Window Closed
     Wait For Elements State    ${DELETE_ACCOUNT_CONFIRMATION_WINDOW}      hidden
 
-Delete Book
+Click Delete Book Button
     [Arguments]     ${book}
     ${book_delete_button}       Format String    ${DELETE_BOOK_BUTTON}  ${book.isbn}
     Click    ${book_delete_button}
