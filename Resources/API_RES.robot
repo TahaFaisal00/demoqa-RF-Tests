@@ -5,6 +5,10 @@ Library                       String
 Resource                      API_DataBase.robot
 
 *** Keywords ***
+Open Session
+    [Documentation]      open HTTP session. Used as suite Setup
+    Create Session       ${ALIAS}    ${BASE_URL}
+
 Create Account Details
     ${fake_user_name}=       FakerLibrary.User Name
     ${fake_password}=        FakerLibrary.Password
