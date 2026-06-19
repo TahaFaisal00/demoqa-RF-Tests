@@ -10,6 +10,8 @@ ${DELETE_ALL_BOOKS_BUTTON}              css=#submit.Delete All Books
 ${LOG_OUT_BUTTON}                       css=#submit.Logout
 ${DELETE_ACCOUNT_BUTTON}                css=#submit.Delete Account
 
+${DELETE_BOOK_BUTTON}                   id="delete-record-{}"
+
 ${DELETE_ALL_BOOKS_CONFIRMATION_WINDOW}        css=#example-modal-sizes-title-sm.Delete All Books
 ${DELETE_ACCOUNT_CONFIRMATION_WINDOW}          css=#example-modal-sizes-title-sm.Delete Account
 
@@ -55,8 +57,10 @@ Confirm Delete
 Verify Delete Account Confirmation Window Closed
     Wait For Elements State    ${DELETE_ACCOUNT_CONFIRMATION_WINDOW}      hidden
 
-
-
+Delete Book
+    [Arguments]     ${book}
+    ${book_delete_button}       Format String    ${DELETE_BOOK_BUTTON}  ${book.isbn}
+    Click    ${book_delete_button}
 
 Verify That The First Book Is Deleted
     Element Should Not Be Visible       xpath=//*[text()='Git Pocket Guide']
