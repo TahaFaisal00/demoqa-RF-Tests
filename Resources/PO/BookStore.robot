@@ -61,6 +61,15 @@ Verify Book Page Loaded
     ${book_url}=        Format String          ${BOOK_URL_BASE}       ${book}
     Get Url                                    ${book_url}
 
+Get Image Src
+    [Arguments]         ${book}
+    ${book_locator}=      Format String    ${BOOK_LOCATOR_BASE}       ${book}
+    ${img}=     Set Variable        css=tr:has(a[href="${book_locator}"]) img
+    Wait For Elements State    ${img}            visible
+    ${src}=     Get Attribute    ${img}       src
+    RETURN      ${src}
+
+
 2 Books and Their Images
     Element Should Be Visible           xpath=//*[text()='Git Pocket Guide']
     Element Should Be Visible           xpath=//*[@src='/assets/bookimage0-DrW2Lhj5.jpg']

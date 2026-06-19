@@ -29,6 +29,13 @@ ${DELETE_ME_PASSWORD}                             Taha2001!!
 &{SEARCH}                                         EMPTY=${EMPTY}    INVALID=xxxxxxxxxx     BOOKNAME=Git Pocket Guide    AUTHOR=Glenn Block et al.   Publisher=No Starch Press
 
 *** Keywords ***
+Verify Book Image
+    [Documentation]     Verify that a book have the position-bound image instead of it's own.
+    ...     Documents the image/position bug
+    [Arguments]         ${book}       ${expected_image}
+    ${src}=     Get Image Src       ${book}
+    Should Contain    ${src}    ${expected_image}
+
 
 Verify Book Details
     [Documentation]     Verify book details including ISBN, Sub Title, Author and Publisher in details page.
