@@ -1,5 +1,6 @@
 *** Settings ***
 Library                                 Browser
+Library    String
 
 *** Variables ***
 ${USER_NAME_LABEL}                      id=userName-label
@@ -22,12 +23,6 @@ ${GO_TO_BOOK_STORE_BUTTON}                        id=gotoStore
 *** Keywords ***
 Verify Profile Page Loaded
     Get Url                 ${PROFILE_PAGE_URL}
-
-Verify that the First Book is in the Collection
-    Element Should Be Visible           xpath=//*[text()='Git Pocket Guide']
-
-Verify that the Fourth Book is in the Collection
-    Element Should Be Visible           xpath=//*[text()='Speaking JavaScript']
 
 Click Delete All Books Button
     Click                               ${DELETE_ALL_BOOKS_BUTTON}
