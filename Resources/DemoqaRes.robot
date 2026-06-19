@@ -140,6 +140,11 @@ Navigate From Login Page To Register Page
     LogIn.Click New User Button
     Register.Verify Register Page Loaded
 
+Navigate From Register Page To Login Page
+    [Documentation]     Navigates from register page to login page and verify its page loaded.
+    Register.Click Back To Login Button
+    LogIn.Verify Login Page Loaded
+
 
 Logging in with Invalid Credentials
     [Arguments]                                  ${CREDENTIALS}
