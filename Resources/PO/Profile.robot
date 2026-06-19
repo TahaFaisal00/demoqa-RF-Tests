@@ -54,7 +54,6 @@ Verify Delete Account Confirmation Window Visible
 Confirm Delete
     Click                    ${DELETE_CONFIRMATION_WINDOW_OK_BUTTON}
 
-
 Verify Delete Account Confirmation Window Closed
     Wait For Elements State    ${DELETE_ACCOUNT_CONFIRMATION_WINDOW}      hidden
 
@@ -66,6 +65,8 @@ Click Delete Book Button
 Verify Delete Book Confirmation Window Visible
     Wait For Elements State    ${DELETE_BOOK_CONFIRMATION_WINDOW}       visible
 
+Verify Delete Book Confirmation Window Closed
+    Wait For Elements State    ${DELETE_BOOK_CONFIRMATION_WINDOW}       hidden
 
 Verify That The First Book Is Deleted
     Element Should Not Be Visible       xpath=//*[text()='Git Pocket Guide']
