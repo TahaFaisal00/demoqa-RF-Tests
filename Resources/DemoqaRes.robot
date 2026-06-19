@@ -135,6 +135,11 @@ Navigate From Book Store To Login Page
     BookStore.Click Login Button In Book Store
     LogIn.Verify Login Page Loaded
 
+Navigate From Login Page To Register Page
+    [Documentation]     Navigates from login page to register page and verify its page loaded.
+    LogIn.Click New User Button
+    Register.Verify Register Page Loaded
+
 
 Logging in with Invalid Credentials
     [Arguments]                                  ${CREDENTIALS}
