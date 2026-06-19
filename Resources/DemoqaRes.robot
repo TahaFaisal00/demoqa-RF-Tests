@@ -130,6 +130,10 @@ Navigate To Book Store
     ToolsQA.Click Book Store Link
     BookStore.Verify BookStore Page Loaded
 
+Navigate From Book Store To Login Page
+    [Documentation]     Navigates from book store to login page and verify its page loaded.
+    BookStore.Click Login Button In Book Store
+    LogIn.Verify Login Page Loaded
 
 
 Logging in with Invalid Credentials
