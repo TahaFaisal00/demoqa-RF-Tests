@@ -72,19 +72,3 @@ Verify Delete Book Confirmation Window Closed
     Wait For Elements State    ${DELETE_BOOK_CONFIRMATION_WINDOW}       hidden
 
 
-
-Verify Logging Out Done Successfully
-    Wait Until Page Contains            Login in Book Store
-
-Confirm Deleting the Account
-    Wait Until Page Contains            Do you want to delete your account?
-    Click Element                       xpath=//*[text()='OK']
-
-Verify the Deletion
-    [Arguments]                         ${User}
-    Page Should Not Contain             ${User}
-
-Verify Logging out
-    Wait Until Page Contains            Login
-
-
