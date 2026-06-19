@@ -67,7 +67,7 @@ POST Generate a Token for Non Exist Account - Returns 404 with Valid Required Fi
 
 POST Create an Account - Returns 201 with Valid Required Fields
     [Tags]      sanity      api     post        positive        account
-    &{body}=        Create Dictionary            userName=Taha02               password=Taha2001!!!
+    &{body}=        Create Dictionary            userName=Taha021               password=Taha2001!!!
     ${response}=        POST On Session     deqoma       /Account/v1/User      json=${body}
     Status Should Be    expected_status=201
     Log    message=${response.json()}

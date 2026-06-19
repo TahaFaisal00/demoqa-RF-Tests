@@ -1,6 +1,7 @@
 *** Settings ***
 Library                       RequestsLibrary
 Library                       FakerLibrary
+Library                       String
 Resource                      API_DataBase.robot
 
 *** Keywords ***
@@ -27,6 +28,7 @@ Create Account Via API
     VAR          &{TEST_ACCOUNT}      &{account}     scope=TEST
     ${body}=        Build Create Account Body           ${account}
     ${response}=      Send Create Account Request       ${body}
+    VAR     ${ACCOUNT_ID}       ${response.json()}[userID]      scope=TEST
     RETURN      ${response}
 
 Build Generate Token Body
@@ -47,7 +49,22 @@ Generate Token Via API
     RETURN      ${response}
 
 
+Build Delete Account Headers
+    [Arguments]     ${account_token}
+    &{headers}=     Create Dictionary       Authorization=Bearer ${account_token}
+    RETURN      ${headers}
 
+Send Delete Account Request
+    [Arguments]         ${headers}          ${uuid}
+    ${delete_account_via_api_with_uuid}=        Format String    ${DELETE_ACCOUNT_API}        ${uuid}
+    ${response}=        DELETE On Session     ${ALIAS}       ${delete_account_via_api_with_uuid}        headers=${headers}
+    RETURN      ${response}
+
+Delete Account Via API
+    [Documentation]     Deletes Account by ID. Used as test teardown.
+    ${headers}=     Build Delete Account Headers        ${TOKEN}
+    ${response}=        Send Delete Account Request         ${headers}      ${ACCOUNT_ID}
+    RETURN      ${response}
 
 
 
