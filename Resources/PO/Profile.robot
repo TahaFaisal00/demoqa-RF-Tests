@@ -68,15 +68,10 @@ Verify Delete Book Confirmation Window Visible
 Verify Delete Book Confirmation Window Closed
     Wait For Elements State    ${DELETE_BOOK_CONFIRMATION_WINDOW}       hidden
 
-Verify That The First Book Is Deleted
-    Element Should Not Be Visible       xpath=//*[text()='Git Pocket Guide']
-
 
 
 Verify Logging Out Done Successfully
     Wait Until Page Contains            Login in Book Store
-
-
 
 Confirm Deleting the Account
     Wait Until Page Contains            Do you want to delete your account?
