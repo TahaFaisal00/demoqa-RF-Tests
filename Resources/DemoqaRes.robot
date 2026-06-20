@@ -92,7 +92,7 @@ Verify Search Results Not Contain
         Wait For Elements State    ${book_locator}      hidden
     END
 
-Verify Error Message
+Verify Login Error
     [Documentation]     Verify the error message or locator's element that appear when entering Invalid Credentials
     [Arguments]                                      ${account}
     IF    $account.user_name != "" AND $account.password != ""
@@ -159,12 +159,10 @@ Navigate To Profile Page
 
 Logging In And Verify
     [Documentation]     Navigate to login page and enter valid credentials and log in and verify it.
-    [Arguments]     ${account}
+    [Arguments]                     ${account}
     Navigate To Login Page
-    LogIn.Enter User Name    ${account.user_name}
-    LogIn.Enter Password    ${account.password}
-    LogIn.Click Login In Login Page
-    Verify Logging in       ${account.user_name}
+    Log In With Credentials         ${account}
+    Verify Logging in               ${account.user_name}
 
 Logging Out And Verify
     [Documentation]     Logs out from the account page and verify it. after signing out the website takes you to login page
@@ -193,13 +191,22 @@ Deleting Account
     Profile.Verify Delete Account Confirmation Window Visible
     Profile.Confirm Delete
 
-
 Logging in with Invalid Credentials
-    [Arguments]                                  ${CREDENTIALS}
-    Go To                                        ${URL}
-    Navigate to The Book Store Application
-    Navigate to Login Page
-    Entering Invalid Credentials                 ${CREDENTIALS}
+    [Documentation]     Navigate to login page, and Log in with Invalid credentials and verify the error message or
+    ...                 the fields attributes.
+    [Arguments]                                  ${account}
+    Navigate To Login Page
+    Reload
+    Entering Invalid Credentials                 ${account}
+    Verify Login Error                           ${account}
+
+Log In With Credentials
+    [Documentation]     Enter user name and password and click login button.
+    [Arguments]         ${account}
+    LogIn.Enter User Name           ${account.user_name}
+    LogIn.Enter Password            ${account.password}
+    LogIn.Click Login In Login Page
+
 
 Entering Invalid Credentials
    [Arguments]                                   ${CREDENTIALS}
