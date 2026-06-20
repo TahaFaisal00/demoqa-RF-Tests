@@ -195,6 +195,10 @@ Verify Delete Confirmation Window Persists After Confirm
     [Documentation]     Used to verify the bug of UI doesn't update and the confirmation windows stays on screen.
     Wait For Elements State    ${DELETE_ACCOUNT_CONFIRMATION_WINDOW}      visible
 
+Verify Account Still Signed In After Deletion
+    [Documentation]     Used to verify the bug of UI doesn't update and the confirmation windows stays on screen.
+    Wait For Elements State    ${ALREADY_LOGGED_IN_MESSAGE}     visible
+
 Verify Login Fails
     [Documentation]     Navigate to login page, and Log in with Invalid credentials and verify the error message or
     ...                 the fields attributes.

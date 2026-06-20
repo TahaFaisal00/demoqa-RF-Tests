@@ -13,6 +13,8 @@ ${NEW_USER_BUTTON}                                   id=newUser
 ${EMPTY_USERNAME_FIELD_ERROR}                           css=#userName.is-invalid
 ${EMPTY_PASSWORD_FIELD_ERROR}                           css=#password.is-invalid
 ${INVALID_USERNAME_OR_PASSWORD_ERROR}                   text="Invalid username or password!"
+
+${ALREADY_LOGGED_IN_MESSAGE}                            id=loading-label
 *** Keywords ***
 Verify Login Page Loaded
    Wait For Elements State                           text="Login"      visible
