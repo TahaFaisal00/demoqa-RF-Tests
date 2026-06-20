@@ -1,8 +1,9 @@
 *** Settings ***
-Library                                                              SeleniumLibrary
 Resource                                                             ../Resources/Common.robot
 Resource                                                             ../Resources/DemoqaRes.robot
-Suite Setup                                                          Common.Launch Browser
+Resource                                                             ../Resources/API_RES.robot
+
+Suite Setup                                                          Run Keywords         API_RES.Open Session      AND       Common.Launch Browser
 Suite Teardown                                                       Common.Close Browser
 #robot -d Results  Tests/Demoqa.robot
 
@@ -16,10 +17,13 @@ Logging in with a Multiple Invalid Credentials Scenarios
    ${EMPTY_PASSWORD}
    ${EMPTY_CREDENTIALS}
 
-Logging Out of the Account
+Log In And Log out
+    [Documentation]     Creates a fresh account, Logs in, Then logs out and delete the account.
     [Tags]                                                           functional       ui     positive        account
-    DemoqaRes.Navigating to Profile and Logging in                   ${MAIN_USERNAME}        ${MAIN_PASSWORD}
-    DemoqaRes.Logging Out
+    [Setup]     API_RES.Create Authenticated Account Via API
+    DemoqaRes.Logging In And Verify                                  ${TEST_ACCOUNT}
+    DemoqaRes.Logging Out And Verify
+    [Teardown]      API_RES.Delete Account Via API
 
 Delete the Account
     [Tags]                                                           bug     ui     positive     account
