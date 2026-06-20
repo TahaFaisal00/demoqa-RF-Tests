@@ -155,6 +155,17 @@ Navigate From Book Store To Profile Page
     BookStore.Click Profile Page Link
     Profile.Verify Profile Page Loaded
 
+Logging In And Verify
+    [Documentation]     Navigate to login page and enter valid credentials and log in and verify it.
+    [Arguments]     ${account}
+    Navigate To Book Store
+    Navigate From Book Store To Login Page
+    LogIn.Enter User Name    ${account.user_name}
+    LogIn.Enter Password    ${account.password}
+    LogIn.Click Login In Login Page
+    Verify Logging in       ${account.user_name}
+
+
 Logging in with Invalid Credentials
     [Arguments]                                  ${CREDENTIALS}
     Go To                                        ${URL}
