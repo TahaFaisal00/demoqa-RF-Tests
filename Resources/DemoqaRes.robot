@@ -1,5 +1,4 @@
 *** Settings ***
-Library                                           SeleniumLibrary
 Library                                           Browser
 Resource                                          Common.robot
 
@@ -8,6 +7,8 @@ Resource                                          PO/LogIn.robot
 Resource                                          PO/Register.robot
 Resource                                          PO/BookStore.robot
 Resource                                          PO/Profile.robot
+
+Resource                                          API_RES.robot
 
 Resource                                          UI_TestData.robot
 *** Keywords ***
@@ -171,6 +172,21 @@ Logging Out And Verify
     Profile.Click Logout Button
     Verify Account Logged Out
 
+Creating New Account
+    [Documentation]     Creates new account using freshly created fake details then goes back to login page.
+    [Arguments]         ${account}
+    ${test_account}=            API_RES.Create Account Details
+    VAR        &{TEST_ACCOUNT}        &{test_account}       scope=TEST
+    Navigate To Book Store
+    Navigate From Book Store To Login Page
+    Navigate From Login Page To Register Page
+    Register.Enter First Name    ${account.first_name}
+    Register.Enter Last Name    ${account.last_name}
+    Register.Enter User Name    ${account.user_name}
+    Register.Enter Password    ${account.password}
+    Register.Click Register Button
+
+
 
 Logging in with Invalid Credentials
     [Arguments]                                  ${CREDENTIALS}
@@ -266,18 +282,5 @@ Logging in
    LogIn.Clicking Login
    LogIn.Verify Logging in                       ${USERNAME}
 
-Navigating to Profile and Creating a New Account
-   [Arguments]                                   ${First_Name}     ${Last_name}     ${USERNAME}      ${PASSWORD}
-   ToolsQA.Verify that TOOLSQA Website is loaded
-   ToolsQA.Click on Book Store Application
-   BookStore.Click on Login button
-   LogIn.Verify that Login Page is Loaded
-   LogIn.Click New User button
-   Register.Entering First Name                  ${First_Name}
-   Register.Entering Last name                   ${Last_name}
-   Register.Entering Username                    ${USERNAME}
-   Register.Entering Password                    ${PASSWORD}
-   Register.Clicking Register Button
-   Register.Verify User Registration
-   Register.Click Back to Login Button
+
 
