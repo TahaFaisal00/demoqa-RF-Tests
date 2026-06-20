@@ -195,7 +195,7 @@ Creating New Account
     Register.Enter Last Name    ${account.last_name}
     Register.Enter User Name    ${account.user_name}
     Register.Enter Password    ${account.password}
-    Register.Click Register Button
+    Click Register And Verify Account Registered
 
 Deleting Account
     [Documentation]     Delete account from profile page, and Bypass the frontend bug of confirmation window stays open.
