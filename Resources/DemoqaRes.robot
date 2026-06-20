@@ -169,6 +169,7 @@ Logging In And Verify
 Logging Out And Verify
     [Documentation]     Logs out from the account page and verify it. after signing out the website takes you to login page
     ...                the keyword goes back to profile page and verify that account is logged out.
+    Navigate To Login Page
     Profile.Click Logout Button
     Verify Account Logged Out
 
