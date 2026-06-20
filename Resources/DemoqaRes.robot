@@ -197,7 +197,7 @@ Logging in with Invalid Credentials
     [Arguments]                                  ${account}
     Navigate To Login Page
     Reload
-    Entering Invalid Credentials                 ${account}
+    Log In With Credentials                ${account}
     Verify Login Error                           ${account}
 
 Log In With Credentials
