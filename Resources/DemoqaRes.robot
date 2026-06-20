@@ -207,18 +207,6 @@ Log In With Credentials
     LogIn.Enter Password            ${account.password}
     LogIn.Click Login In Login Page
 
-
-Entering Invalid Credentials
-   [Arguments]                                   ${CREDENTIALS}
-   LogIn.Verify that Login Page is Loaded
-   LogIn.Entering Username                       ${CREDENTIALS.USERNAME}
-   LogIn.Entering Password                       ${CREDENTIALS.PASSWORD}
-   LogIn.Clicking Login
-   LogIn.Error Message                           ${CREDENTIALS.ERROR1}        ${CREDENTIALS.ERROR2}        ${CREDENTIALS.ERROR_TEXT}
-
-Account Logged out
-    Profile.Verify Logging out
-
 the Books
     BookStore.2 Books and Their Images
 
@@ -268,25 +256,4 @@ Navigate to Profile and Delete The Collection
    Profile.Click Delete All Books Button
    Profile.Confirm Deletion
    Profile.Verify That The First Book Is Deleted
-
-Navigating to Profile and Logging in
-   [Arguments]                                   ${USERNAME}         ${PASSWORD}
-   ToolsQA.Verify that TOOLSQA Website is loaded
-   ToolsQA.Click on Book Store Application
-   BookStore.Click on Login button
-   LogIn.Verify that Login Page is Loaded
-   LogIn.Entering Username                       ${USERNAME}
-   LogIn.Entering Password                       ${PASSWORD}
-   LogIn.Clicking Login
-   LogIn.Verify Logging in                       ${USERNAME}
-
-Logging in
-   [Arguments]                                   ${USERNAME}         ${PASSWORD}
-   LogIn.Verify that Login Page is Loaded
-   LogIn.Entering Username                       ${USERNAME}
-   LogIn.Entering Password                       ${PASSWORD}
-   LogIn.Clicking Login
-   LogIn.Verify Logging in                       ${USERNAME}
-
-
 
