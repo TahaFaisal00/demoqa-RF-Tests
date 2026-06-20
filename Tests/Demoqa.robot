@@ -8,16 +8,16 @@ Suite Teardown                                                       Common.Clos
 #robot -d Results  Tests/Demoqa.robot
 
 *** Test Cases ***
-
-Logging in with a Multiple Invalid Credentials Scenarios
+Log In With Invalid Credentials
+   [Documentation]      Try to log in with a multiple different invalid credentials scenarios and verify errors.
    [Tags]                                                            functional      ui      negative        login
-   [Template]                                                        DemoqaRes.Logging in with Invalid Credentials
-   ${DELETED_ACCOUNT}
-   ${EMPTY_USERNAME}
+   [Template]                                                        DemoqaRes.Verify Login Fails
+   ${INVALID_ACCOUNT}
+   ${EMPTY_USER_NAME}
    ${EMPTY_PASSWORD}
    ${EMPTY_CREDENTIALS}
 
-Log In And Log out
+Log In And Log Out
     [Documentation]     Creates a fresh account, Logs in, Then logs out and delete the account.
     [Tags]                                                           functional       ui     positive        account
     [Setup]     API_RES.Create Authenticated Account Via API
@@ -38,7 +38,7 @@ Register And Delete Account
     DemoqaRes.Deleting Account
     DemoqaRes.Reload Profile Page And Verify Account Deletion
     DemoqaRes.Logging Out And Verify
-    DemoqaRes.Logging in with Invalid Credentials                    ${TEST_ACCOUNT}
+    DemoqaRes.Verify Login Fails                                     ${TEST_ACCOUNT}
     [Teardown]      API_RES.Delete Account Via API
 
 

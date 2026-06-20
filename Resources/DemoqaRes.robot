@@ -191,7 +191,7 @@ Deleting Account
     Profile.Verify Delete Account Confirmation Window Visible
     Profile.Confirm Delete
 
-Logging in with Invalid Credentials
+Verify Login Fails
     [Documentation]     Navigate to login page, and Log in with Invalid credentials and verify the error message or
     ...                 the fields attributes.
     [Arguments]                                  ${account}
