@@ -26,6 +26,10 @@ ${PROFILE_PAGE_URL}                         https://demoqa.com/profile
 ${BOOK_STORE_LINK}                          id=item-2
 
 ${GO_TO_BOOK_STORE_BUTTON}                        id=gotoStore
+
+${USER_NOT_FOUND_MESSAGE}                     css=#name.User not found!
+
+${LOGIN_LINK}                               id=item-0
 *** Keywords ***
 Verify Profile Page Loaded
     Get Url                 ${PROFILE_PAGE_URL}
@@ -71,4 +75,5 @@ Verify Delete Book Confirmation Window Visible
 Verify Delete Book Confirmation Window Closed
     Wait For Elements State    ${DELETE_BOOK_CONFIRMATION_WINDOW}       hidden
 
-
+Click Login Link
+    Click    ${LOGIN_LINK}
