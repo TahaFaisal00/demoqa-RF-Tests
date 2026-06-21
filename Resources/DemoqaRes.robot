@@ -96,9 +96,11 @@ Verify Books Loaded
 
 Verify Search Results Contain
     [Documentation]     verify the search result by asserting the correct book is visible
-    [Arguments]                                ${book}
-    ${book_locator}=        Format String    ${BOOK_LOCATOR_BASE}           ${book}
-    Wait For Elements State    ${book_locator}      visible
+    [Arguments]                                ${books}
+    FOR    ${book}    IN    @{books}
+        ${book_locator}=        Format String    ${BOOK_LOCATOR_BASE}           ${book}
+        Wait For Elements State    ${book_locator}      visible
+    END
 
 Verify Search Results Not Contain
     [Documentation]     verify the search result by asserting the incorrect books are hidden
