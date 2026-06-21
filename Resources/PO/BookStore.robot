@@ -22,8 +22,8 @@ ${UNDERSTANDING_ECMASCRIPT_BOOK}                     /books?search=9781593277574
 @{ALL_BOOKS}                                    ${GIT_POCKET_GUIDE_BOOK}        ${LEARNING_JAVASCRIPT_DESIGN_PATTERNS_BOOK}
 ...                                             ${SPEAKING_JAVASCRIPT_BOOK}             ${UNDERSTANDING_ECMASCRIPT_BOOK}
 
-${ADD_TO_YOUR_COLLECTION_BUTTON}                css=#addNewRecordButton.Add To Your Collection
-${BACK_TO_BOOK_STORE_BUTTON}                    css=#addNewRecordButton.Back To Book Store
+${ADD_TO_YOUR_COLLECTION_BUTTON}                css=#addNewRecordButton >> text="Add To Your Collection"
+${BACK_TO_BOOK_STORE_BUTTON}                    css=#addNewRecordButton >> text="Back To Book Store"
 
 ${PROFILE_PAGE_LINK}                            css=a[href="/profile"]
 
