@@ -7,7 +7,7 @@ ${BOOK_STORE_URL}                       https://demoqa.com/books
 ${LOGIN_BUTTON_IN_BOOK_STORE}                   id=login
 
 ${SEARCH_BAR}                                   id=searchBox
-
+${SUBMIT_SEARCH_BUTTON}                         xpath=//button[contains(class,'btn-outline-secondary')]
 
 ${BOOK_LOCATOR_BASE}                            css=a[href="{}"]
 ${BOOK_URL_BASE}                                https://demoqa.com{}
@@ -43,6 +43,7 @@ Verify Book Page Loaded
 Use Search Bar
     [Arguments]                                ${search}
     Type Text                                  ${SEARCH_BAR}        ${search}
+    Click                                      ${SUBMIT_SEARCH_BUTTON}
 
 Click Add To Your Collection Button
     Click                                      ${ADD_TO_YOUR_COLLECTION_BUTTON}
