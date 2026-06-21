@@ -70,7 +70,8 @@ Search Bar - Empty Input Shows All Books
     ...                 and the UI won't crash
     [Tags]                                                           functional       ui     positive        bookstore
     DemoqaRes.Navigate To Book Store Application
-    DemoqaRes.Search Books And Verify Results                        ${ALL_BOOKS}     ${EMPTY}       ${ALL_BOOKS}    ${EMPTY}
+    DemoqaRes.Search Book Store    ${ALL_BOOKS}    ${EMPTY}
+    DemoqaRes.Verify Search Results Contain    ${ALL_BOOKS}
 
 Search Bar - Invalid Input Shows No Books
     [Tags]                                                           functional       ui     negative        bookstore
