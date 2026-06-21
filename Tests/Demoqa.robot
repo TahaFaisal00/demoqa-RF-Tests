@@ -110,12 +110,19 @@ Search Bar - Search by Publisher Name
     ...                                            ${SPEAKING_JAVASCRIPT_BOOK}
     DemoqaRes.Verify Search Results Not Contain    ${UNDERSTANDING_ECMASCRIPT_BOOK}
 
-Books in the Book Store Should Have Retain Their Own Images When Their Position is Changed
+Books In Book Store Does Not Retain Their Own Images When Their Position Changed
+    [Documentation]     Verify the first and second book images, then search for the second book to hide the
+    ...                 first book make the second book in the first book position, then verify that the second book
+    ...                 have the first book image now.
     [Tags]                                                           bug     ui     positive     bookstore
-    DemoqaRes.Navigating to Profile and Logging in                   ${MAIN_USERNAME}        ${MAIN_PASSWORD}
-    DemoqaRes.Return to BookStore From Account
-    DemoqaRes.the Books
-    DemoqaRes.the books After using the Search
+    DemoqaRes.Navigate To Book Store Application
+    Verify Book Image                              ${GIT_POCKET_GUIDE_BOOK}    ${FIRST_BOOK_IMAGE_SRC}
+    Verify Book Image                              ${LEARNING_JAVASCRIPT_DESIGN_PATTERNS_BOOK}    ${SECOND_BOOK_IAMGE_SRC}
+    DemoqaRes.Search Book Store                    ${ALL_BOOKS}    ${LEARNING_JAVASCRIPT_DESIGN_PATTERNS_BOOK.title}
+    DemoqaRes.Verify Search Results Contain        ${LEARNING_JAVASCRIPT_DESIGN_PATTERNS_BOOK}
+    DemoqaRes.Verify Search Results Not Contain    ${GIT_POCKET_GUIDE_BOOK}
+    Verify Book Image                              ${LEARNING_JAVASCRIPT_DESIGN_PATTERNS_BOOK}    ${FIRST_BOOK_IMAGE_SRC}
+
 
 Books in the Book Store Should Retain Their Correct Details When Their Position is Changed
     [Tags]                                                           functional      ui     positive     bookstore

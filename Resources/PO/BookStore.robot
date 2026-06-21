@@ -36,6 +36,9 @@ ${PROFILE_PAGE_LINK}                            css=a[href="/profile"]
 &{UNDERSTANDING_ECMASCRIPT_DETAILS}                     isbn=9781593277574     title=Understanding ECMAScript 6
 ...                                 sub_title=The Definitive Guide for JavaScript Developers     author=Nicholas C. Zakas   publisher=No Starch Press
 
+${FIRST_BOOK_IMAGE_SRC}                     /assets/bookimage0-DrW2Lhj5.jpg
+${SECOND_BOOK_IAMGE_SRC}                    /assets/bookimage1-CeLeymOA.jpg
+
 *** Keywords ***
 Verify BookStore Page Loaded
    Get Url                              ${BOOK_STORE_URL}
