@@ -90,12 +90,15 @@ Search Bar - Search By Book Title
     DemoqaRes.Verify Search Results Not Contain    ${LEARNING_JAVASCRIPT_DESIGN_PATTERNS_BOOK}
     ...                                            ${SPEAKING_JAVASCRIPT_BOOK}    ${UNDERSTANDING_ECMASCRIPT_BOOK}
 
-Search Bar - Search by Author Name
+Search Bar - Search By Author Name
+    [Documentation]     Use the search bar with an existing book author and verify that the book is shown
+    ...                 and all the others books are not visible.
     [Tags]                                                           functional       ui     positive        bookstore
-    DemoqaRes.Navigating to Profile and Logging in                   ${MAIN_USERNAME}        ${MAIN_PASSWORD}
-    DemoqaRes.Return to BookStore From Account
-    DemoqaRes.Using the Book Search Feature                          ${SEARCH.AUTHOR}
-    DemoqaRes.Author name Search Results
+    DemoqaRes.Navigate To Book Store Application
+    DemoqaRes.Search Book Store                    ${ALL_BOOKS}    ${SPEAKING_JAVASCRIPT_BOOK.author}
+    DemoqaRes.Verify Search Results Contain       ${SPEAKING_JAVASCRIPT_BOOK}
+    DemoqaRes.Verify Search Results Not Contain    ${LEARNING_JAVASCRIPT_DESIGN_PATTERNS_BOOK}
+    ...                                            ${GIT_POCKET_GUIDE_BOOK}   ${UNDERSTANDING_ECMASCRIPT_BOOK}
 
 Search Bar - Search by Publisher Name
     [Tags]                                                           functional       ui     positive        bookstore
