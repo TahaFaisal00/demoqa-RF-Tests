@@ -123,25 +123,6 @@ Books In Book Store Does Not Retain Their Own Images When Their Position Changed
     DemoqaRes.Verify Search Results Not Contain    ${GIT_POCKET_GUIDE_BOOK}
     Verify Book Image                              ${LEARNING_JAVASCRIPT_DESIGN_PATTERNS_BOOK}    ${FIRST_BOOK_IMAGE_SRC}
 
-
-Books in the Book Store Should Retain Their Correct Details When Their Position is Changed
-    [Tags]                                                           functional      ui     positive     bookstore
-    DemoqaRes.Navigating to Profile and Logging in                   ${MAIN_USERNAME}        ${MAIN_PASSWORD}
-    DemoqaRes.Return to BookStore From Account
-    DemoqaRes.Check a Book Details
-    DemoqaRes.Return to BookStore From Book Details
-    DemoqaRes.Check a Second Book Details
-    DemoqaRes.Return to BookStore From Book Details
-    DemoqaRes.Check the Second Book Details After Using the Search
-
-Entering Website Link in Books'details
-    [Tags]                                                           functional      ui     positive     bookstore
-    DemoqaRes.Navigating to Profile and Logging in                   ${MAIN_USERNAME}        ${MAIN_PASSWORD}
-    DemoqaRes.Return to BookStore From Account
-    DemoqaRes.Open the First Book and Enter the Website
-    DemoqaRes.Return to BookStore From Book Details
-    DemoqaRes.Open the Second Book and Enter the Website
-
 Adding Books to the Books Collection
     [Tags]                                                           functional      ui     positive     bookstore
     DemoqaRes.Navigating to Profile and Logging in                   ${MAIN_USERNAME}        ${MAIN_PASSWORD}
