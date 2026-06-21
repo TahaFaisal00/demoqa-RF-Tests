@@ -15,6 +15,10 @@ ${BOOK_URL_BASE}                                https://demoqa.com{}
 ${GIT_POCKET_GUIDE_BOOK}                        /books?search=9781449325862
 ${LEARNING_JAVASCRIPT_DESIGN_PATTERNS_BOOK}     /books?search=9781449331818
 ${SPEAKING_JAVASCRIPT_BOOK}                     /books?search=9781449365035
+${UNDERSTANDING_ECMASCRIPT_BOOK}                     /books?search=9781593277574
+
+@{ALL_BOOKS}                                    ${GIT_POCKET_GUIDE_BOOK}        ${LEARNING_JAVASCRIPT_DESIGN_PATTERNS_BOOK}
+...                                             ${SPEAKING_JAVASCRIPT_BOOK}             ${UNDERSTANDING_ECMASCRIPT_BOOK}
 
 ${ADD_TO_YOUR_COLLECTION_BUTTON}                css=#addNewRecordButton.Add To Your Collection
 ${BACK_TO_BOOK_STORE_BUTTON}                    css=#addNewRecordButton.Back To Book Store
@@ -24,7 +28,7 @@ ${PROFILE_PAGE_LINK}                            css=a[href="/profile"]
 &{GIT_POCKET_GUIDE_BOOK_DETAILS}                        isbn=9781449325862   sub_title=A Working Introduction     author=Richard E. Silverman   publisher=O'Reilly Media
 &{LEARNING_JAVASCRIPT_DESIGN_PATTERNS_BOOK_DETAILS}     isbn=9781449331818   sub_title=A JavaScript and jQuery Developer's Guide     author=Addy Osmani   publisher=O'Reilly Media
 &{SPEAKING_JAVASCRIPT_BOOK_DETAILS}                     isbn=9781449365035   sub_title=An In-Depth Guide for Programmers     author=Axel Rauschmayer   publisher=O'Reilly Media
-&{UNDERSTANDING_ECMASCRIPT}                             isbn=9781593277574   sub_title=The Definitive Guide for JavaScript Developers     author=Nicholas C. Zakas   publisher=No Starch Press
+&{UNDERSTANDING_ECMASCRIPT_DETAILS}                     isbn=9781593277574   sub_title=The Definitive Guide for JavaScript Developers     author=Nicholas C. Zakas   publisher=No Starch Press
 
 *** Keywords ***
 Verify BookStore Page Loaded
