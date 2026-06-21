@@ -80,12 +80,15 @@ Search Bar - Invalid Input Shows No Books
     DemoqaRes.Search Book Store       ${ALL_BOOKS}   ${NONEXISTENT_BOOK_SEARCH}
     DemoqaRes.Verify No Books Found
 
-Search Bar - Search by Book Title
+Search Bar - Search By Book Title
+    [Documentation]     Use the search bar with an existing book title and verify that the book is shown
+    ...                 and all the others books are not visible.
     [Tags]                                                           functional       ui     positive        bookstore
-    DemoqaRes.Navigating to Profile and Logging in                   ${MAIN_USERNAME}        ${MAIN_PASSWORD}
-    DemoqaRes.Return to BookStore From Account
-    DemoqaRes.Using the Book Search Feature                          ${SEARCH.BOOKNAME}
-    DemoqaRes.Book Title Search Results
+    DemoqaRes.Navigate To Book Store Application
+    DemoqaRes.Search Book Store                    ${ALL_BOOKS}    ${GIT_POCKET_GUIDE_BOOK_DETAILS.title}
+    DemoqaRes.Verify Search Results Contain    ${GIT_POCKET_GUIDE_BOOK}
+    DemoqaRes.Verify Search Results Not Contain    ${LEARNING_JAVASCRIPT_DESIGN_PATTERNS_BOOK}
+    ...                                            ${SPEAKING_JAVASCRIPT_BOOK}    ${UNDERSTANDING_ECMASCRIPT_BOOK}
 
 Search Bar - Search by Author Name
     [Tags]                                                           functional       ui     positive        bookstore
