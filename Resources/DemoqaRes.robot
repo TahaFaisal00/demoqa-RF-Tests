@@ -80,7 +80,7 @@ Search Book Store
     [Documentation]     Waits until all books are visible then search for a book.
     [Arguments]     ${all_books_in_store}    ${expected_book}
     Verify Books Loaded                   ${all_books_in_store}
-    BookStore.Use Search Bar              ${expected_book.title}
+    BookStore.Use Search Bar              ${expected_book}
 
 Verify No Books Found
     [Documentation]     verify that no books are shown when the search in invalid.

@@ -74,11 +74,11 @@ Search Bar - Empty Input Shows All Books
     DemoqaRes.Verify Search Results Contain    ${ALL_BOOKS}
 
 Search Bar - Invalid Input Shows No Books
+    [Documentation]     use the search bar with a non existent book name and verify that no book is shown.
     [Tags]                                                           functional       ui     negative        bookstore
-    DemoqaRes.Navigating to Profile and Logging in                   ${MAIN_USERNAME}        ${MAIN_PASSWORD}
-    DemoqaRes.Return to BookStore From Account
-    DemoqaRes.Using the Book Search Feature                          ${SEARCH.INVALID}
-    DemoqaRes.Verify Search Results
+    DemoqaRes.Navigate To Book Store Application
+    DemoqaRes.Search Book Store       ${ALL_BOOKS}   ${NONEXISTENT_BOOK_SEARCH}
+    DemoqaRes.Verify No Books Found
 
 Search Bar - Search by Book Title
     [Tags]                                                           functional       ui     positive        bookstore

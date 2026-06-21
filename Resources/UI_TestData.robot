@@ -15,4 +15,4 @@ ${INVALID_PASSWORD}                              Taha2001!!
 &{EMPTY_PASSWORD}                                 user_name=${MAIN_USERNAME}         password=${EMPTY}
 &{EMPTY_CREDENTIALS}                              user_name=${EMPTY}                 password=${EMPTY}
 
-&{SEARCH}                                         EMPTY=${EMPTY}    INVALID=xxxxxxxxxx     BOOKNAME=Git Pocket Guide    AUTHOR=Glenn Block et al.   Publisher=No Starch Press
+${NONEXISTENT_BOOK_SEARCH}                                 xxxxxxxxxx
