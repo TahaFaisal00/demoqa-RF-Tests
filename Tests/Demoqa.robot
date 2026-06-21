@@ -66,11 +66,11 @@ Delete Account Does Not automatically Log Out The User
     [Teardown]      API_RES.Delete Account Via API
 
 Search Bar - Empty Input Shows All Books
+    [Documentation]     Use the search bar with empty value and verify that all books will remain visible
+    ...                 and the UI won't crash
     [Tags]                                                           functional       ui     positive        bookstore
-    DemoqaRes.Navigating to Profile and Logging in                   ${MAIN_USERNAME}        ${MAIN_PASSWORD}
-    DemoqaRes.Return to BookStore From Account
-    DemoqaRes.Using the Book Search Feature                          ${SEARCH.EMPTY}
-    DemoqaRes.Empty Search Results
+    DemoqaRes.Navigate To Book Store Application
+    DemoqaRes.Search Books And Verify Results                        ${ALL_BOOKS}     ${EMPTY}       ${ALL_BOOKS}    ${EMPTY}
 
 Search Bar - Invalid Input Shows No Books
     [Tags]                                                           functional       ui     negative        bookstore
