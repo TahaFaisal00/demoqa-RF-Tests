@@ -168,16 +168,5 @@ Delete All Books Does Not Close Confirmation Window
 
 
 
-Adding Already Added Book to the Books Collection
-    [Tags]                                                           functional      ui     negative     bookstore
-    DemoqaRes.Navigating to Profile and Logging in                   ${MAIN_USERNAME}        ${MAIN_PASSWORD}
-    DemoqaRes.Return to BookStore From Account
-    DemoqaRes.Add the First Book to the Collection
-    DemoqaRes.Adding an Already Added Book to the Collection
-
-
-
-
-
 
 
