@@ -39,6 +39,15 @@ Create Account Via API
     VAR     ${ACCOUNT_ID}       ${response.json()}[userID]      scope=TEST
     RETURN      ${response}
 
+Attempt Create Account With Missing Field Via API
+    [Documentation]     Create a new account without username.
+    ${account}=     Create Account Details
+    VAR          &{TEST_ACCOUNT}      &{account}     scope=TEST
+    ${body}=        Build User Credentials Body           ${account}
+    Remove From Dictionary      ${body}      userName
+    ${response}=      Send Create Account Request       ${body}
+    VAR     ${ACCOUNT_ID}       ${response.json()}[userID]      scope=TEST
+    RETURN      ${response}
 
 Send Generate Token Request
     [Arguments]     ${body}
