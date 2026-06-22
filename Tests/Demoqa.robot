@@ -141,6 +141,33 @@ Add Book To Books Collection And Delete It
     Verify Book Not In Book Collection                 ${GIT_POCKET_GUIDE_BOOK}
     [Teardown]      API_RES.Delete Account Via API
 
+Delete All Books Does Not Close Confirmation Window
+    [Documentation]     Adding two books to the book collection then deleting them by using Delete All Books button
+    ...                 After creating a fresh new account and logging in to it.
+    ...                 Verify the UI doesn't update and delete confirmation window stays open.
+    [Tags]                                                           bug       ui     negative       bookstore
+    [Setup]      API_RES.Create Account Via API
+    Navigate To Book Store Application
+    DemoqaRes.Logging In And Verify                    ${TEST_ACCOUNT}
+    Navigate To Book Store
+    Verify Books Loaded                                ${ALL_BOOKS}
+    Open Book Page                                     ${GIT_POCKET_GUIDE_BOOK}
+    Verify Book Details                                ${GIT_POCKET_GUIDE_BOOK_DETAILS}
+    Click Add Book To Collection And Verify Book Added
+    Open Book Page                                     ${LEARNING_JAVASCRIPT_DESIGN_PATTERNS_BOOK}
+    Verify Book Details                                ${LEARNING_JAVASCRIPT_DESIGN_PATTERNS_BOOK_DETAILS}
+    Click Add Book To Collection And Verify Book Added
+    Navigate To Profile Page
+    Verify Book In Book Collection                     ${GIT_POCKET_GUIDE_BOOK}     ${LEARNING_JAVASCRIPT_DESIGN_PATTERNS_BOOK}
+    Delete All Books
+    Verify Delete All Books Confirmation Window Persists After Confirm
+    [Teardown]      API_RES.Delete Account Via API
+
+
+
+
+
+
 Adding Already Added Book to the Books Collection
     [Tags]                                                           functional      ui     negative     bookstore
     DemoqaRes.Navigating to Profile and Logging in                   ${MAIN_USERNAME}        ${MAIN_PASSWORD}
@@ -148,12 +175,7 @@ Adding Already Added Book to the Books Collection
     DemoqaRes.Add the First Book to the Collection
     DemoqaRes.Adding an Already Added Book to the Collection
 
-Add a Book to the Collection then Delete All Books from the Collection
-    [Tags]                                                           bug       ui     positive       bookstore
-    DemoqaRes.Navigating to Profile and Logging in                   ${MAIN_USERNAME}        ${MAIN_PASSWORD}
-    DemoqaRes.Return to BookStore From Account
-    DemoqaRes.Add the First Book to the Collection
-    DemoqaRes.Navigate to Profile and Delete The Collection
+
 
 
 
