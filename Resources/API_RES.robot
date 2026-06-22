@@ -61,7 +61,7 @@ Create Authenticated Account Via API
     Create Account Via API
     Generate Token Via API
 
-Build Delete Account Headers
+Build Authorization Headers
     [Arguments]     ${account_token}
     &{headers}=     Create Dictionary       Authorization=Bearer ${account_token}
     RETURN      ${headers}
@@ -74,7 +74,7 @@ Send Delete Account Request
 
 Delete Account Via API
     [Documentation]     Deletes Account by ID. Used as test teardown.
-    ${headers}=     Build Delete Account Headers        ${TOKEN}
+    ${headers}=     Build Authorization Headers        ${TOKEN}
     ${response}=        Send Delete Account Request         ${headers}      ${ACCOUNT_ID}
     RETURN      ${response}
 
@@ -90,12 +90,17 @@ Check Accout Authorization Via API
     ${response}=        Send Check Accout Authorization Request       ${body}
     RETURN      ${response}
 
+Send Get Account Details Request
+    [Arguments]         ${headers}      ${uuid}
+    ${get_account_details_apia_with_uuid}=      Format String    ${GET_ACCOUNT_DETAILS_API}     ${uuid}
+    ${response}=        GET On Session     ${ALIAS}       ${get_account_details_apia_with_uuid}        headers=${headers}
+    RETURN      ${response}
 
-
-
-
-
-
+Get Account Details Via API
+    [Documentation]     Get an existing account details by ID. Requires authorized account.
+    ${headers}=     Build Authorization Headers     ${TOKEN}
+    ${response}=        Send Get Account Details Request        ${headers}         ${ACCOUNT_ID}
+    RETURN      ${response}
 
 
 
