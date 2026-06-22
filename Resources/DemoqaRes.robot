@@ -77,10 +77,12 @@ Verify Book Details
     Get Text    id=publisher-wrapper >> id=userName-value    ==   ${book.publisher}
 
 Click Add Book To Collection And Verify Book Already Added
-    [Documentation]     Click Add book to collection button in book details page of an already added book and verify the book already added alert.
+    [Documentation]     Click Add book to collection button in book details page of an already added book and
+    ...                 verify the book already added alert. Then go back to book store
     ${alert}=       Wait For Alert           action=accept      text=Book already present in the your collection!
     Click Add To Your Collection Button
     Wait For        ${alert}
+    Click Back To Book Store Button
 
 Click Add Book To Collection And Verify Book Added
     [Documentation]     Click Add book to collection button in book details page and verify the book added alert.

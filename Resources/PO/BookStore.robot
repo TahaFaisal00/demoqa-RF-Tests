@@ -77,3 +77,5 @@ Get Image Src
     ${src}=     Get Attribute    ${img}       src
     RETURN      ${src}
 
+Click Back To Book Store Button
+    Click                        ${BACK_TO_BOOK_STORE_BUTTON}
