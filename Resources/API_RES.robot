@@ -18,7 +18,7 @@ Create Account Details
     ...                   first_name=${fake_first_name}           last_name=${fake_last_name}
     RETURN      &{TEST_ACCOUNT}
 
-Build Create Account Body
+Build User Credentials Body
     [Arguments]     ${account}
     &{body}=        Create Dictionary            userName=${account.user_name}               password= ${account.password}
     RETURN      ${body}
@@ -33,7 +33,7 @@ Create Account Via API
     ...                 Used together with Generate Token Via API as test setup.
     ${account}=     Create Account Details
     VAR          &{TEST_ACCOUNT}      &{account}     scope=TEST
-    ${body}=        Build Create Account Body           ${account}
+    ${body}=        Build User Credentials Body           ${account}
     ${response}=      Send Create Account Request       ${body}
     VAR     ${ACCOUNT_ID}       ${response.json()}[userID]      scope=TEST
     RETURN      ${response}
@@ -79,6 +79,16 @@ Delete Account Via API
     RETURN      ${response}
 
 
+Send Check Accout Authorization Request
+    [Arguments]         ${body}
+    ${response}=        POST On Session     ${ALIAS}       ${CHECK_ACCOUNT_AUTHORIZATION_API}      json=${body}
+    RETURN      ${response}
+
+Check Accout Authorization Via API
+    [Documentation]     Verify if account is logged in or not
+    ${body}=        Build User Credentials Body     ${TEST_ACCOUNT}
+    ${response}=        Send Check Accout Authorization Request       ${body}
+    RETURN      ${response}
 
 
 
