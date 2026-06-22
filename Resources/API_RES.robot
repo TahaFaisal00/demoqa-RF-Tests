@@ -152,7 +152,17 @@ Get Account Details Via API
     ${response}=        Send Get Account Details Request        ${headers}         ${ACCOUNT_ID}
     RETURN      ${response}
 
+Attempt Get Account Details With Invalid Account ID Via API
+    [Documentation]     Get a non existent account details by ID.
+    ${headers}=     Build Authorization Headers     ${TOKEN}
+    ${response}=        Send Get Account Details Request        ${headers}         ${INVALID_ACCOUNT_ID}
+    RETURN      ${response}
 
+Attempt Get Account Details Without Authorization Via API
+    [Documentation]     Get an existing account details by ID with invalid authorization token.
+    ${headers}=     Build Authorization Headers     ${INVALID_TOKEN}
+    ${response}=        Send Get Account Details Request        ${headers}         ${ACCOUNT_ID}
+    RETURN      ${response}
 
 
 
