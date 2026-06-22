@@ -39,10 +39,6 @@ Create Account Via API
     VAR     ${ACCOUNT_ID}       ${response.json()}[userID]      scope=TEST
     RETURN      ${response}
 
-Build Generate Token Body
-    [Arguments]     ${account}
-    &{body}=        Create Dictionary            userName=${account.user_name}               password=${account.password}
-    RETURN      ${body}
 
 Send Generate Token Request
     [Arguments]     ${body}
@@ -51,10 +47,27 @@ Send Generate Token Request
 
 Generate Token Via API
     [Documentation]     Generates a token for the account. Used together with Create Account Via API as test setup.
-    ${body}=       Build Generate Token Body     ${TEST_ACCOUNT}
+    ${body}=       Build User Credentials Body     ${TEST_ACCOUNT}
     ${response}=        Send Generate Token Request     ${body}
     VAR    ${TOKEN}     ${response.json()}[token]       scope=TEST
     RETURN      ${response}
+
+Attempt Generate Token With Missing Field Via API
+    [Documentation]     Generates a token for an account without entering its username.
+    ${body}=       Build User Credentials Body     ${TEST_ACCOUNT}
+    Remove From Dictionary      ${body}      userName
+    ${response}=        Send Generate Token Request     ${body}
+    VAR    ${TOKEN}     ${response.json()}[token]       scope=TEST
+    RETURN      ${response}
+
+Attempt Generate Token With Invalid Fields Via API
+    [Documentation]     Generates a token for a non existent account.
+    ${body}=       Build User Credentials Body     ${TEST_ACCOUNT}
+    Set To Dictionary    ${body}         userName=x
+    ${response}=        Send Generate Token Request     ${body}
+    VAR    ${TOKEN}     ${response.json()}[token]       scope=TEST
+    RETURN      ${response}
+
 
 Create Authenticated Account Via API
     [Documentation]     Create account and it's token. it makes TEST_ACCOUNT, ACCOUNT_ID and TOKEN test variables.
@@ -94,7 +107,7 @@ Check Account Authorization Via API
 Attempt Check Accout Authorization With Missing Field Via API
     [Documentation]     Verify if account is logged in or not by using a only password without user name.
     ${body}=        Build User Credentials Body     ${TEST_ACCOUNT}
-    Remove From Dictionary          userName
+    Remove From Dictionary      ${body}            userName
     ${response}=        Send Check Accout Authorization Request       ${body}
     RETURN      ${response}
 
