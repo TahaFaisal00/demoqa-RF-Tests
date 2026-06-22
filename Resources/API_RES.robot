@@ -101,6 +101,18 @@ Delete Account Via API
     ${response}=        Send Delete Account Request         ${headers}      ${ACCOUNT_ID}
     RETURN      ${response}
 
+Attempt Delete Account With Invalid Account ID Via API
+    [Documentation]     Deletes Account by a non existent account ID.
+    ${headers}=     Build Authorization Headers        ${TOKEN}
+    ${response}=        Send Delete Account Request         ${headers}      ${INVALID_ACCOUNT_ID}
+    RETURN      ${response}
+
+Attempt Delete Account Without Authorization Via API
+    [Documentation]     Deletes Account by ID with invalid authorization token.
+    ${headers}=     Build Authorization Headers        ${INVALID_TOKEN}
+    ${response}=        Send Delete Account Request         ${headers}      ${ACCOUNT_ID}
+    RETURN      ${response}
+
 
 Send Check Accout Authorization Request
     [Arguments]         ${body}
