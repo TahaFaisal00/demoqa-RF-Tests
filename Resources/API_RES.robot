@@ -10,9 +10,21 @@ Open Session
     [Documentation]      open HTTP session. Used as suite Setup
     Create Session       ${ALIAS}    ${BASE_URL}
 
+Generate Valid Password
+    [Documentation]    Builds a DemoQA-compliant password: guarantees ≥1 upper,
+    ...                ≥1 lower, ≥1 digit, ≥1 safe special. Avoids JSON-hostile
+    ...                chars (" \ space).
+    ${upper}=      Evaluate    random.choice(string.ascii_uppercase)    modules=random, string
+    ${lower}=      Evaluate    random.choice(string.ascii_lowercase)    modules=random, string
+    ${digit}=      Evaluate    random.choice(string.digits)             modules=random, string
+    ${special}=    Evaluate    random.choice('!@#$%^&*')                modules=random, string
+    ${rest}=       Evaluate    ''.join(random.choices(string.ascii_letters + string.digits, k=8))    modules=random, string
+    ${password}=   Evaluate    ''.join(random.sample('${upper}${lower}${digit}${special}${rest}', len('${upper}${lower}${digit}${special}${rest}')))    modules=random, string
+    RETURN    ${password}
+
 Create Account Details
     ${fake_user_name}=       FakerLibrary.User Name
-    ${fake_password}=        FakerLibrary.Password
+    ${fake_password}=        Generate Valid Password
     ${fake_first_name}=      FakerLibrary.First Name Male
     ${fake_last_name}=       FakerLibrary.Last Name Male
     &{TEST_ACCOUNT}=      Create Dictionary        user_name=${fake_user_name}      password=${fake_password}
@@ -26,7 +38,7 @@ Build User Credentials Body
 
 Send Create Account Request
     [Arguments]         ${body}
-    ${response}=        POST On Session     ${ALIAS}       ${CREATE_ACCOUNT_API}      json=${body}
+    ${response}=        POST On Session     ${ALIAS}       ${CREATE_ACCOUNT_API}      json=${body}      expected_status=anything
     RETURN          ${response}
 
 Create Account Via API
@@ -51,7 +63,7 @@ Attempt Create Account With Missing Field Via API
 
 Send Generate Token Request
     [Arguments]     ${body}
-    ${response}=        POST On Session     ${ALIAS}       ${GENERATE_TOKEN_API}      json=${body}
+    ${response}=        POST On Session     ${ALIAS}       ${GENERATE_TOKEN_API}      json=${body}      expected_status=anything
     RETURN      ${response}
 
 Generate Token Via API
@@ -92,7 +104,7 @@ Build Authorization Headers
 Send Delete Account Request
     [Arguments]         ${headers}          ${uuid}
     ${delete_account_via_api_with_uuid}=        Format String    ${DELETE_ACCOUNT_API}        ${uuid}
-    ${response}=        DELETE On Session     ${ALIAS}       ${delete_account_via_api_with_uuid}        headers=${headers}
+    ${response}=        DELETE On Session     ${ALIAS}       ${delete_account_via_api_with_uuid}        headers=${headers}      expected_status=anything
     RETURN      ${response}
 
 Delete Account Via API
@@ -116,7 +128,7 @@ Attempt Delete Account Without Authorization Via API
 
 Send Check Accout Authorization Request
     [Arguments]         ${body}
-    ${response}=        POST On Session     ${ALIAS}       ${CHECK_ACCOUNT_AUTHORIZATION_API}      json=${body}
+    ${response}=        POST On Session     ${ALIAS}       ${CHECK_ACCOUNT_AUTHORIZATION_API}      json=${body}     expected_status=anything
     RETURN      ${response}
 
 Check Account Authorization Via API
@@ -143,7 +155,7 @@ Attempt Check Accout Authorization With Invalid Fields Via API
 Send Get Account Details Request
     [Arguments]         ${headers}      ${uuid}
     ${get_account_details_apia_with_uuid}=      Format String    ${GET_ACCOUNT_DETAILS_API}     ${uuid}
-    ${response}=        GET On Session     ${ALIAS}       ${get_account_details_apia_with_uuid}        headers=${headers}
+    ${response}=        GET On Session     ${ALIAS}       ${get_account_details_apia_with_uuid}        headers=${headers}       expected_status=anything
     RETURN      ${response}
 
 Get Account Details Via API
