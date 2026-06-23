@@ -208,6 +208,10 @@ Send Get Bookstore Books Request
     ${response}=        GET On Session     ${ALIAS}       ${BOOKSTORE_BOOKS_API}
     RETURN      ${response}
 
+Get Bookstore Books Via API
+    [Documentation]     Get all books from the bookstore and their details.
+    ${resposne}=        Send Get Bookstore Books Request
+    RETURN      ${resposne}
 
 Build Create List Of Books Body
     [Arguments]     ${user_id}      @{isbns}
