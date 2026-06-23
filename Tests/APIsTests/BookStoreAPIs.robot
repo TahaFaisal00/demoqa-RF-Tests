@@ -1,22 +1,19 @@
 *** Settings ***
 Library         RequestsLibrary
 Library         SeleniumLibrary
-
-Suite Setup     Create Session    deqoma    ${BASE_URL}
+Resource    ../../Resources/API_RES.robot
+Suite Setup     Open Session
 
 *** Variables ***
 ${BASE_URL}=             https://demoqa.com/
 ${TOKEN}                eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IlRhaGEwMCIsInBhc3N3b3JkIjoiVGFoYTIwMDEhISEiLCJpYXQiOjE3Nzk2MzgyNTd9.4AXB6PLXamPZDwow-u3iEdP_qmPTggD3MNymWe3G_rM
 *** Test Cases ***
-GET Books from bookStore - Returns 200
-    [Tags]      sanity      api     get        positive        bookstore
-    POST Generate a Token for an Account
-    ${response}=        GET On Session     deqoma       /BookStore/v1/Books
-    Status Should Be    expected_status=200
-    Log    message=${response.json()}
-
-
-
+GET Bookstore Books - Returns 200
+    [Documentation]     Get all the books with their details from the bookstore. Verify response code and message.
+    [Tags]      functional      api     get      positive        bookstore
+    ${response}=        Get Bookstore Books Via API
+    Verify Resposne Code    ${OK_CODE}
+    Verify Response Field Not Empty    ${response}    ${RESPONSE_FIELD_BOOKS}
 
 
 POST a List of Books - Returns 201 with Valid Required Fields
@@ -196,7 +193,6 @@ Update a Book by Replacing it with Another by ISBN - Returns 200 with Valid ISBN
     ${response}=        PUT On Session    deqoma       /BookStore/v1/Books/${ISBN}     json=${body}        headers=${headers}
     Status Should Be    expected_status=200
     Log    message=${response.json()}
-
 
 Update a Book by Replacing it with Another by ISBN - Returns 400 with Valid ISBN and Invalid Required Fields
     [Tags]      sanity     api     put        negative        bookstore
