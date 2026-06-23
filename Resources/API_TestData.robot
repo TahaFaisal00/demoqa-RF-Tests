@@ -24,6 +24,8 @@ ${USER_NOT_FOUND_MESSAGE}                   User not found!
 ${INCORRECT_USER_ID_MESSAGE}                User Id not correct!
 ${USER_EXIST_MESSAGE}                       User exists!
 ${NOT_AUTHORIZED_MESSAGE}                   User not authorized!
+${BOOK_ISBN_NOT_AVAILABLE_MESSAGE}          ISBN supplied is not available in Books Collection!
+
 
 ${AUTHORIZATION_FIELD_RESULT}               User authorization failed.
 
@@ -41,7 +43,7 @@ ${UPDATE_BOOK_BY_ANOTHER_API}               /BookStore/v1/Books/{}
 ${GIT_POCKET_GUIDE_ISBN}                    9781449325862
 ${LEARNING_JAVASCRIPT_DESGIN_PATTERNS_ISBN}      9781449331818
 ${SPEAKING_JAVA_SCRIPT_ISBN}                     9781449365035
-
+${INVALID_ISBN}                                  1111111111111
 
 
 

@@ -265,7 +265,7 @@ Build Get Book Details Params
 
 Send Get Book Details Request
     [Arguments]     ${params}
-    ${response}=        GET On Session   ${ALIAS}       ${BOOKSTORE_BOOK_API}        params=${params}
+    ${response}=        GET On Session   ${ALIAS}       ${BOOKSTORE_BOOK_API}        params=${params}       expected_status=anything
     RETURN      ${response}
 
 Get Book Details Via API
@@ -273,6 +273,19 @@ Get Book Details Via API
     ${params}=      Build Get Book Details Params       ${GIT_POCKET_GUIDE_ISBN}
     ${response}=        Send Get Book Details Request       ${params}
     RETURN      ${response}
+
+Attempt Get Book Details With Invalid ISBN Via API
+    [Documentation]     Get a single book details by non existent book ISBN.
+    ${params}=      Build Get Book Details Params       ${INVALID_ISBN}
+    ${response}=        Send Get Book Details Request       ${params}
+    RETURN      ${response}
+
+Attempt Get Book Details With Missing ISBN Via API
+    [Documentation]     Get a single book details without ISBN.
+    ${params}=      Build Get Book Details Params       ${EMPTY}
+    ${response}=        Send Get Book Details Request       ${params}
+    RETURN      ${response}
+
 
 
 
