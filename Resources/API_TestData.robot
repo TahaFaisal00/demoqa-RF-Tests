@@ -35,6 +35,7 @@ ${RESPONSE_FIELD_USERNAME}                  username
 ${RESPONSE_FIELD_BOOKS}                     books
 ${RESPONSE_FIELD_ISBN}                      isbn
 ${RESPONSE_FIELD_TITLE}                     title
+${RESPONSE_FIELD_COLLECTION_OF_ISBNS}       collectionOfIsbns
 
 ${BOOKSTORE_BOOKS_API}                      /BookStore/v1/Books
 ${BOOKSTORE_BOOK_API}                       /BookStore/v1/Book

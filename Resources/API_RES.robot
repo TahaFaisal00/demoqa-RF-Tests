@@ -235,6 +235,18 @@ Create List Of Books Via API
     ${response}=        Send Create List Of Books Request       ${body}     ${headers}
     RETURN      ${response}
 
+Attempt Create List Of Books With Missing Field Via API
+    [Documentation]     Create a list of books Without books ISBNs. Requires an authorized user ID.
+    ${headers}=     Build Create List Of Books Headers      ${TOKEN}
+    ${response}=        Send Create List Of Books Request       ${empty}     ${headers}
+    RETURN      ${response}
+
+Attempt Create List Of Books With Invalid Field Via API
+    [Documentation]     Create a list of books from the non existent books ISBNs. Requires an authorized user ID.
+    ${body}=        Build Create List Of Books Body       ${ACCOUNT_ID}      ${INVALID_ISBN}       ${INVALID_ISBN}
+    ${headers}=     Build Create List Of Books Headers      ${TOKEN}
+    ${response}=        Send Create List Of Books Request       ${body}     ${headers}
+    RETURN      ${response}
 
 Build Delete List Of Books Params
     [Arguments]     ${user_id}
