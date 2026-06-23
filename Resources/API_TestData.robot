@@ -45,7 +45,7 @@ ${GIT_POCKET_GUIDE_ISBN}                    9781449325862
 ${LEARNING_JAVASCRIPT_DESGIN_PATTERNS_ISBN}      9781449331818
 ${SPEAKING_JAVA_SCRIPT_ISBN}                     9781449365035
 ${INVALID_ISBN}                                  1111111111111
-
+${INVALID_USER_ID}                               xxxxxxxxxxxxx
 
 
 

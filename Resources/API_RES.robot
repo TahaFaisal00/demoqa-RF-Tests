@@ -270,6 +270,14 @@ Delete List Of Books Via API
     ${response}=        Send Delete List Of Books Request       ${params}       ${headers}
     RETURN      ${response}
 
+Attempt Delete List Of Books With Invalid User ID Via API
+    [Documentation]     Delete the list of book from an unauthorized user by user ID.
+    ${params}=      Build Delete List Of Books Params       ${INVALID_USER_ID}
+    ${headers}=     Build Delete List Of Books Headers      ${TOKEN}
+    ${response}=        Send Delete List Of Books Request       ${params}       ${headers}
+    RETURN      ${response}
+
+
 Build Get Book Details Params
     [Arguments]     ${book_isbn}
     &{params}=          Create Dictionary           ISBN=${book_isbn}
