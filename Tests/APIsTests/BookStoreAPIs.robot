@@ -16,42 +16,47 @@ GET Bookstore Books - Returns 200
     Verify Response Field Not Empty    ${response}    ${RESPONSE_FIELD_BOOKS}
 
 
-POST a List of Books - Returns 201 with Valid Required Fields
-    [Tags]      sanity      api     post        positive        bookstore
-    POST Generate a Token for an Account
-    &{isbn1}=       Create Dictionary               isbn=9781449325862
-    &{isbn2}=       Create Dictionary                isbn=9781449331818
-    @{collectionOfIsbns}=       Create List      ${isbn1}         ${isbn2}
-    &{body}=        Create Dictionary           userId=84d46a79-b0df-4066-acd2-7d7a09d87d87             collectionOfIsbns=${collectionOfIsbns}
-    &{headers} =        Create Dictionary       Authorization=Bearer ${Token}
-    ${response}=        POST On Session    deqoma       /BookStore/v1/Books     json=${body}        headers=${headers}
-    Status Should Be    expected_status=201
-    Log    message=${response.json()}
+Create List Of Books - Valid Fields - Returns 201
+    [Documentation]     Create list of book using the given books ISBNs. Requires authorized account.
+    ...                 Verify response and code.
+    [Tags]      functional      api     post        positive        bookstore
+    [Setup]     Create Authenticated Account Via API
+    ${response}=        Create List Of Books Via API        ${GIT_POCKET_GUIDE_ISBN}        ${LEARNING_JAVASCRIPT_DESGIN_PATTERNS_ISBN}
+    Verify Resposne Code    ${CREATED_CODE}
+    Verify Response Field Not Empty    ${response}    ${RESPONSE_FIELD_BOOKS}
+    [Teardown]      Delete Account Via API
 
-POST a List of Books - Returns 401 Unauthorized
-    [Tags]      sanity      api     post        negative        bookstore
-    &{isbn1}=       Create Dictionary               isbn=9781449325862
-    &{isbn2}=       Create Dictionary                isbn=9781449331818
-    @{collectionOfIsbns}=       Create List      ${isbn1}         ${isbn2}
-    &{body}=        Create Dictionary           userId=84d46a79-b0df-4066-acd2-7d7a09d87d87             collectionOfIsbns=${collectionOfIsbns}
-    ${response}=        POST On Session    deqoma       /BookStore/v1/Books     json=${body}            expected_status=401
-    Log    message=${response.json()}
+Create List Of Books - Unauthorized - Returns 401
+    [Documentation]     Create list of book using the given books ISBNs using unauthorized account.
+    ...                 Verify response and code.
+    [Tags]      functional      api     post        negative        bookstore
+    [Setup]     Create Account Via API
+    ${response}=        Create List Of Books Via API        ${GIT_POCKET_GUIDE_ISBN}        ${LEARNING_JAVASCRIPT_DESGIN_PATTERNS_ISBN}
+    Verify Resposne Code    ${NOT_AUTHORIZED_CODE}
+    Verify Response Message    ${response}    ${NOT_AUTHORIZED_MESSAGE}
+    Generate Token Via API
+    [Teardown]      Delete Account Via API
 
-POST a List of Books - Returns 500 with Missing Required Fields
-    [Tags]      bug      api     post        negative        bookstore      #500 instead of 400  #: Server exposes internal stack trace and file paths in response body — security issue
-    POST Generate a Token for an Account
-    &{body}=        Create Dictionary           userId=84d46a79-b0df-4066-acd2-7d7a09d87d87
-    &{headers} =        Create Dictionary       Authorization=Bearer ${Token}
-    ${response}=        POST On Session    deqoma       /BookStore/v1/Books     json=${body}        headers=${headers}      expected_status=500
+Create List Of Books - Missing Fields - Returns 400
+    [Documentation]     Create list of book without providing books ISBNs. Verify Response code and message.
+    ...                 BUG: when sending a request without the required field the API should return json type error message.
+    ...                 but the API is returning text/html type content that is leaking internal paths, Sequelize, MySQL.
+    [Tags]      bug      api     post        negative        bookstore
+    [Setup]     Create Authenticated Account Via API
+    ${response}=        Attempt Create List Of Books With Missing Field Via API
+    Verify Resposne Code    ${BAD_REQUEST_CODE}
+    Verify Response Headers Content type      ${response}        ${CONTENT_TYPE_TEXT_HTML}
+    [Teardown]      Delete Account Via API
 
-POST a List of Books - Returns 400 with Invalid Required Fields
-    [Tags]      sanity      api     post        negative        bookstore
-    POST Generate a Token for an Account
-    @{collectionOfIsbns}=       Create List      xxxxxxxxxxxxxx
-    &{body}=        Create Dictionary           userId=84d46a79-b0df-4066-acd2-7d7a09d87d87             collectionOfIsbns=${collectionOfIsbns}
-    &{headers} =        Create Dictionary       Authorization=Bearer ${Token}
-    ${response}=        POST On Session    deqoma       /BookStore/v1/Books     json=${body}        headers=${headers}      expected_status=400
-    Log    message=${response.json()}
+Create List Of Books - Invalid Fields - Returns 400
+    [Documentation]     Create list of book using invalid book ISBN. Requires authorized account.
+    ...                 Verify response and code.
+    [Tags]      functional      api     post        negative        bookstore
+    [Setup]     Create Authenticated Account Via API
+    ${response}=        Create List Of Books Via API        ${INVALID_ISBN}
+    Verify Resposne Code    ${BAD_REQUEST_CODE}
+    Verify Response Message    ${response}    ${BOOK_ISBN_NOT_AVAILABLE_MESSAGE}
+    [Teardown]      Delete Account Via API
 
 
 

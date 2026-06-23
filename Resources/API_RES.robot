@@ -221,7 +221,12 @@ Get Bookstore Books Via API
 
 Build Create List Of Books Body
     [Arguments]     ${user_id}      @{isbns}
-    &{body}=        Create Dictionary           userId=${user_id}             collectionOfIsbns=${isbns}
+    @{collection}=      Create List
+    FOR    ${isbn}    IN    @{isbns}
+        ${entry}=       Create Dictionary       isbn=${isbn}
+        Append To List    ${collection}     ${entry}
+    END
+    &{body}=        Create Dictionary           userId=${user_id}             collectionOfIsbns=${collection}
     RETURN      ${body}
 
 Build Create List Of Books Headers
@@ -231,12 +236,13 @@ Build Create List Of Books Headers
 
 Send Create List Of Books Request
     [Arguments]             ${body}     ${headers}
-    ${response}=        POST On Session    ${ALIAS}       ${RESPONSE_FIELD_BOOKS}     json=${body}        headers=${headers}
+    ${response}=        POST On Session    ${ALIAS}       ${BOOKSTORE_BOOKS_API}     json=${body}        headers=${headers}     expected_status=anything
     RETURN      ${response}
 
 Create List Of Books Via API
     [Documentation]     Create a list of books from the given books ISBNs. Requires an authorized user ID.
-    ${body}=        Build Create List Of Books Body       ${ACCOUNT_ID}      ${GIT_POCKET_GUIDE_ISBN}       ${LEARNING_JAVASCRIPT_DESGIN_PATTERNS_ISBN}
+    [Arguments]     @{isbn}
+    ${body}=        Build Create List Of Books Body       ${ACCOUNT_ID}      @{isbn}
     ${headers}=     Build Create List Of Books Headers      ${TOKEN}
     ${response}=        Send Create List Of Books Request       ${body}     ${headers}
     RETURN      ${response}
@@ -249,7 +255,8 @@ Attempt Create List Of Books With Missing Field Via API
 
 Attempt Create List Of Books With Invalid Field Via API
     [Documentation]     Create a list of books from the non existent books ISBNs. Requires an authorized user ID.
-    ${body}=        Build Create List Of Books Body       ${ACCOUNT_ID}      ${INVALID_ISBN}       ${INVALID_ISBN}
+    [Arguments]     @{isbn}
+    ${body}=        Build Create List Of Books Body       ${ACCOUNT_ID}      @{isbn}
     ${headers}=     Build Create List Of Books Headers      ${TOKEN}
     ${response}=        Send Create List Of Books Request       ${body}     ${headers}
     RETURN      ${response}
