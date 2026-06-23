@@ -275,3 +275,26 @@ Get Book Details Via API
     RETURN      ${response}
 
 
+
+Build Delete Book From List Headers
+    [Arguments]     ${token}
+    &{headers} =        Create Dictionary       Authorization=Bearer ${token}
+    RETURN      ${headers}
+
+Build Delete Book From List Body
+    [Arguments]     ${book_isbn}        ${user_id}
+    &{body}=      Create Dictionary        isbn=${book_isbn}                    userId=${user_id}
+    RETURN      ${bdoy}
+
+Send Delete Book From List Request
+    [Arguments]     ${body}     ${headers}
+    ${response}=     DELETE On Session      deqoma            /BookStore/v1/Book       json=${body}        headers=${headers}
+    RETURN      ${response}
+
+Delete Book From List Via API
+    [Documentation]     Delete a single book from list of books by book ISBN. Require an authorized user ID
+    ${headers}=         Build Delete Book From List Headers         ${TOKEN}
+    ${body}=        Build Delete Book From List Body        ${GIT_POCKET_GUIDE_ISBN}            ${ACCOUNT_ID}
+    ${response}=            Send Delete Book From List Request      ${body}     ${headers}
+    RETURN      ${response}
+
