@@ -360,12 +360,12 @@ Build Replace Book By Another Body
 Build Replace Book By Another Headers
     [Arguments]     ${token}
     &{headers} =        Create Dictionary       Authorization=Bearer ${token}
-    RETURN      ${token}
+    RETURN      ${headers}
 
 Send Replace Book By Another Request
     [Arguments]       ${existing_book_isbn}     ${body}     ${headers}
     ${update_book_by_another_api_with_book_isbn}=       Format String    ${UPDATE_BOOK_BY_ANOTHER_API}       ${existing_book_isbn}
-    ${response}=        PUT On Session    ${ALIAS}       ${update_book_by_another_api_with_book_isbn}     json=${body}        headers=${headers}
+    ${response}=        PUT On Session    ${ALIAS}       ${update_book_by_another_api_with_book_isbn}     json=${body}        headers=${headers}        expected_status=anything
     RETURN      ${response}
 
 Update Book By Another Via API
@@ -376,3 +376,9 @@ Update Book By Another Via API
     ${response}=        Send Replace Book By Another Request     ${existing_book_isbn}              ${body}         ${headers}
     RETURN      ${response}
 
+Attempt Update Book By Another Without New Book ISBN Via API
+    [Documentation]     Replace an existing book from the user book list with another without book ISBN. Require an authorized user ID.
+    [Arguments]     ${existing_book_isbn}
+    ${headers}=     Build Replace Book By Another Headers       ${TOKEN}
+    ${response}=        Send Replace Book By Another Request     ${existing_book_isbn}              ${EMPTY}        ${headers}
+    RETURN      ${response}

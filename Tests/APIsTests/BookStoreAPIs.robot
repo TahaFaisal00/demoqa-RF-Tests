@@ -192,62 +192,52 @@ Delete a Book From a List of Books of an Account - Return 401 Unauthorized
 
 
 Update a Book by Replacing it with Another by ISBN - Returns 200 with Valid ISBN and Valid Required Fields
-    [Tags]      sanity     api     put        positive        bookstore
-    POST a List of Books
-    &{body}=        Create Dictionary           userId=84d46a79-b0df-4066-acd2-7d7a09d87d87             isbn=9781449337711
-    &{headers} =        Create Dictionary       Authorization=Bearer ${Token}
-    ${ISBN}=        Set Variable           9781449331818
-    ${response}=        PUT On Session    deqoma       /BookStore/v1/Books/${ISBN}     json=${body}        headers=${headers}
-    Status Should Be    expected_status=200
-    Log    message=${response.json()}
+    [Documentation]     Replace a book from the book collection of a user with a new book by ISBN.
+    ...                 Verify response message and code.
+    [Tags]      functional     api     put        positive        bookstore
+    [Setup]     Create Authenticated Account Via API
+    Create List Of Books Via API        ${GIT_POCKET_GUIDE_ISBN}        ${LEARNING_JAVASCRIPT_DESGIN_PATTERNS_ISBN}
+    ${response}=        Update Book By Another Via API   ${LEARNING_JAVASCRIPT_DESGIN_PATTERNS_ISBN}        ${SPEAKING_JAVA_SCRIPT_ISBN}
+    Verify Resposne Code    ${OK_CODE}
+    Verify Response Field Not Empty    ${response}        ${RESPONSE_FIELD_BOOKS}
+    [Teardown]      Delete Account Via API
 
 Update a Book by Replacing it with Another by ISBN - Returns 400 with Valid ISBN and Invalid Required Fields
-    [Tags]      sanity     api     put        negative        bookstore
-    POST a List of Books
-    &{body}=        Create Dictionary           userId=84d46a79-b0df-4066-acd2-7d7a09d87d87             isbn=xxxxxxxx
-    &{headers} =        Create Dictionary       Authorization=Bearer ${Token}
-    ${ISBN}=        Set Variable           9781449331818
-    ${response}=        PUT On Session    deqoma       /BookStore/v1/Books/${ISBN}     json=${body}        headers=${headers}       expected_status=400
-    Log    message=${response.json()}
-
-Update a Book by Replacing it with Another by ISBN - Returns 400 with Invalid ISBN and Valid Required Fields
-    [Tags]      sanity     api     put        negative        bookstore
-    POST a List of Books
-    &{body}=        Create Dictionary           userId=84d46a79-b0df-4066-acd2-7d7a09d87d87             isbn=9781449337711
-    &{headers} =        Create Dictionary       Authorization=Bearer ${Token}
-    ${ISBN}=        Set Variable           xxxxxxxxxx
-    ${response}=        PUT On Session    deqoma       /BookStore/v1/Books/${ISBN}     json=${body}        headers=${headers}       expected_status=400
-    Log    message=${response.json()}
-
+    [Documentation]     Replace a book from the book collection of a user with an invalid book ISBN.
+    ...                 Verify response message and code.
+    [Tags]      functional     api     put        negative        bookstore
+    [Setup]     Create Authenticated Account Via API
+    Create List Of Books Via API        ${GIT_POCKET_GUIDE_ISBN}        ${LEARNING_JAVASCRIPT_DESGIN_PATTERNS_ISBN}
+    ${response}=        Update Book By Another Via API   ${LEARNING_JAVASCRIPT_DESGIN_PATTERNS_ISBN}        ${INVALID_ISBN}
+    Verify Resposne Code    ${BAD_REQUEST_CODE}
+    Verify Response Message    ${response}        ${BOOK_ISBN_NOT_AVAILABLE_MESSAGE}
+    [Teardown]      Delete Account Via API
 
 Update a Book by Replacing it with Another by ISBN - Returns 500 with Missing ISBN and Valid Required Fields
-    [Tags]      bug     api     put        negative        bookstore       #500 instead of 400  #: Server exposes internal stack trace and file paths in response body — security issue
-    POST a List of Books
-    &{body}=        Create Dictionary           userId=84d46a79-b0df-4066-acd2-7d7a09d87d87             isbn=9781449337711
-    &{headers} =        Create Dictionary       Authorization=Bearer ${Token}
-    ${ISBN}=        Set Variable
-    ${response}=        PUT On Session    deqoma       /BookStore/v1/Books/${ISBN}     json=${body}        headers=${headers}       expected_status=500
-    Log    message=${response.text}
-
-
-Update a Book by Replacing it with Another by ISBN - Returns 401 Unauthorized
-    [Tags]      sanity     api     put        negative        bookstore
-    POST a List of Books
-    &{body}=        Create Dictionary           userId=84d46a79-b0df-4066-acd2-7d7a09d87d87             isbn=9781449337711
-    ${ISBN}=        Set Variable           9781449331818
-    ${response}=        PUT On Session    deqoma       /BookStore/v1/Books/${ISBN}     json=${body}              expected_status=401
-    Log    message=${response.json()}
-
+    [Documentation]     Replace a book from the book collection of a user with a new book without its ISBN.
+    ...                 Verify response message and code.
+    ...                 BUG: when sending a request without the required field the API should return json type error message.
+    ...                 but the API is returning text/html type content that is leaking internal paths, Sequelize, MySQL.
+    [Tags]      bug     api     put        negative        bookstore
+    [Setup]     Create Authenticated Account Via API
+    Create List Of Books Via API        ${GIT_POCKET_GUIDE_ISBN}        ${LEARNING_JAVASCRIPT_DESGIN_PATTERNS_ISBN}
+    ${response}=        Attempt Update Book By Another Without New Book ISBN Via API         ${LEARNING_JAVASCRIPT_DESGIN_PATTERNS_ISBN}
+    Verify Resposne Code    ${BAD_REQUEST_CODE}
+    Verify Response Headers Content type      ${response}        ${CONTENT_TYPE_TEXT_HTML}
+    [Teardown]      Delete Account Via API
 
 Update a Book by Replacing it with Another by ISBN - Returns 200 with ISBN of an Already Existing Book in the Required Fields
-    [Tags]      bug      api     put        positive        bookstore        #it allow duplicating book in the same collection
-    POST a List of Books
-    &{body}=        Create Dictionary           userId=84d46a79-b0df-4066-acd2-7d7a09d87d87             isbn=9781449325862
-    &{headers} =        Create Dictionary       Authorization=Bearer ${Token}
-    ${ISBN}=        Set Variable           9781449331818
-    ${response}=        PUT On Session    deqoma       /BookStore/v1/Books/${ISBN}     json=${body}        headers=${headers}
-    Status Should Be    expected_status=200
-    Log    message=${response.json()}
+    [Documentation]      Replace a book from the book collection of a user with an ISBN of a book that already exist
+    ...                 in the book collection. Verify response message and code.
+    ...                 BUG: the API allows duplicating book in the same collection.
+    [Tags]      bug      api     put        negative        bookstore
+    [Setup]     Create Authenticated Account Via API
+    Create List Of Books Via API        ${GIT_POCKET_GUIDE_ISBN}        ${LEARNING_JAVASCRIPT_DESGIN_PATTERNS_ISBN}
+    ${response}=        Update Book By Another Via API   ${LEARNING_JAVASCRIPT_DESGIN_PATTERNS_ISBN}        ${GIT_POCKET_GUIDE_ISBN}
+    Verify Resposne Code    ${OK_CODE}
+    Verify Response Field Not Empty    ${response}        ${RESPONSE_FIELD_BOOKS}
+    [Teardown]      Delete Account Via API
+
 
 
 
