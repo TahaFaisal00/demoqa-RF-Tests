@@ -394,7 +394,7 @@ Attempt Update Book By Another Without New Book ISBN Via API
 
 Verify Create Account Succeeds
     [Documentation]     Asserts create account returns 201 with account user name and ID.
-    [Arguments]     ${resposne}
+    [Arguments]     ${response}
     Verify Resposne Code               ${CREATED_CODE}
     Verify Response Field Not Empty    ${response}    ${RESPONSE_FIELD_USER_ID}
     Verify Response Field Not Empty    ${response}    ${RESPONSE_FIELD_USERNAME}
@@ -420,11 +420,11 @@ Verify Books In Response
     [Documentation]     Asserts the books ISBNs in response books field.
     [Arguments]    ${response}     @{expected_isbns}
     @{actual_isbns}=        Evaluate    [b['isbn'] for b in $response.json()['books']]
-    Lists Should Be Equal     @{actual_isbns}    @{expected_isbns}      ignore_order=True
+    Lists Should Be Equal     ${actual_isbns}    ${expected_isbns}      ignore_order=True
 
 Verify Book Replaced
     [Documentation]     Asserts the book in the book collection has been replaced with the new book.
-    [Arguments]    ${response}     ${new_isbn}      ${old_isbn}
+    [Arguments]    ${response}       ${old_isbn}      ${new_isbn}
     @{actual_isbns}=        Evaluate    [b['isbn'] for b in $response.json()['books']]
     Should Contain        ${actual_isbns}    ${new_isbn}
     Should Not Contain    ${actual_isbns}    ${old_isbn}
