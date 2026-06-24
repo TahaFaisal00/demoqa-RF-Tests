@@ -4,9 +4,6 @@ Library         SeleniumLibrary
 Resource    ../../Resources/API_RES.robot
 Suite Setup     Open Session
 
-*** Variables ***
-${BASE_URL}=             https://demoqa.com/
-${TOKEN}                eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IlRhaGEwMCIsInBhc3N3b3JkIjoiVGFoYTIwMDEhISEiLCJpYXQiOjE3Nzk2MzgyNTd9.4AXB6PLXamPZDwow-u3iEdP_qmPTggD3MNymWe3G_rM
 *** Test Cases ***
 GET Bookstore Books - Returns 200
     [Documentation]     Get all the books with their details from the bookstore. Verify response code and message.
@@ -237,27 +234,3 @@ Update a Book by Replacing it with Another by ISBN - Returns 200 with ISBN of an
     Verify Resposne Code    ${OK_CODE}
     Verify Response Field Not Empty    ${response}        ${RESPONSE_FIELD_BOOKS}
     [Teardown]      Delete Account Via API
-
-
-
-
-
-*** Keywords ***
-POST Generate a Token for an Account
-    &{body}=        Create Dictionary            userName=Taha00               password=Taha2001!!!
-    ${response}=        POST On Session     deqoma       /Account/v1/GenerateToken      json=${body}
-    Status Should Be    expected_status=200
-    Log    message=${response.json()}
-    ${Token}=       Set Variable         ${response.json()}[token]
-    Set Suite Variable          ${Token}
-
-POST a List of Books
-    POST Generate a Token for an Account
-    &{isbn1}=       Create Dictionary               isbn=9781449325862
-    &{isbn2}=       Create Dictionary                isbn=9781449331818
-    @{collectionOfIsbns}=       Create List      ${isbn1}         ${isbn2}
-    &{body}=        Create Dictionary           userId=84d46a79-b0df-4066-acd2-7d7a09d87d87             collectionOfIsbns=${collectionOfIsbns}
-    &{headers} =        Create Dictionary       Authorization=Bearer ${Token}
-    ${response}=        POST On Session    deqoma       /BookStore/v1/Books     json=${body}        headers=${headers}
-    Status Should Be    expected_status=201
-    Log    message=${response.json()}
