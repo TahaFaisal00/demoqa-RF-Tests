@@ -41,7 +41,7 @@ ${SECOND_BOOK_IAMGE_SRC}                    /assets/bookimage1-CeLeymOA.jpg
 
 *** Keywords ***
 Verify BookStore Page Loaded
-   Get Url                              ${BOOK_STORE_URL}
+   Get Url               ==               ${BOOK_STORE_URL}
 
 Open Book Details Page
     [Arguments]                                ${book}
@@ -63,11 +63,6 @@ Click Add To Your Collection Button
 
 Click Profile Page Link
     Click                                      ${PROFILE_PAGE_LINK}
-
-Verify Book Page Loaded
-    [Arguments]                                ${book}
-    ${book_url}=        Format String          ${BOOK_URL_BASE}       ${book}
-    Get Url                                    ${book_url}
 
 Get Image Src
     [Arguments]         ${book}

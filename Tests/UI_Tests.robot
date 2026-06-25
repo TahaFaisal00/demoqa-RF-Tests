@@ -3,19 +3,21 @@ Resource                                                             ../Resource
 Resource                                                             ../Resources/DemoqaRes.robot
 Resource                                                             ../Resources/API_RES.robot
 
-Suite Setup                                                          Run Keywords         API_RES.Open Session      AND       Common.Launch Browser
-Suite Teardown                                                       Common.Close Browser
+Suite Setup                                                          Run Keywords         API_RES.Open Session      AND       Common.Launch Suite Browser
+Suite Teardown                                                       Common.Shutdown Browser
 #robot -d Results  Tests/UI_Tests.robot
 
 *** Test Cases ***
 Log In With Invalid Credentials
    [Documentation]      Try to log in with a multiple different invalid credentials scenarios and verify errors.
    [Tags]                                                            functional      ui      negative        login
+   [Setup]                                                           Run Keywords       Common.Start Clean Session      DemoqaRes.Navigate To Book Store Application
    [Template]                                                        DemoqaRes.Verify Login Fails
    ${INVALID_ACCOUNT}
    ${EMPTY_USER_NAME}
    ${EMPTY_PASSWORD}
    ${EMPTY_CREDENTIALS}
+   [Teardown]                                                        Common.End Session
 
 Log In And Log Out
     [Documentation]     Creates a fresh account, Logs in, Then logs out and delete the account.
