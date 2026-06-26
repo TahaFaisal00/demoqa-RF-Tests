@@ -127,11 +127,11 @@ Verify Search Results Not Contain
 Verify Login Error
     [Documentation]     Verify the error message or locator's element that appear when entering Invalid Credentials
     [Arguments]                                      ${account}
-    IF    $account.user_name != "" AND $account.password != ""
+    IF    $account.user_name != "" and $account.password != ""
         Verify Incorrect Credentials
-    ELSE IF    $account.user_name != "" AND $account.password == ""
+    ELSE IF    $account.user_name != "" and $account.password == ""
         Verify Password Field Required
-    ELSE IF    $account.user_name == "" AND $account.password != ""
+    ELSE IF    $account.user_name == "" and $account.password != ""
         Verify User Name Field Required
     ELSE
         Verify User Name Field Required

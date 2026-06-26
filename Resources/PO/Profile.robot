@@ -23,13 +23,13 @@ ${DELETE_CONFIRMATION_WINDOW_OK_BUTTON}      id=closeSmallModal-ok
 
 ${PROFILE_PAGE_URL}                         https://demoqa.com/profile
 
-${BOOK_STORE_LINK}                          id=item-2
+${BOOK_STORE_LINK}                          css=[href="/books"]
 
 ${GO_TO_BOOK_STORE_BUTTON}                        id=gotoStore
 
 ${USER_NOT_FOUND_MESSAGE}                     css=#name.User not found!
 
-${LOGIN_LINK}                               id=item-0
+${LOGIN_LINK}                               css=[href="/login"]
 *** Keywords ***
 Verify Profile Page Loaded
     Get Url                 ${PROFILE_PAGE_URL}

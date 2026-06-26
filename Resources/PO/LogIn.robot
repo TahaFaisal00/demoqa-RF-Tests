@@ -7,7 +7,8 @@ ${LOGIN_PAGE_URL}                                    https://demoqa.com/login
 ${USER_NAME_FIELD}                                   id=userName
 ${PASSWORD_FIELD}                                    id=password
 
-${LOGIN_BUTTON}                                      id=login
+${LOGIN_BUTTON}                                      css=#login
+
 ${NEW_USER_BUTTON}                                   id=newUser
 
 ${EMPTY_USERNAME_FIELD_ERROR}                           css=#userName.is-invalid
@@ -15,10 +16,12 @@ ${EMPTY_PASSWORD_FIELD_ERROR}                           css=#password.is-invalid
 ${INVALID_USERNAME_OR_PASSWORD_ERROR}                   text="Invalid username or password!"
 
 ${ALREADY_LOGGED_IN_MESSAGE}                            id=loading-label
+
+${LOGIN_TEXT}                                          css=h1.text-center:has-text("Login")
 *** Keywords ***
 Verify Login Page Loaded
-   Wait For Elements State                           text="Login"      visible
-   Get Url                                           ${LOGIN_PAGE_URL}
+   Wait For Elements State                           ${LOGIN_TEXT}      visible
+   Get Url                         ==                  ${LOGIN_PAGE_URL}
 
 Enter User Name
    [Arguments]                                       ${user_name}
