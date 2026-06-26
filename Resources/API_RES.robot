@@ -33,7 +33,7 @@ Create Account Details
 
 Build User Credentials Body
     [Arguments]     ${account}
-    &{body}=        Create Dictionary            userName=${account.user_name}               password= ${account.password}
+    &{body}=        Create Dictionary            userName=${account.user_name}               password=${account.password}
     RETURN      ${body}
 
 Send Create Account Request

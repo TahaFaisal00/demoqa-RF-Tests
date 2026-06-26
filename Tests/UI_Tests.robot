@@ -22,7 +22,7 @@ Log In With Invalid Credentials
 Log In And Log Out
     [Documentation]     Creates a fresh account, Logs in, Then logs out and delete the account.
     [Tags]                                                           functional       ui     positive        account
-    [Setup]     API_RES.Create Authenticated Account Via API
+    [Setup]      Run Keywords       API_RES.Create Authenticated Account Via API            Common.Start Clean Session
     DemoqaRes.Navigate To Book Store Application
     DemoqaRes.Logging In And Verify                                  ${TEST_ACCOUNT}
     DemoqaRes.Logging Out And Verify

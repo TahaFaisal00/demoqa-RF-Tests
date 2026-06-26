@@ -154,7 +154,7 @@ Verify Logging in
     [Documentation]     Verify the user is logged in after entering a valid account credentials
     ...     by asserting the profile username matches
    [Arguments]                                       ${user_name}
-   Wait For Elements State                           ${USER_NAME_LABEL}          visible
+   Wait For Elements State                           ${LOGGED_IN_USER_NAME}          visible
    Get Text                                          ${LOGGED_IN_USER_NAME}    ==    ${user_name}
 
 
@@ -199,7 +199,6 @@ Logging In And Verify
 Logging Out And Verify
     [Documentation]     Logs out from the account page and verify it. after signing out the website takes you to login page
     ...                the keyword goes back to profile page and verify that account is logged out.
-    Navigate To Login Page
     Profile.Click Logout Button
     Verify Account Logged Out
 

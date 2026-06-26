@@ -7,7 +7,7 @@ ${USER_NAME_LABEL}                      id=userName-label
 ${LOGGED_IN_USER_NAME}                  id=userName-value
 
 ${DELETE_ALL_BOOKS_BUTTON}              css=#submit.Delete All Books
-${LOG_OUT_BUTTON}                       css=#submit.Logout
+${LOG_OUT_BUTTON}                       css=button:has-text("Logout")
 
 ${NOT_LOGGED_IN_MESSAGE}                id=notLoggin-label
 

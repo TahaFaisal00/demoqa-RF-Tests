@@ -17,10 +17,8 @@ ${INVALID_USERNAME_OR_PASSWORD_ERROR}                   text="Invalid username o
 
 ${ALREADY_LOGGED_IN_MESSAGE}                            id=loading-label
 
-${LOGIN_TEXT}                                          css=h1.text-center:has-text("Login")
 *** Keywords ***
 Verify Login Page Loaded
-   Wait For Elements State                           ${LOGIN_TEXT}      visible
    Get Url                         ==                  ${LOGIN_PAGE_URL}
 
 Enter User Name

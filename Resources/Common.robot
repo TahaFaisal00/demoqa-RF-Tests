@@ -21,8 +21,7 @@ Start Clean Session
 End Session
     [Documentation]     Drops the context: Deletes the cookies and storage and close the page. Used as test teardown
     Close Context           save_trace=True
-    # Run the trace through rfbrowser show-trace ".\{trace file name}.zip"
-
+    # Run the trace through: playwright show-trace (Get-ChildItem C:\development\demoqa\log\browser\traces\trace_context=*.zip | Sort-Object LastWriteTime | Select-Object -Last 1).FullName
 Shutdown Browser
     [Documentation]     Closes the whole browser. Used as Suite Teardown
     Close Browser
