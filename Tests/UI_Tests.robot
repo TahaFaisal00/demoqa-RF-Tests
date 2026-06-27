@@ -55,17 +55,16 @@ Delete Account Does Not Close Confirmation Window
     [Teardown]      Run Keyword And Ignore Error         API_RES.Autheticate Account And Delete It Via API
 
 Delete Account Does Not automatically Log Out The User
-    [Documentation]     Create new account using freshly created data then delete the account. Verify that after
-    ...                 Deleting the account and navigating to Profile page the account will still be logged in
-    ...                 even though it's deleted and you must manually log out.
+    [Documentation]     Creating new account Via API using freshly created data, And Signing in then deleting the account
+    ...                 Verify that after Deleting the account and navigating to Profile page the account will
+    ...                 still be logged in even though it's deleted and you must manually log out.
     [Tags]                                                           bug       ui     negative       account
-    DemoqaRes.Navigate To Book Store Application
-    DemoqaRes.Creating New Account                                   ${TEST_ACCOUNT}
+    [Setup]     DemoqaRes.Start Session And Create Account Then Open Book Store Application
     DemoqaRes.Logging In And Verify                                  ${TEST_ACCOUNT}
-    DemoqaRes.Deleting Account
-    DemoqaRes.Reload Profile Page And Verify Account Deletion
+    DemoqaRes.Delete Account Then Reload Profile Page And Verify Account Deletion
+    DemoqaRes.Navigate To Login Page
     DemoqaRes.Verify Account Still Signed In After Deletion
-    [Teardown]      API_RES.Delete Account Via API
+    [Teardown]      Run Keyword And Ignore Error         API_RES.Autheticate Account And Delete It Via API
 
 Search Bar - Empty Input Shows All Books
     [Documentation]     Use the search bar with empty value and verify that all books will remain visible
