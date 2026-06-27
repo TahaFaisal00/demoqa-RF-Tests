@@ -45,15 +45,14 @@ Log In And Delete Account
     [Teardown]      Run Keyword And Ignore Error         API_RES.Autheticate Account And Delete It Via API
 
 Delete Account Does Not Close Confirmation Window
-    [Documentation]     Create new account using freshly created data then delete the account. Verify the UI doesn't
-    ...                 update and delete confirmation window stays open.
+    [Documentation]     Creating new account Via API using freshly created data, And Signing in then deleting the account
+    ...                 Verify the UI doesn't update and delete confirmation window stays open.
     [Tags]                                                           bug     ui     negative     account
-    DemoqaRes.Navigate To Book Store Application
-    DemoqaRes.Creating New Account                                   ${TEST_ACCOUNT}
+    [Setup]     DemoqaRes.Start Session And Create Account Then Open Book Store Application
     DemoqaRes.Logging In And Verify                                  ${TEST_ACCOUNT}
     DemoqaRes.Deleting Account
     DemoqaRes.Verify Delete Account Confirmation Window Persists After Confirm
-    [Teardown]      API_RES.Delete Account Via API
+    [Teardown]      Run Keyword And Ignore Error         API_RES.Autheticate Account And Delete It Via API
 
 Delete Account Does Not automatically Log Out The User
     [Documentation]     Create new account using freshly created data then delete the account. Verify that after
