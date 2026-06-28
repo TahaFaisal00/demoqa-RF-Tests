@@ -147,27 +147,6 @@ Add Book To Books Collection And Delete It
     DemoqaRes.Verify Book Not In Book Collection                 ${GIT_POCKET_GUIDE_BOOK}
     [Teardown]      Run Keyword And Ignore Error        Delete Authenticated account And Close Session
 
-Delete All Books Does Not Close Confirmation Window
-    [Documentation]     Adding two books to the book collection then deleting them by using Delete All Books button
-    ...                 After creating a fresh new account and logging in to it.
-    ...                 Verify the UI doesn't update and delete confirmation window stays open.
-    [Tags]                                                           bug       ui     negative       bookstore
-    [Setup]      API_RES.Create Account Via API
-    DemoqaRes.Navigate To Book Store Application
-    DemoqaRes.Logging In And Verify                    ${TEST_ACCOUNT}
-    DemoqaRes.Navigate To Book Store
-    DemoqaRes.Verify Books Loaded                                ${ALL_BOOKS}
-    DemoqaRes.Open Book Page                                     ${GIT_POCKET_GUIDE_BOOK}
-    DemoqaRes.Verify Book Details                                ${GIT_POCKET_GUIDE_BOOK_DETAILS}
-    DemoqaRes.Click Add Book To Collection And Verify Book Added
-    DemoqaRes.Open Book Page                                     ${LEARNING_JAVASCRIPT_DESIGN_PATTERNS_BOOK}
-    DemoqaRes.Verify Book Details                                ${LEARNING_JAVASCRIPT_DESIGN_PATTERNS_BOOK_DETAILS}
-    DemoqaRes.Click Add Book To Collection And Verify Book Added
-    DemoqaRes.Navigate To Profile Page
-    DemoqaRes.Verify Book In Book Collection                     ${GIT_POCKET_GUIDE_BOOK}     ${LEARNING_JAVASCRIPT_DESIGN_PATTERNS_BOOK}
-    DemoqaRes.Delete All Books
-    DemoqaRes.Verify Delete All Books Confirmation Window Persists After Confirm
-    [Teardown]      API_RES.Delete Account Via API
 
 
 

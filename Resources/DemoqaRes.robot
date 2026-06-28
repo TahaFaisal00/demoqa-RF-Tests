@@ -233,6 +233,11 @@ Navigate To Profile Page
     BookStore.Click Profile Page Link
     Profile.Verify Profile Page Loaded
 
+Navigate From Book Details To Book Store
+    [Documentation]     Navigate back from book details page to book store
+    Click Back To Book Store Button
+    Verify BookStore Page Loaded
+
 Logging In And Verify
     [Documentation]     Navigate to login page and enter valid credentials and log in and verify it.
     [Arguments]                     ${account}
@@ -258,21 +263,10 @@ Creating New Account
     Click Register And Verify Account Registered
 
 
-Delete All Books
-    [Documentation]     Delete All Books from profile page by clicking delete all books button and confirm deletion.
-    Profile.Click Delete All Books Button
-    Profile.Verify Delete All Books Confirmation Window Visible
-    Profile.Confirm Delete
-
-
-
 Verify Delete Account Confirmation Window Persists After Confirm
     [Documentation]     Used to verify the bug of UI doesn't update and the confirmation windows stays on screen.
     Wait For Elements State    ${DELETE_ACCOUNT_CONFIRMATION_WINDOW}      visible
 
-Verify Delete All Books Confirmation Window Persists After Confirm
-    [Documentation]     Used to verify the bug of UI doesn't update and the confirmation windows stays on screen.
-    Wait For Elements State    ${DELETE_ALL_BOOKS_CONFIRMATION_WINDOW}      visible
 
 Verify Account Still Signed In After Deletion
     [Documentation]     Used to verify the bug of UI doesn't update and the confirmation windows stays on screen.

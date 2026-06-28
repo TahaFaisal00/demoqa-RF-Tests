@@ -6,7 +6,6 @@ Library    String
 ${USER_NAME_LABEL}                      id=userName-label
 ${LOGGED_IN_USER_NAME}                  id=userName-value
 
-${DELETE_ALL_BOOKS_BUTTON}              css=#submit.Delete All Books
 ${LOG_OUT_BUTTON}                       css=button#submit:has-text("Log out")
 
 ${NOT_LOGGED_IN_MESSAGE}                id=notLoggin-label
@@ -15,7 +14,6 @@ ${DELETE_ACCOUNT_BUTTON}                css=button#submit:has-text("Delete Accou
 
 ${DELETE_BOOK_BUTTON}                   css=span#delete-record-{}
 
-${DELETE_ALL_BOOKS_CONFIRMATION_WINDOW}        css=#example-modal-sizes-title-sm.Delete All Books
 ${DELETE_ACCOUNT_CONFIRMATION_WINDOW}          css=div#example-modal-sizes-title-sm:has-text("Delete Account")
 ${DELETE_BOOK_CONFIRMATION_WINDOW}             css=#example-modal-sizes-title-sm.Delete Book
 
@@ -34,11 +32,6 @@ ${LOGIN_LINK}                               css=li#item-0  >>   a[href="/login"]
 Verify Profile Page Loaded
     Get Url        ==         ${PROFILE_PAGE_URL}
 
-Click Delete All Books Button
-    Click                               ${DELETE_ALL_BOOKS_BUTTON}
-
-Verify Delete All Books Confirmation Window Visible
-    Wait For Elements State    ${DELETE_ALL_BOOKS_CONFIRMATION_WINDOW}      visible
 
 Click Book Store Link
     Click                             ${BOOK_STORE_LINK}
