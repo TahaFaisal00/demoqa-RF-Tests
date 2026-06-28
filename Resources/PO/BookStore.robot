@@ -51,7 +51,7 @@ Open Book Details Page
 Verify Book Page Loaded
     [Arguments]                                ${book}
     ${book_url}=            Format String      ${BOOK_URL_BASE}       ${book}
-    Get Url                                    ${book_url}
+    Get Url                  ==                ${book_url}
 
 Use Search Bar
     [Arguments]                                ${search}

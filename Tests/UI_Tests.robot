@@ -134,8 +134,7 @@ Add Book To Books Collection And Delete It
     [Documentation]     Add book To book collection then delete it with single book delete button of the book and
     ...                 verify it's deletion.
     [Tags]                                                           functional      ui     positive     bookstore
-    [Setup]      API_RES.Create Account Via API
-    DemoqaRes.Navigate To Book Store Application
+    [Setup]      Start Session And Create Account Then Open Book Store Application
     DemoqaRes.Logging In And Verify                    ${TEST_ACCOUNT}
     DemoqaRes.Navigate To Book Store
     DemoqaRes.Verify Books Loaded                                ${ALL_BOOKS}
@@ -144,9 +143,9 @@ Add Book To Books Collection And Delete It
     DemoqaRes.Click Add Book To Collection And Verify Book Added
     DemoqaRes.Navigate To Profile Page
     DemoqaRes.Verify Book In Book Collection                     ${GIT_POCKET_GUIDE_BOOK}
-    DemoqaRes.Delete Single Book                                 ${GIT_POCKET_GUIDE_BOOK}
+    DemoqaRes.Delete Single Book                                 ${GIT_POCKET_GUIDE_BOOK_DETAILS}
     DemoqaRes.Verify Book Not In Book Collection                 ${GIT_POCKET_GUIDE_BOOK}
-    [Teardown]      API_RES.Delete Account Via API
+    [Teardown]      Run Keyword And Ignore Error        Delete Authenticated account And Close Session
 
 Delete All Books Does Not Close Confirmation Window
     [Documentation]     Adding two books to the book collection then deleting them by using Delete All Books button

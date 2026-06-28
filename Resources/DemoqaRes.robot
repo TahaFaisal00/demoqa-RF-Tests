@@ -69,7 +69,7 @@ Verify Account Logged Out
 
 Verify Book Not In Book Collection
     [Documentation]     Verify deleted book is removed from the book collection in profile page.
-    [Arguments]                         ${books}
+    [Arguments]                         @{books}
     FOR    ${book}    IN    @{books}
         ${book_location}=        Format String      ${BOOK_LOCATOR_BASE}        ${book}
         Wait For Elements State    ${book_location}     hidden
@@ -85,7 +85,7 @@ Delete Single Book
 Confirm Delete Book And Verify Book Deleted
     [Documentation]     Click OK in the book deletion confirmation window and verify book deleted alert.
     [Arguments]
-    ${alert}=       Wait For Alert    action=accept    text=Confirm Delete.
+    ${alert}=    Promise To       Wait For Alert    action=accept    text=Book deleted.
     Profile.Confirm Delete
     Wait For        ${alert}
 
@@ -129,7 +129,7 @@ Click Add Book To Collection And Verify Book Already Added
 
 Click Add Book To Collection And Verify Book Added
     [Documentation]     Click Add book to collection button in book details page and verify the book added alert.
-    ${alert}=       Wait For Alert           action=accept      text=Book added to your collection.
+    ${alert}=      Promise To         Wait For Alert           action=accept      text=Book added to your collection.
     Click Add To Your Collection Button
     Wait For        ${alert}
 

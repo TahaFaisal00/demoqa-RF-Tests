@@ -13,7 +13,7 @@ ${NOT_LOGGED_IN_MESSAGE}                id=notLoggin-label
 
 ${DELETE_ACCOUNT_BUTTON}                css=button#submit:has-text("Delete Account")
 
-${DELETE_BOOK_BUTTON}                   id="delete-record-{}"
+${DELETE_BOOK_BUTTON}                   css=span#delete-record-{}
 
 ${DELETE_ALL_BOOKS_CONFIRMATION_WINDOW}        css=#example-modal-sizes-title-sm.Delete All Books
 ${DELETE_ACCOUNT_CONFIRMATION_WINDOW}          css=div#example-modal-sizes-title-sm:has-text("Delete Account")
@@ -23,7 +23,7 @@ ${DELETE_CONFIRMATION_WINDOW_OK_BUTTON}      id=closeSmallModal-ok
 
 ${PROFILE_PAGE_URL}                         https://demoqa.com/profile
 
-${BOOK_STORE_LINK}                          css=li#item-4  >>  a[href="/books"]
+${BOOK_STORE_LINK}                          css=li#item-2  >>  a[href="/books"]
 
 ${GO_TO_BOOK_STORE_BUTTON}                        id=gotoStore
 
