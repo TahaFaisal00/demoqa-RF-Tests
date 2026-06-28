@@ -3,7 +3,7 @@ Resource            ../../Resources/API_RES.robot
 Suite Setup         Open Session
 
 *** Test Cases ***
-Full User Experience
+Full User Experience Via API
     [Documentation]     Verifies the full user lifecycle: creating an account, authorizing it, adding a book
     ...                 list, replacing a book, and deleting the account.
     ${response}=        Create Account Via API
