@@ -37,7 +37,7 @@ ${PROFILE_PAGE_LINK}                            css=a[href="/profile"]
 ...                                 sub_title=The Definitive Guide for JavaScript Developers     author=Nicholas C. Zakas   publisher=No Starch Press
 
 ${FIRST_BOOK_IMAGE_SRC}                     /assets/bookimage0-DrW2Lhj5.jpg
-${SECOND_BOOK_IAMGE_SRC}                    /assets/bookimage1-CeLeymOA.jpg
+${SECOND_BOOK_IMAGE_SRC}                    /assets/bookimage1-CeLeymOA.jpg
 
 *** Keywords ***
 Verify BookStore Page Loaded
@@ -66,8 +66,7 @@ Click Profile Page Link
 
 Get Image Src
     [Arguments]         ${book}
-    ${book_locator}=      Format String    ${BOOK_LOCATOR_BASE}       ${book}
-    ${img}=     Set Variable        css=tr:has(a[href="${book_locator}"]) img
+    ${img}=     Set Variable        css=tr:has(a[href="${book}"]) img
     Wait For Elements State    ${img}            visible
     ${src}=     Get Attribute    ${img}       src
     RETURN      ${src}

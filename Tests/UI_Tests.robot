@@ -121,13 +121,14 @@ Books In Book Store Does Not Retain Their Own Images When Their Position Changed
     ...                 first book make the second book in the first book position, then verify that the second book
     ...                 have the first book image now.
     [Tags]                                                           bug     ui     positive     bookstore
-    DemoqaRes.Navigate To Book Store Application
+    [Setup]     Start Session Then Open Book Store Application
     DemoqaRes.Verify Book Image                              ${GIT_POCKET_GUIDE_BOOK}    ${FIRST_BOOK_IMAGE_SRC}
-    DemoqaRes.Verify Book Image                              ${LEARNING_JAVASCRIPT_DESIGN_PATTERNS_BOOK}    ${SECOND_BOOK_IAMGE_SRC}
-    DemoqaRes.Search Book Store                    ${ALL_BOOKS}    ${LEARNING_JAVASCRIPT_DESIGN_PATTERNS_BOOK.title}
+    DemoqaRes.Verify Book Image                              ${LEARNING_JAVASCRIPT_DESIGN_PATTERNS_BOOK}    ${SECOND_BOOK_IMAGE_SRC}
+    DemoqaRes.Search Book Store                    ${ALL_BOOKS}    ${LEARNING_JAVASCRIPT_DESIGN_PATTERNS_BOOK_DETAILS.title}
     DemoqaRes.Verify Search Results Contain        ${LEARNING_JAVASCRIPT_DESIGN_PATTERNS_BOOK}
     DemoqaRes.Verify Search Results Not Contain    ${GIT_POCKET_GUIDE_BOOK}
     DemoqaRes.Verify Book Image                              ${LEARNING_JAVASCRIPT_DESIGN_PATTERNS_BOOK}    ${FIRST_BOOK_IMAGE_SRC}
+    [Teardown]      Common.End Session
 
 Add Book To Books Collection And Delete It
     [Documentation]     Add book To book collection then delete it with single book delete button of the book and
