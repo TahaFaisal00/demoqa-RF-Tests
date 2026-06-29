@@ -3,7 +3,6 @@ Library                                 Browser
 Library    String
 
 *** Variables ***
-${USER_NAME_LABEL}                      id=userName-label
 ${LOGGED_IN_USER_NAME}                  id=userName-value
 
 ${LOG_OUT_BUTTON}                       css=button#submit:has-text("Log out")
@@ -36,8 +35,6 @@ Verify Profile Page Loaded
 Click Book Store Link
     Click                             ${BOOK_STORE_LINK}
 
-Verify Delete All Books Confirmation Window Closed
-    Wait For Elements State    ${DELETE_ALL_BOOKS_CONFIRMATION_WINDOW}      hidden
 
 Click Logout Button
     Click                       ${LOG_OUT_BUTTON}

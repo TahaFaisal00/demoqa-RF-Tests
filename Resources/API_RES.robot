@@ -266,19 +266,10 @@ Attempt Create List Of Books With Missing Field Via API
     ${response}=        Send Create List Of Books Request       ${empty}     ${headers}
     RETURN      ${response}
 
-Attempt Create List Of Books With Invalid Field Via API
-    [Documentation]     Creates a list of books from the non existent books ISBNs. Requires an authorized user ID.
-    [Arguments]     @{isbn}
-    ${body}=        Build Create List Of Books Body       ${ACCOUNT_ID}      @{isbn}
-    ${headers}=     Build Create List Of Books Headers      ${TOKEN}
-    ${response}=        Send Create List Of Books Request       ${body}     ${headers}
-    RETURN      ${response}
-
 Attempt Create List Of Books Without Authorization Via API
     [Documentation]     Creates a list of books from the given books ISBNs with unauthorized user ID.
     [Arguments]     @{isbn}
     ${body}=        Build Create List Of Books Body       ${ACCOUNT_ID}      @{isbn}
-    ${headers}=     Build Create List Of Books Headers      ${EMPTY}
     ${response}=        Send Create List Of Books Request       ${body}     ${EMPTY}
     RETURN      ${response}
 
@@ -300,13 +291,6 @@ Send Delete List Of Books Request
 Delete List Of Books Via API
     [Documentation]     Deletes the list of book from an authorized user by user ID.
     ${params}=      Build Delete List Of Books Params       ${ACCOUNT_ID}
-    ${headers}=     Build Delete List Of Books Headers      ${TOKEN}
-    ${response}=        Send Delete List Of Books Request       ${params}       ${headers}
-    RETURN      ${response}
-
-Attempt Delete List Of Books With Invalid User ID Via API
-    [Documentation]     Deletes the list of book from user by invalid user ID.
-    ${params}=      Build Delete List Of Books Params       ${INVALID_USER_ID}
     ${headers}=     Build Delete List Of Books Headers      ${TOKEN}
     ${response}=        Send Delete List Of Books Request       ${params}       ${headers}
     RETURN      ${response}
@@ -411,10 +395,6 @@ Verify Account Authorization Succeeds
     Verify Resposne Code         ${OK_CODE}
     Verify Response Body Return True    ${response}
 
-Verify Delete Account Succeeds
-    [Documentation]     Asserts Delete Account returns 204 without content.
-    [Arguments]     ${response}
-    Verify Resposne Code    ${NO_CONTENT_CODE}
 
 Verify Books In Response
     [Documentation]     Asserts the books ISBNs in response books field.

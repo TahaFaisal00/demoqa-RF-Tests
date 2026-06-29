@@ -35,7 +35,6 @@ ${RESPONSE_FIELD_USERNAME}                  username
 ${RESPONSE_FIELD_BOOKS}                     books
 ${RESPONSE_FIELD_ISBN}                      isbn
 ${RESPONSE_FIELD_TITLE}                     title
-${RESPONSE_FIELD_COLLECTION_OF_ISBNS}       collectionOfIsbns
 
 ${BOOKSTORE_BOOKS_API}                      /BookStore/v1/Books
 ${BOOKSTORE_BOOK_API}                       /BookStore/v1/Book
@@ -45,7 +44,6 @@ ${GIT_POCKET_GUIDE_ISBN}                    9781449325862
 ${LEARNING_JAVASCRIPT_DESGIN_PATTERNS_ISBN}      9781449331818
 ${SPEAKING_JAVA_SCRIPT_ISBN}                     9781449365035
 ${INVALID_ISBN}                                  1111111111111
-${INVALID_USER_ID}                               xxxxxxxxxxxxx
 
 ${CONTENT_TYPE_TEXT_HTML}                       text/html
 

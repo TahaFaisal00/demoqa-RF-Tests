@@ -4,8 +4,6 @@ Library                                 String
 *** Variables ***
 ${BOOK_STORE_URL}                       https://demoqa.com/books
 
-${LOGIN_BUTTON_IN_BOOK_STORE}                   id=login
-
 ${SEARCH_BAR}                                   id=searchBox
 ${SUBMIT_SEARCH_BUTTON}                         xpath=//button[contains(@class,'btn-outline-secondary')]
 

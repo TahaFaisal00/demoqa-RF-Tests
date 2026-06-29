@@ -4,7 +4,6 @@ Resource                                          Common.robot
 
 Resource                                          PO/ToolsQA.robot
 Resource                                          PO/LogIn.robot
-Resource                                          PO/Register.robot
 Resource                                          PO/BookStore.robot
 Resource                                          PO/Profile.robot
 
@@ -117,13 +116,6 @@ Verify Book Details
     Get Book Details Field    ${book_details_locator.author}        ==   ${book.author}
     Get Book Details Field    ${book_details_locator.publisher}     ==   ${book.publisher}
 
-Click Add Book To Collection And Verify Book Already Added
-    [Documentation]     Click Add book to collection button in book details page of an already added book and
-    ...                 verify the book already added alert. Then go back to book store
-    ${alert}=       Wait For Alert           action=accept      text=Book already present in the your collection!
-    Click Add To Your Collection Button
-    Wait For        ${alert}
-    Click Back To Book Store Button
 
 Click Add Book To Collection And Verify Book Added
     [Documentation]     Click Add book to collection button in book details page and verify the book added alert.
@@ -197,12 +189,6 @@ Verify Logging in
    Get Text                                          ${LOGGED_IN_USER_NAME}    ==    ${user_name}
 
 
-Click Register And Verify Account Registered
-    [Documentation]     Click register button after filling user details and verify the registeration alert.
-    ${alert}=    Promise To       Wait For Alert      action=accept       text=User Registered Successfully.
-    Click Register Button
-    Wait For        ${alert}
-
 Navigate To Book Store Application
     [Documentation]     Navigates from main page to book store application and verify its page loaded.
     ToolsQA.Click Book Store Application Link
@@ -212,11 +198,6 @@ Navigate To Login Page
     [Documentation]     Navigates to login page and verify its page loaded.
     Profile.Click Login Link
     LogIn.Verify Login Page Loaded
-
-Navigate From Login Page To Register Page
-    [Documentation]     Navigates from login page to register page and verify its page loaded.
-    LogIn.Click New User Button
-    Register.Verify Register Page Loaded
 
 Navigate To Book Store
     [Documentation]     Navigates to book store page and verify its page loaded.
@@ -245,17 +226,6 @@ Logging Out And Verify
     ...                the keyword goes back to profile page and verify that account is logged out.
     Profile.Click Logout Button
     Verify Account Logged Out
-
-Creating New Account
-    [Documentation]     Creates new account using freshly created fake details then goes back to login page.
-    [Arguments]         ${account}
-    Navigate To Login Page
-    Navigate From Login Page To Register Page
-    Register.Enter First Name    ${account.first_name}
-    Register.Enter Last Name    ${account.last_name}
-    Register.Enter User Name    ${account.user_name}
-    Register.Enter Password    ${account.password}
-    Click Register And Verify Account Registered
 
 
 Verify Delete Account Confirmation Window Persists After Confirm
