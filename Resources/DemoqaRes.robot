@@ -38,28 +38,6 @@ Start Session And Create Account Then Open Book Store Application
     Create Authenticated Account Via API
     Navigate To Book Store Application
 
-Delete Account Then Reload Profile Page And Verify Account Deletion
-    [Documentation]     Deletes account then bypasses 2 bugs: bypass the the delete account action delay after
-    ...                 confirming delete, and the frontend bug of the delete confirmation
-    ...                 window stays open after clicking ok.
-    ${del}=     Promise To    Wait For Response     matcher=**/Account/v1/User/**
-    Deleting Account
-    Wait For        ${del}
-    Reload Page And Check User Gone
-
-Reload Page And Check User Gone
-    [Documentation]     Reloads the page and check for the user not found message.
-    Reload
-    Profile.Verify Profile Page Loaded
-    Profile.Verify User Not Found Message
-
-
-Deleting Account
-    [Documentation]     Delete account from profile page by clicking delete account button and confirm deletion.
-    Profile.Click Delete Account Button
-    Profile.Verify Delete Account Confirmation Window Visible
-    Profile.Confirm Delete
-
 Verify Account Logged Out
     [Documentation]     Verify account logged out after clicking logout button and navigating back to profile page.
     LogIn.Verify Login Page Loaded

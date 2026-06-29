@@ -9,11 +9,9 @@ ${LOG_OUT_BUTTON_PROFILE_PAGE}          css=button#submit:has-text("Logout")
 
 ${NOT_LOGGED_IN_MESSAGE}                id=notLoggin-label
 
-${DELETE_ACCOUNT_BUTTON}                css=button#submit:has-text("Delete Account")
 
 ${DELETE_BOOK_BUTTON}                   css=span#delete-record-{}
 
-${DELETE_ACCOUNT_CONFIRMATION_WINDOW}          css=div#example-modal-sizes-title-sm:has-text("Delete Account")
 ${DELETE_BOOK_CONFIRMATION_WINDOW}             css=#example-modal-sizes-title-sm.Delete Book
 
 ${DELETE_CONFIRMATION_WINDOW_OK_BUTTON}      id=closeSmallModal-ok
@@ -39,19 +37,10 @@ Click Book Store Link
 Click Logout Button
     Click                       ${LOG_OUT_BUTTON_PROFILE_PAGE}
 
-Click Delete Account Button
-    Click                       ${DELETE_ACCOUNT_BUTTON}
-
-Verify Delete Account Confirmation Window Visible
-    Wait For Elements State    ${DELETE_ACCOUNT_CONFIRMATION_WINDOW}      stable
-    Wait For Elements State    ${DELETE_ACCOUNT_CONFIRMATION_WINDOW}      visible
 
 Confirm Delete
     Wait For Elements State    ${DELETE_CONFIRMATION_WINDOW_OK_BUTTON}      stable
     Click                    ${DELETE_CONFIRMATION_WINDOW_OK_BUTTON}
-
-Verify Delete Account Confirmation Window Closed
-    Wait For Elements State    ${DELETE_ACCOUNT_CONFIRMATION_WINDOW}      hidden
 
 Click Delete Book Button
     [Arguments]     ${book}

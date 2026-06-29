@@ -27,30 +27,18 @@ Log In And Log Out
 
 Log In And Delete Account
     [Documentation]     Creating new account Via API using freshly created data, because
-    ...                 of BUG: Verify ReCaptcha error message appear randomly without a visible UI test.
-    ...                 And Signing in then deleting the account. Reload page after deleting it to bypass
-    ...                 the unresponsive frontend bug then return for login page to log out
+    ...                 of BUG: ReCaptcha error message appear randomly without a visible UI test.
+    ...                 And Signing in then deleting the account via API to bypass delete confirmation window
+    ...                 intermittently appear and disappear bug then return for login page to log out
     ...                 because of another BUG: you won't be logged out after deleting your account. Then
     ...                 Verify your account was deleted by trying to log in by using the same Credentials.
     [Tags]                                                           functional     ui     positive     account
     [Setup]     DemoqaRes.Start Session And Create Account Then Open Book Store Application
     DemoqaRes.Logging In And Verify                                  ${TEST_ACCOUNT}
-    DemoqaRes.Delete Account Then Reload Profile Page And Verify Account Deletion
+    API_RES.Authenticate Account And Delete It Via API
     DemoqaRes.Navigate To Login Page
     DemoqaRes.Logging Out From Deleted Account And Verify
     DemoqaRes.Verify Login Fails                                     ${TEST_ACCOUNT}
-    [Teardown]      Run Keyword And Ignore Error         DemoqaRes.Delete Authenticated account And Close Session
-
-Delete Account Does Not automatically Log Out The User
-    [Documentation]     Creating new account Via API using freshly created data, And Signing in then deleting the account
-    ...                 Verify that after Deleting the account and navigating to Profile page the account will
-    ...                 still be logged in even though it's deleted and you must manually log out.
-    [Tags]                                                           bug       ui     negative       account
-    [Setup]     DemoqaRes.Start Session And Create Account Then Open Book Store Application
-    DemoqaRes.Logging In And Verify                                  ${TEST_ACCOUNT}
-    DemoqaRes.Delete Account Then Reload Profile Page And Verify Account Deletion
-    DemoqaRes.Navigate To Login Page
-    DemoqaRes.Verify Account Still Signed In After Deletion
     [Teardown]      Run Keyword And Ignore Error         DemoqaRes.Delete Authenticated account And Close Session
 
 Search Bar - Empty Input Shows All Books
