@@ -39,6 +39,10 @@ ${PROFILE_PAGE_LINK}                            css=a[href="/profile"]
 ${FIRST_BOOK_IMAGE_SRC}                     /assets/bookimage0-DrW2Lhj5.jpg
 ${SECOND_BOOK_IMAGE_SRC}                    /assets/bookimage1-CeLeymOA.jpg
 
+&{BOOK_DETAILS_LOCATORS}         isbn=id=ISBN-wrapper >> id=userName-value        sub_title=id=subtitle-wrapper >> id=userName-value
+...                               author=id=author-wrapper >> id=userName-value         publisher=id=publisher-wrapper >> id=userName-value
+
+
 *** Keywords ***
 Verify BookStore Page Loaded
    Get Url               ==               ${BOOK_STORE_URL}
@@ -73,3 +77,7 @@ Get Image Src
 
 Click Back To Book Store Button
     Click                        ${BACK_TO_BOOK_STORE_BUTTON}
+
+Get Book Details Field
+    [Arguments]     ${book_details_field_locator}       ${assertion_operator}=${None}    ${assertion_expected}=${None}
+    RETURN      Get Text      ${book_details_field_locator}         ${assertion_operator}   ${assertion_expected}

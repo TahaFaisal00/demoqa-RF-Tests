@@ -136,7 +136,7 @@ Add Book To Books Collection And Delete It
     DemoqaRes.Navigate To Book Store
     DemoqaRes.Verify Books Loaded                                ${ALL_BOOKS}
     DemoqaRes.Open Book Page                                     ${GIT_POCKET_GUIDE_BOOK}
-    DemoqaRes.Verify Book Details                                ${GIT_POCKET_GUIDE_BOOK_DETAILS}
+    DemoqaRes.Verify Book Details                                ${BOOK_DETAILS_LOCATORS}       ${GIT_POCKET_GUIDE_BOOK_DETAILS}
     DemoqaRes.Click Add Book To Collection And Verify Book Added
     DemoqaRes.Navigate To Profile Page
     DemoqaRes.Verify Book In Book Collection                     ${GIT_POCKET_GUIDE_BOOK}
