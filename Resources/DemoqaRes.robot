@@ -225,6 +225,14 @@ Logging Out And Verify
     Profile.Click Logout Button
     Verify Account Logged Out
 
+Logging Out From Deleted Account And Verify
+   [Documentation]     Logs out from the login page after deletion the account. after signing out the website
+    ...               takes you to login page the keyword goes back to profile page and verify that account is logged out.
+    ...               Used to bypass the account not automatically logged out after deletion bug.
+    LogIn.Click Logout Button
+    Verify Account Logged Out
+
+
 
 Verify Delete Account Confirmation Window Persists After Confirm
     [Documentation]     Used to verify the bug of UI doesn't update and the confirmation windows stays on screen.

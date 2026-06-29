@@ -2,7 +2,7 @@
 Resource            ../../Resources/DemoqaRes.robot
 Suite Setup         Run Keywords         API_RES.Open Session            Common.Launch Suite Browser
 Suite Teardown      Common.Shutdown Browser
-
+# Run the trace through: playwright show-trace (Get-ChildItem C:\development\demoqa\log\browser\traces\trace_context=*.zip | Sort-Object LastWriteTime | Select-Object -Last 1).FullName
 *** Test Cases ***
 Full User Experience Via UI
     [Documentation]     Verifies the full user lifecycle: creat an account and authorize it Via API, UI login,

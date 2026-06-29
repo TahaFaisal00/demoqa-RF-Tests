@@ -30,7 +30,10 @@ ${BOOK_ISBN_NOT_AVAILABLE_IN_USER_COLLECTION_MESSAGE}          ISBN supplied is 
 ${AUTHORIZATION_FIELD_RESULT}               User authorization failed.
 
 ${RESPONSE_FIELD_TOKEN}                     token
-${RESPONSE_FIELD_USER_ID}                   userID
+
+${RESPONSE_FIELD_USER_ID_CREATE_ACCOUNT}    userID
+${RESPONSE_FIELD_USER_ID_GET_DETAILS}       userId
+
 ${RESPONSE_FIELD_USERNAME}                  username
 ${RESPONSE_FIELD_BOOKS}                     books
 ${RESPONSE_FIELD_ISBN}                      isbn

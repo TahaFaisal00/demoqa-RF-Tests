@@ -69,7 +69,7 @@ POST Create Account - Valid Fields - Returns 201
     [Tags]      functional      api     post        positive        account
     ${response}=        Create Account Via API
     Verify Response Code               ${CREATED_CODE}
-    Verify Response Field Not Empty    ${response}    ${RESPONSE_FIELD_USER_ID}
+    Verify Response Field Not Empty    ${response}    ${RESPONSE_FIELD_USER_ID_CREATE_ACCOUNT}
     Verify Response Field Not Empty    ${response}    ${RESPONSE_FIELD_USERNAME}
     [Teardown]  Authenticate Account And Delete It Via API
 
@@ -135,7 +135,7 @@ GET Account Details - Valid Account ID - Returns 200
     ${response}=        Get Account Details Via API
     Status Should Be    ${OK_CODE}
     Verify Response Field Not Empty    ${response}    ${RESPONSE_FIELD_USERNAME}
-    Verify Response Field Not Empty    ${response}    ${RESPONSE_FIELD_USER_ID}
+    Verify Response Field Not Empty    ${response}    ${RESPONSE_FIELD_USER_ID_GET_DETAILS}
     [Teardown]      Delete Account Via API
 
 GET Account Details - Invalid Account ID - Returns 401

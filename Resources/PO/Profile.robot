@@ -5,7 +5,7 @@ Library    String
 *** Variables ***
 ${LOGGED_IN_USER_NAME}                  id=userName-value
 
-${LOG_OUT_BUTTON}                       css=button#submit:has-text("Log out")
+${LOG_OUT_BUTTON_PROFILE_PAGE}          css=button#submit:has-text("Logout")
 
 ${NOT_LOGGED_IN_MESSAGE}                id=notLoggin-label
 
@@ -37,12 +37,13 @@ Click Book Store Link
 
 
 Click Logout Button
-    Click                       ${LOG_OUT_BUTTON}
+    Click                       ${LOG_OUT_BUTTON_PROFILE_PAGE}
 
 Click Delete Account Button
     Click                       ${DELETE_ACCOUNT_BUTTON}
 
 Verify Delete Account Confirmation Window Visible
+    Wait For Elements State    ${DELETE_ACCOUNT_CONFIRMATION_WINDOW}      stable
     Wait For Elements State    ${DELETE_ACCOUNT_CONFIRMATION_WINDOW}      visible
 
 Confirm Delete

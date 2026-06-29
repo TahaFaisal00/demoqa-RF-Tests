@@ -379,20 +379,20 @@ Attempt Update Book By Another Without New Book ISBN Via API
 Verify Create Account Succeeds
     [Documentation]     Asserts create account returns 201 with account user name and ID.
     [Arguments]     ${response}
-    Verify Resposne Code               ${CREATED_CODE}
-    Verify Response Field Not Empty    ${response}    ${RESPONSE_FIELD_USER_ID}
+    Verify Response Code               ${CREATED_CODE}
+    Verify Response Field Not Empty    ${response}    ${RESPONSE_FIELD_USER_ID_CREATE_ACCOUNT}
     Verify Response Field Not Empty    ${response}    ${RESPONSE_FIELD_USERNAME}
 
 Verify Generate Token Succeeds
     [Documentation]     Asserts generate token returns 200 with the token.
     [Arguments]     ${response}
-    Verify Resposne Code    ${OK_CODE}
+    Verify Response Code    ${OK_CODE}
     Verify Response Field Not Empty    ${response}    ${RESPONSE_FIELD_TOKEN}
 
 Verify Account Authorization Succeeds
     [Documentation]     Asserts verify authorization returns 200 with True boolean
     [Arguments]         ${response}
-    Verify Resposne Code         ${OK_CODE}
+    Verify Response Code         ${OK_CODE}
     Verify Response Body Return True    ${response}
 
 

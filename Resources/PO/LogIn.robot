@@ -17,6 +17,7 @@ ${INVALID_USERNAME_OR_PASSWORD_ERROR}                   text="Invalid username o
 
 ${ALREADY_LOGGED_IN_MESSAGE}                            id=loading-label
 
+${LOG_OUT_BUTTON_LOGIN_PAGE}                           css=button#submit:has-text("Log out")
 *** Keywords ***
 Verify Login Page Loaded
    Get Url                         ==                  ${LOGIN_PAGE_URL}
@@ -47,6 +48,6 @@ Verify Invalid Log In Message
 Verify Account Already Logged In Message
     Wait For Elements State    ${ALREADY_LOGGED_IN_MESSAGE}     visible
 
-
-
+Click Logout Button
+    Click                       ${LOG_OUT_BUTTON_LOGIN_PAGE}
 

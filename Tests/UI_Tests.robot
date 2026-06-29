@@ -3,7 +3,7 @@ Resource                                                             ../Resource
 Suite Setup                                                          Run Keywords         API_RES.Open Session      AND       Common.Launch Suite Browser
 Suite Teardown                                                       Common.Shutdown Browser
 #robot -d Results  Tests/UI_Tests.robot
-
+#Run the trace through: playwright show-trace (Get-ChildItem C:\development\demoqa\log\browser\traces\trace_context=*.zip | Sort-Object LastWriteTime | Select-Object -Last 1).FullName
 *** Test Cases ***
 Log In With Invalid Credentials
    [Documentation]      Try to log in with a multiple different invalid credentials scenarios and verify errors.
@@ -37,7 +37,7 @@ Log In And Delete Account
     DemoqaRes.Logging In And Verify                                  ${TEST_ACCOUNT}
     DemoqaRes.Delete Account Then Reload Profile Page And Verify Account Deletion
     DemoqaRes.Navigate To Login Page
-    DemoqaRes.Logging Out And Verify
+    DemoqaRes.Logging Out From Deleted Account And Verify
     DemoqaRes.Verify Login Fails                                     ${TEST_ACCOUNT}
     [Teardown]      Run Keyword And Ignore Error         DemoqaRes.Delete Authenticated account And Close Session
 

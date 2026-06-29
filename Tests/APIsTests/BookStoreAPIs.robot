@@ -16,7 +16,7 @@ Create List Of Books - Valid Fields - Returns 201
     ...                 Verifies response and code.
     [Tags]      functional      api     post        positive        bookstore
     [Setup]     Create Authenticated Account Via API
-    ${response}=        Create List Of Books Via API        ${GIT_POCKET_GUIDE_ISBN}        ${LEARNING_JAVASCRIPT_DESGIN_PATTERNS_ISBN}
+    ${response}=        Create List Of Books Via API        ${GIT_POCKET_GUIDE_ISBN}        ${LEARNING_JAVASCRIPT_DESIGN_PATTERNS_ISBN}
     Verify Response Code    ${CREATED_CODE}
     Verify Response Field Not Empty    ${response}    ${RESPONSE_FIELD_BOOKS}
     [Teardown]      Delete Account Via API
@@ -26,7 +26,7 @@ Create List Of Books - Unauthorized - Returns 401
     ...                 Verifies response and code.
     [Tags]      functional      api     post        negative        bookstore
     [Setup]     Create Account Via API
-    ${response}=        Attempt Create List Of Books Without Authorization Via API        ${GIT_POCKET_GUIDE_ISBN}        ${LEARNING_JAVASCRIPT_DESGIN_PATTERNS_ISBN}
+    ${response}=        Attempt Create List Of Books Without Authorization Via API        ${GIT_POCKET_GUIDE_ISBN}        ${LEARNING_JAVASCRIPT_DESIGN_PATTERNS_ISBN}
     Verify Response Code    ${NOT_AUTHORIZED_CODE}
     Verify Response Message    ${response}    ${NOT_AUTHORIZED_MESSAGE}
     Generate Token Via API
@@ -148,8 +148,8 @@ Update a Book by Replacing it with Another by ISBN - Returns 200 with Valid ISBN
     ...                 Verifies response message and code.
     [Tags]      functional     api     put        positive        bookstore
     [Setup]     Create Authenticated Account Via API
-    Create List Of Books Via API        ${GIT_POCKET_GUIDE_ISBN}        ${LEARNING_JAVASCRIPT_DESGIN_PATTERNS_ISBN}
-    ${response}=        Update Book By Another Via API   ${LEARNING_JAVASCRIPT_DESGIN_PATTERNS_ISBN}        ${SPEAKING_JAVA_SCRIPT_ISBN}
+    Create List Of Books Via API        ${GIT_POCKET_GUIDE_ISBN}        ${LEARNING_JAVASCRIPT_DESIGN_PATTERNS_ISBN}
+    ${response}=        Update Book By Another Via API   ${LEARNING_JAVASCRIPT_DESIGN_PATTERNS_ISBN}        ${SPEAKING_JAVA_SCRIPT_ISBN}
     Verify Response Code    ${OK_CODE}
     Verify Response Field Not Empty    ${response}        ${RESPONSE_FIELD_BOOKS}
     [Teardown]      Delete Account Via API
@@ -159,8 +159,8 @@ Update a Book by Replacing it with Another by ISBN - Returns 400 with Valid ISBN
     ...                 Verifies response message and code.
     [Tags]      functional     api     put        negative        bookstore
     [Setup]     Create Authenticated Account Via API
-    Create List Of Books Via API        ${GIT_POCKET_GUIDE_ISBN}        ${LEARNING_JAVASCRIPT_DESGIN_PATTERNS_ISBN}
-    ${response}=        Update Book By Another Via API   ${LEARNING_JAVASCRIPT_DESGIN_PATTERNS_ISBN}        ${INVALID_ISBN}
+    Create List Of Books Via API        ${GIT_POCKET_GUIDE_ISBN}        ${LEARNING_JAVASCRIPT_DESIGN_PATTERNS_ISBN}
+    ${response}=        Update Book By Another Via API   ${LEARNING_JAVASCRIPT_DESIGN_PATTERNS_ISBN}        ${INVALID_ISBN}
     Verify Response Code    ${BAD_REQUEST_CODE}
     Verify Response Message    ${response}        ${BOOK_ISBN_NOT_AVAILABLE_IN_BOOK_COLLECTION_MESSAGE}
     [Teardown]      Delete Account Via API
@@ -172,8 +172,8 @@ Update a Book by Replacing it with Another by ISBN - Returns 500 with Missing IS
     ...                 but the API is returning text/html type content that is leaking internal paths, Sequelize, MySQL.
     [Tags]      bug     api     put        negative        bookstore
     [Setup]     Create Authenticated Account Via API
-    Create List Of Books Via API        ${GIT_POCKET_GUIDE_ISBN}        ${LEARNING_JAVASCRIPT_DESGIN_PATTERNS_ISBN}
-    ${response}=        Attempt Update Book By Another Without New Book ISBN Via API         ${LEARNING_JAVASCRIPT_DESGIN_PATTERNS_ISBN}
+    Create List Of Books Via API        ${GIT_POCKET_GUIDE_ISBN}        ${LEARNING_JAVASCRIPT_DESIGN_PATTERNS_ISBN}
+    ${response}=        Attempt Update Book By Another Without New Book ISBN Via API         ${LEARNING_JAVASCRIPT_DESIGN_PATTERNS_ISBN}
     Verify Response Code    ${BAD_REQUEST_CODE}
     Verify Response Headers Content type      ${response}        ${CONTENT_TYPE_TEXT_HTML}
     [Teardown]      Delete Account Via API
@@ -184,8 +184,8 @@ Update a Book by Replacing it with Another by ISBN - Returns 200 with ISBN of an
     ...                 BUG: the API allows duplicating book in the same collection.
     [Tags]      bug      api     put        negative        bookstore
     [Setup]     Create Authenticated Account Via API
-    Create List Of Books Via API        ${GIT_POCKET_GUIDE_ISBN}        ${LEARNING_JAVASCRIPT_DESGIN_PATTERNS_ISBN}
-    ${response}=        Update Book By Another Via API   ${LEARNING_JAVASCRIPT_DESGIN_PATTERNS_ISBN}        ${GIT_POCKET_GUIDE_ISBN}
+    Create List Of Books Via API        ${GIT_POCKET_GUIDE_ISBN}        ${LEARNING_JAVASCRIPT_DESIGN_PATTERNS_ISBN}
+    ${response}=        Update Book By Another Via API   ${LEARNING_JAVASCRIPT_DESIGN_PATTERNS_ISBN}        ${GIT_POCKET_GUIDE_ISBN}
     Verify Response Code    ${OK_CODE}
     Verify Response Field Not Empty    ${response}        ${RESPONSE_FIELD_BOOKS}
     [Teardown]      Delete Account Via API
