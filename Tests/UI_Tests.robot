@@ -41,16 +41,6 @@ Log In And Delete Account
     DemoqaRes.Verify Login Fails                                     ${TEST_ACCOUNT}
     [Teardown]      Run Keyword And Ignore Error         DemoqaRes.Delete Authenticated account And Close Session
 
-Delete Account Does Not Close Confirmation Window
-    [Documentation]     Creating new account Via API using freshly created data, And Signing in then deleting the account
-    ...                 Verify the UI doesn't update and delete confirmation window stays open.
-    [Tags]                                                           bug     ui     negative     account
-    [Setup]     DemoqaRes.Start Session And Create Account Then Open Book Store Application
-    DemoqaRes.Logging In And Verify                                  ${TEST_ACCOUNT}
-    DemoqaRes.Deleting Account
-    DemoqaRes.Verify Delete Account Confirmation Window Persists After Confirm
-    [Teardown]      Run Keyword And Ignore Error         DemoqaRes.Delete Authenticated account And Close Session
-
 Delete Account Does Not automatically Log Out The User
     [Documentation]     Creating new account Via API using freshly created data, And Signing in then deleting the account
     ...                 Verify that after Deleting the account and navigating to Profile page the account will

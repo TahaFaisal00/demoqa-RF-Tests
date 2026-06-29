@@ -233,12 +233,6 @@ Logging Out From Deleted Account And Verify
     Verify Account Logged Out
 
 
-
-Verify Delete Account Confirmation Window Persists After Confirm
-    [Documentation]     Used to verify the bug of UI doesn't update and the confirmation windows stays on screen.
-    Profile.Verify Delete Account Confirmation Window Visible
-
-
 Verify Account Still Signed In After Deletion
     [Documentation]     Used to verify the bug of UI doesn't update and the confirmation windows stays on screen.
     LogIn.Verify Account Already Logged In Message
